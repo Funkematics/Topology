@@ -19,8 +19,8 @@ example : A \ B = A ∩ Bᶜ := by
 variable {U : Type*}
 variable {C D X : Set U}
 
---First Exercise
-example  (h : C ⊆ X ∧ D ⊆ X) : (X \ C) ∩ D = D \ C := by
+-- Sutherland 2.1
+theorem S2_1 (h : C ⊆ X ∧ D ⊆ X) : (X \ C) ∩ D = D \ C := by
   ext x
   constructor
   · rintro ⟨hXC, hD⟩
@@ -31,5 +31,25 @@ example  (h : C ⊆ X ∧ D ⊆ X) : (X \ C) ∩ D = D \ C := by
   · rintro ⟨hD, hC⟩
     rw [Set.mem_inter_iff]
     rw [Set.mem_sdiff]
+    have hX : x ∈ X := h.right hD   --apply hD to h.right to get x ∈ X
+    exact ⟨⟨hX, hC⟩, hD⟩ 
+
+-- Sutherland 2.2
+variable {U : Type*}
+variable {A V X : Set U}
+
+theorem S2_2 (h : A ⊆ X ∧ V ⊆ X) : A \ (V ∩ A) = A ∩ (X \ V) := by
+  ext x
+  constructor
+  · rintro ⟨hA, hVA⟩
+    rw [Set.mem_inter_iff]
+    rw [Set.mem_sdiff]
+    rw [Set.mem_inter_iff] at hVA
+    push_neg at hVA
     sorry
+    
+
+  
+
+  
 
