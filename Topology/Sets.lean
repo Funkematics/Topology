@@ -46,7 +46,20 @@ theorem S2_2 (h : A ⊆ X ∧ V ⊆ X) : A \ (V ∩ A) = A ∩ (X \ V) := by
     rw [Set.mem_sdiff]
     rw [Set.mem_inter_iff] at hVA
     push_neg at hVA
-    sorry
+    have hV : x ∉ V := fun hxV => hVA hxV hA
+    have hX : x ∈ X := h.left hA
+    exact ⟨hA, hX, hV⟩
+  · rintro ⟨hA, hX, hV⟩
+    rw [Set.mem_sdiff]
+    constructor
+    · exact hA
+    · rw [Set.mem_inter_iff]
+      push Not
+      intro hxV
+      exfalso
+      exact hV hxV
+
+
     
 
   
