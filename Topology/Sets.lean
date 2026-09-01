@@ -32,7 +32,7 @@ theorem S2_1 (h : C ⊆ X ∧ D ⊆ X) : (X \ C) ∩ D = D \ C := by
     rw [Set.mem_inter_iff]
     rw [Set.mem_sdiff]
     have hX : x ∈ X := h.right hD   --apply hD to h.right to get x ∈ X
-    exact ⟨⟨hX, hC⟩, hD⟩ 
+    exact ⟨⟨hX, hC⟩, hD⟩
 
 -- Sutherland 2.2
 variable {U : Type*}
@@ -60,9 +60,21 @@ theorem S2_2 (h : A ⊆ X ∧ V ⊆ X) : A \ (V ∩ A) = A ∩ (X \ V) := by
       exact hV hxV
 
 
+-- Sutherland 2.5
+variable {U : Type*}
+variable {U_1 U_2 V_1 V_2 X Y : Set U}
+
+theorem S2_5 (h1 : U_1 ⊆ X ∧ U_2 ⊆ X) (h2 : V_1 ⊆ Y ∧ V_2 ⊆ Y) : (U_1 ×ˢ V_1) ∩ (U_2 ×ˢ V_2) = (U_1 ∩ U_2) ×ˢ(V_1 ∩ V_2) := by
+  ext ⟨x, y⟩
+  simp only [Set.mem_inter_iff, Set.mem_prod]
+  constructor
+  · rintro ⟨⟨hxU1, hyV1⟩, ⟨hxU2, hyV2⟩⟩
+    exact ⟨⟨hxU1, hxU2⟩, ⟨hyV1, hyV2⟩⟩
+  · rintro ⟨⟨hxU1, hxU2⟩, ⟨hyV1, hyV2⟩⟩
+    exact ⟨⟨hxU1, hyV1⟩, ⟨hxU2, hyV2⟩⟩
+--Note: Hypothesis was unnecessary
+``
+
+
     
-
-  
-
-  
 
