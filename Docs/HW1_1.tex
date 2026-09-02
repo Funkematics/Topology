@@ -1,0 +1,111 @@
+\documentclass{homework}
+
+% The following commands set up the material that appears
+% in the header.
+\doclabel{Math F404: Homework 1}
+\docauthor{Christopher}
+\docdate{Due: September 2, 2026}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\begin{document}
+\begin{problems}
+
+\problem Sutherland 2.1
+Suppose that $C, D$ are subsets of a set $X$. Prove that
+\[
+(X \setminus C) \cap D = D \setminus C.
+\]
+\solution
+  \begin{proof}
+$ $\newline In order to prove equality among sets, we must show that they are subsets of each other. 
+    \textbf{Forward Case:} Let $x \in [(X \setminus C) \cap D]$. Unfolding the definitions:
+    \begin{align*}
+      x \in [( X \setminus C) \cap D] & \implies x \in (X \setminus C) \land x \in D \\
+      & \implies (x \in X \land x \notin C) \land x \in D \\
+      & \implies  x \in X \land x \notin C \land x \in D \\
+      & \implies x \in D \land x \notin C && \text{$C \subseteq X$ and $D \subseteq X$}\\
+      & \implies x \in [D \setminus C]
+    \end{align*}
+    Thus $(X \setminus C) \cap D \subseteq D \setminus C$. \newline
+    \textbf{Backwards case}: Let $x \in [D \setminus C]$. Unfolding the definitions:
+      \begin{align*}
+        x \in [D \setminus C] &\implies x \in D \land x \notin C \\
+        &\implies x \in D \land x \in X \land x \notin C && \text{$D \subseteq X \implies x \in D \land x \in X$}\\
+        &\implies (x \in X \land x \notin C ) \land x \in D \\
+        &\implies (X \setminus C) \cap D
+      \end{align*}
+      Thus $D \setminus X \subseteq (x \setminus C) \cap D$.
+      From these two cases it follows that $(X \setminus C) \cap D = D \setminus C$.
+\end{proof}
+
+\problem Sutherland 2.2
+Suppose that $A, V$ are subsets of a set $X$. Prove that
+\[
+A \setminus (V \cap A) = A \cap (X \setminus V).
+\]
+\solution
+
+\problem Sutherland 2.5 (AI-free)
+Suppose that $U_1, U_2$ are subsets of a set $X$ and that $V_1, V_2$ are
+subsets of a set $Y$. Prove that
+\[
+(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2).
+\]
+\solution
+
+\problem Sutherland 2.7
+Suppose $\sim$ is an equivalence relation on a set $X$. Show that the equivalence classes partition
+$X$ in the following sense. Let $\mathcal{C}$ denote the collection of equivalence classes. Then
+$\bigcup_{C \in \mathcal{C}} C = X$, and if $C, C' \in \mathcal{C}$ then either $C = C'$ or
+$C \cap C' = \emptyset$.
+\solution
+
+\problem Give examples of collections of open intervals $I_i = (a_i, b_i)$ with $i \in \Nats$ such that
+\begin{subproblems}
+\item $\bigcap_{i \in \Nats} I_i = [0,1]$
+\item $\bigcap_{i \in \Nats} I_i = (0,1)$
+\item $\bigcap_{i \in \Nats} I_i = (0,1]$
+\end{subproblems}
+For part (a) give a formal proof. For the remainder, just give an example and a brief
+justification.
+\subsol
+
+\subsol
+
+\subsol
+
+\problem Sutherland 3.2 (No formal proof needed)
+Let $f : \Reals \to \Reals$ be defined by $f(x) = \sin x$. Describe the sets:
+\[
+f([0, \pi/2]), \quad f([0,\infty)), \quad f^{-1}([0,1]), \quad f^{-1}([0,1/2]), \quad f^{-1}([-1,1]).
+\]
+\solution
+
+\problem Sutherland 3.3
+Suppose that $f : X \to Y$ and $g : Y \to Z$ are maps and $U \subseteq Z$.
+Prove that
+\[
+(g \circ f)^{-1}(U) = f^{-1}(g^{-1}(U)).
+\]
+\solution
+
+\problem Sutherland 3.4
+Let $f : \Reals \to \Reals^2$ be defined by $f(x) = (x, 2x)$. Describe the sets:
+\[
+f([0,1]), \quad f^{-1}([0,1] \times [0,1]), \quad f^{-1}(D)
+\]
+where $D = \{(x,y) \in \Reals^2 : x^2 + y^2 \le 1\}$.
+\solution
+
+\problem Sutherland 3.8 (Make your proof as short as possible)
+Let $f : X \to Y$ be a map and let $A, B$ be subsets of $X$. Prove
+that $f(A \setminus B) = f(A) \setminus f(B)$ if and only if $f(A \setminus B) \cap f(B) = \emptyset$.
+Deduce that if $f$ is injective then $f(A \setminus B) = f(A) \setminus f(B)$.
+\solution
+
+\end{problems}
+\end{document}
