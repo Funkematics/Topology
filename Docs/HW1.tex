@@ -2,9 +2,9 @@
 
 % The following commands set up the material that appears
 % in the header.
-\doclabel{Math 404: Demo Homework}
-\docauthor{Your name here.}
-\docdate{August 24, 2026}
+\doclabel{Math F404: Homework 1}
+\docauthor{Christopher Munoz}
+\docdate{September 1, 2026}
 
 % Some common macros
 \newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
@@ -14,68 +14,232 @@
 \begin{document}
 \begin{problems}
 
-\problem Exercise 0.1 \solver{John Gimbel}
-If $a$ and $b$ are even integers, then so is $a+b$.
+\problem Sutherland 2.1 :
+Suppose that $C, D$ are subsets of a set $X$. Prove that
+\[
+(X \setminus C) \cap D = D \setminus C.
+\]
 \solution
-Let $a$ and $b$ be even integers.  Then there exist integers
-$j$ and $k$ such that $a=2j$ and $b=2k$.  But then
-\begin{equation}
-a+b = 2j+ 2k = 2(j+k).
-\end{equation}
-Since $j+k\in\Ints$, $a+b$ is even.
-
-\problem Exercise 0.2 \solver{Jill Faudree}
-Let $X$ be a set.
-\begin{subproblems}
-\item An intersection of topologies on $X$ is a topology on $X$.
-\item A union of topologies on $X$ need not be a topology.
-\end{subproblems}
-\subsol
-Let $\{\tau_\alpha\}$ be a family of topologies and let $\tau=\cap_\alpha \tau_\alpha$.  
-Observe that $\emptyset$ and $X$ belong to $\tau$ as they belong to each $\tau_\alpha$.
-
-Suppose $\{U_\beta\}$ is a family of sets in $\tau$ and let $U=\cup_\beta U_\beta$. 
-Fix $\alpha$ and observe that each $U_\beta\in \tau_\alpha$. Since $\tau_\alpha$
-is a topology, $U\in\tau_\alpha$.  Since $\alpha$ is arbitrary, $U\in\cap\tau_\alpha=\tau$.
-
-The proof that a finite intersection of sets in $\tau$ belongs to $\tau$ is essentially similar.
-
-\subsol
-Let $X=\{1,2,3\}$.  Let $\tau_1 = \{\emptyset, \{1\}, X\}$ and let $\tau_2 = \{\emptyset, \{2\}, X\}$.
-It is easy to see that these are topologies.
-Let $T=\tau_1\cup \tau_2 = \{\emptyset, \{1\}, \{2\}, X\}$.   Observe that $T$ is not closed under
-taking unions as $\{1\}$ and $\{2\}$ are elements of $T$ but $\{1,2\}$ is not.
-
-\problem Exercise 0.3 \solver{Elizabeth Allman}
-Let $X$ be a metric space.  Show that 
-the collection of open balls in $X$ forms the basis of a topology.
-
-\solution
-We start with a technical lemma.
-\begin{lemma}{A}\label{lem:DAMrefine}  
-Suppose $B_1=B_{r_1}(x_1)$ and $B_2=B_{r_2}(x_2)$ are 
-open balls in $X$ and $x_3\in B_1\cap B_2$.  Then there is an $r>0$ such
-that $B_r(x_3)\subseteq B_1\cap B_2$.
-\end{lemma}
-\begin{proof}
-Let $r = \min(r_1-d(x_3,x_1),r_2-d(x_3,x_2)$ and observe that $r>0$.  Now suppose
-$z\in B_{r}(x_3)$.  The triangle inequality implies
-\begin{align*} 
-d(x_1,z)&\le d(x_1,x_3) + d(x_3,z) \\
-&< d(x_1,x_3) + r \\
-&\le d(x_1,x_3) + ( r_1-d(x_3,x_1) ) \\
-&= r_1
-\end{align*}
-Hence $z\in B_{r_1}(x_1)=x_1$.  Similarly $z\in B_2$, and hence $B_r(z)\subseteq B_1\cap B_2$.
+  \begin{proof}
+$ $\newline In order to prove equality among sets, we must show that they are subsets of each other. 
+    \textbf{Forward Case:} Let $x \in [(X \setminus C) \cap D]$. Unfolding the definitions:
+    \begin{align*}
+      x \in [( X \setminus C) \cap D] & \implies x \in (X \setminus C) \land x \in D \\
+      & \implies (x \in X \land x \notin C) \land x \in D \\
+      & \implies  x \in X \land x \notin C \land x \in D \\
+      & \implies x \in D \land x \notin C && \text{$C \subseteq X$ and $D \subseteq X$}\\
+      & \implies x \in [D \setminus C]
+    \end{align*}
+    Thus $(X \setminus C) \cap D \subseteq D \setminus C$. \newline
+    \textbf{Backwards case}: Let $x \in [D \setminus C]$. Unfolding the definitions:
+      \begin{align*}
+        x \in [D \setminus C] &\implies x \in D \land x \notin C \\
+        &\implies x \in D \land x \in X \land x \notin C && \text{$D \subseteq X \implies x \in D \land x \in X$}\\
+        &\implies (x \in X \land x \notin C ) \land x \in D \\
+        &\implies (X \setminus C) \cap D
+      \end{align*}
+      Thus $D \setminus X \subseteq (x \setminus C) \cap D$.
+      From these two cases it follows that $(X \setminus C) \cap D = D \setminus C$.
 \end{proof}
 
-Continuing with the main proof:
+\problem Sutherland 2.2 :
+Suppose that $A, V$ are subsets of a set $X$. Prove that
+\[
+A \setminus (V \cap A) = A \cap (X \setminus V).
+\]
+\solution
+  \begin{proof}
+$ $\newline In order to prove equality among sets, we must show that they are subsets of each other.
+    \textbf{Forward Case:} Let $x \in [A \setminus (V \cap A)]$. Unfolding the definitions:
+    \begin{align*}
+      x \in [A \setminus (V \cap A)] &\implies x \in A \land x \notin (V \cap A) \\
+      &\implies x \in A \land \neg(x \in V \land x \in A) \\
+      &\implies x \in A \land (x \notin V \lor x \notin A) \\
+      &\implies x \in A \land x \notin V && \text{since $x \in A$ rules out $x \notin A$}\\
+      &\implies x \in A \land x \in X \land x \notin V && \text{$A \subseteq X$}\\
+      &\implies x \in A \land (x \in X \land x \notin V) \\
+      &\implies x \in A \land x \in [X \setminus V] \\
+      &\implies x \in [A \cap (X \setminus V)]
+    \end{align*}
+    Thus $A \setminus (V \cap A) \subseteq A \cap (X \setminus V)$. \newline
+    \textbf{Backwards Case:} Let $x \in [A \cap (X \setminus V)]$. Unfolding the definitions:
+      \begin{align*}
+        x \in [A \cap (X \setminus V)] &\implies x \in A \land x \in [X \setminus V] \\
+        &\implies x \in A \land x \in X \land x \notin V \\
+        &\implies x \in A \land x \notin V \\
+        &\implies x \in A \land \neg(x \in V \land x \in A) && \text{since $x\notin V$ alone kills the conjunction}\\
+        &\implies x \in A \land x \notin (V \cap A) \\
+        &\implies x \in [A \setminus (V \cap A)]
+      \end{align*}
+      Thus $A \cap (X \setminus V) \subseteq A \setminus (V \cap A)$.
+      From these two cases it follows that $A \setminus (V \cap A) = A \cap (X \setminus V)$.
+\end{proof}
 
-Let $\mathcal{B}$ be the collection of open balls in $X$.  Fix $x\in X$ and note
-that $\cup_{r>0} B_r(x)=X$.  Hence $\mathcal{B}$ covers $X$.  Moreover, by Lemma
-\ref{lem:DAMrefine}, $\mathcal{B}$ satisfies the refinement property.  Hence
-by the topology construction lemma, $\mathcal{B}$ generates a topology on $X$,
-and the open sets are simply the unions of open balls.
+\problem Sutherland 2.5 \textbf{AI-free}:
+Suppose that $U_1, U_2$ are subsets of a set $X$ and that $V_1, V_2$ are
+subsets of a set $Y$. Prove that
+\[
+(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2).
+\]
+\solution
+  \begin{proof}
+$ $\newline Since both sides are subsets of $X \times Y$, we argue by unfolding definitions for an arbitrary pair $(x,y)$, note that the hypothesis is flavor text.
+    \begin{align*}
+      (x,y) \in [(U_1 \times V_1) \cap (U_2 \times V_2)]
+      &\iff (x,y) \in (U_1 \times V_1) \land (x,y) \in (U_2 \times V_2) \\
+      &\iff (x \in U_1 \land y \in V_1) \land (x \in U_2 \land y \in V_2) \\
+      &\iff (x \in U_1 \land x \in U_2) \land (y \in V_1 \land y \in V_2) && \text{rearranging conjuncts}\\
+      &\iff x \in (U_1 \cap U_2) \land y \in (V_1 \cap V_2) \\
+      &\iff (x,y) \in [(U_1 \cap U_2) \times (V_1 \cap V_2)]
+    \end{align*}
+    Since $(x,y)$ was arbitrary, $(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)$.
+\end{proof}
+
+\problem Sutherland 2.7 as follows:
+Suppose $\sim$ is an equivalence relation on a set $X$. Show that the equivalence classes partition
+$X$ in the following sense. Let $\mathcal{C}$ denote the collection of equivalence classes. Then
+$\bigcup_{C \in \mathcal{C}} C = X$, and if $C, C' \in \mathcal{C}$ then either $C = C'$ or
+$C \cap C' = \emptyset$.
+\solution
+  \begin{proof}
+$ $\newline For $x \in X$, write $[x] = \{y \in X : y \sim x\}$ for the equivalence class of $x$; note $\mathcal{C} = \{[x] : x \in X\}$. \newline
+    \textbf{Part 1 (the union is $X$):}
+    Each $[x] \subseteq X$ by definition, so $\bigcup_{C \in \mathcal{C}} C \subseteq X$. Conversely, for any $x \in X$, reflexivity gives $x \sim x$, so $x \in [x]$ and $[x] \in \mathcal{C}$; hence $x \in \bigcup_{C \in \mathcal{C}} C$. Thus $X \subseteq \bigcup_{C \in \mathcal{C}} C$, and so $\bigcup_{C \in \mathcal{C}} C = X$. \newline
+    \textbf{Part 2 (equal or disjoint):} Suppose $C, C' \in \mathcal{C}$ with $C \cap C' \neq \emptyset$; say $C = [a]$, $C' = [b]$. We show $C = C'$.
+    \begin{align*}
+      z \in C \cap C' &\implies z \sim a \land z \sim b \\
+      &\implies a \sim z \land z \sim b && \text{symmetry}\\
+      &\implies a \sim b && \text{transitivity}
+    \end{align*}
+    Now let $w \in C = [a]$, so $w \sim a$. Since $a \sim b$, transitivity gives $w \sim b$, so $w \in [b] = C'$. Thus $C \subseteq C'$. By symmetry $b \sim a$, and the identical argument with the roles of $a,b$ reversed gives $C' \subseteq C$. Hence $C = C'$.
+
+    So for any $C, C' \in \mathcal{C}$, either $C \cap C' = \emptyset$ or $C = C'$.
+\end{proof}
+
+\problem Give examples of collections of open intervals $I_i = (a_i, b_i)$ with $i \in \Nats$ such that
+\begin{subproblems}
+\item $\bigcap_{i \in \Nats} I_i = [0,1]$
+\item $\bigcap_{i \in \Nats} I_i = (0,1)$
+\item $\bigcap_{i \in \Nats} I_i = (0,1]$
+\end{subproblems}
+For part (a) give a formal proof. For the remainder, just give an example and a brief
+justification.
+\subsol
+  \textbf{Example:} $I_i = \left(-\dfrac{1}{i}, 1 + \dfrac{1}{i}\right)$ for $i \in \Nats$.
+  \begin{proof}
+$ $\newline \textbf{Forward Case ($\subseteq$):} Let $x \in \bigcap_{i\in\Nats} I_i$. Then for every $i$,
+    \[
+    -\frac1i < x < 1+\frac1i.
+    \]
+    Since $x > -\frac1i$ for every $i$, $x$ is an upper bound for $\left\{-\frac1i : i \in \Nats\right\}$, whose supremum is $0$. Hence
+    \[
+    x \ge \sup\left\{-\tfrac1i\right\} = 0.
+    \]
+    Since $x < 1+\frac1i$ for every $i$, $x$ is a lower bound for $\left\{1+\frac1i : i \in \Nats\right\}$, whose infimum is $1$. Hence
+    \[
+    x \le \inf\left\{1+\tfrac1i\right\} = 1.
+    \]
+    So $x \in [0,1]$, giving $\bigcap_{i\in\Nats} I_i \subseteq [0,1]$. \newline
+    \textbf{Backwards Case ($\supseteq$):} Let $x \in [0,1]$. For every $i \in \Nats$,
+    \[
+    -\frac1i < 0 \le x \le 1 < 1+\frac1i,
+    \]
+    so $x \in I_i$. Since $i$ was arbitrary, $x \in \bigcap_{i\in\Nats} I_i$, giving $[0,1] \subseteq \bigcap_{i\in\Nats} I_i$.
+ 
+    From these two cases, $\bigcap_{i \in \Nats} I_i = [0,1]$.
+  \end{proof}
+
+
+\subsol
+  \textbf{Example:} $I_i = (0,1)$ for every $i \in \Nats$. \newline
+  \textbf{Justification:} The intersection of countably infinite copies of the same set is just that set.
+
+\subsol
+  \textbf{Example:} $I_i = \left(0,\, 1+\dfrac1i\right)$ for $i \in \Nats$. \newline
+  \textbf{Justification:} The lower endpoint is fixed at $0$, so $x \in I_i$ for all $i$ forces $x > 0$ regardless of $i$. The upper endpoints $1+\frac1i$ will converge to 1.
+\problem Sutherland 3.2 (No formal proof needed):
+Let $f : \Reals \to \Reals$ be defined by $f(x) = \sin x$. Describe the sets:
+\[
+f([0, \pi/2]), \quad f([0,\infty)), \quad f^{-1}([0,1]), \quad f^{-1}([0,1/2]), \quad f^{-1}([-1,1]).
+\]
+\solution
+$ $\newline Since $\sin$ increases from $0$ to $1$ on $[0,\pi/2]$:
+\[
+f([0,\pi/2]) = [0,1].
+\]
+Since $\sin$ attains every value in $[-1,1]$already on, e.g., $[0,2\pi] \subseteq [0,\infty)$:
+\[
+f([0,\infty)) = [-1,1].
+\]
+$\sin x \in [0,1]$ exactly when $\sin x \ge 0$, i.e.\ on each interval $[2k\pi, (2k+1)\pi]$, $k \in \Ints$:
+\[
+f^{-1}([0,1]) = \bigcup_{k \in \Ints} [2k\pi,\ (2k+1)\pi].
+\]
+$\sin x \in [0,1/2]$ on each ``hump'' of $\sin$, restricted near its base (below the points where $\sin x = 1/2$, namely $x = \pi/6, 5\pi/6$ up to shifts of $2\pi$):
+\[
+f^{-1}([0,1/2]) = \bigcup_{k \in \Ints} \left( \left[2k\pi,\ 2k\pi+\tfrac{\pi}{6}\right] \cup \left[2k\pi+\tfrac{5\pi}{6},\ 2k\pi+\pi\right] \right).
+\]
+Since $\sin x \in [-1,1]$ for every real $x$:
+\[
+f^{-1}([-1,1]) = \Reals.
+\]
+
+\problem Sutherland 3.3 :
+Suppose that $f : X \to Y$ and $g : Y \to Z$ are maps and $U \subseteq Z$.
+Prove that
+\[
+(g \circ f)^{-1}(U) = f^{-1}(g^{-1}(U)).
+\]
+\solution
+  \begin{proof}
+$ $\newline For arbitrary $x \in X$, every step below is an $\iff$, so no case split is needed:
+    \begin{align*}
+      x \in [(g\circ f)^{-1}(U)] &\iff (g \circ f)(x) \in U \\
+      &\iff g(f(x)) \in U \\
+      &\iff f(x) \in [g^{-1}(U)] \\
+      &\iff x \in [f^{-1}(g^{-1}(U))]
+    \end{align*}
+    Since $x$ was arbitrary, $(g\circ f)^{-1}(U) = f^{-1}(g^{-1}(U))$.
+\end{proof}
+
+\problem Sutherland 3.4
+Let $f : \Reals \to \Reals^2$ be defined by $f(x) = (x, 2x)$. Describe the sets:
+\[
+f([0,1]), \quad f^{-1}([0,1] \times [0,1]), \quad f^{-1}(D)
+\]
+where $D = \{(x,y) \in \Reals^2 : x^2 + y^2 \le 1\}$.
+\solution
+$ $\newline \textbf{For} $\mathbf{f([0,1])} = \{(x,2x) : x \in [0,1]\}$, the line segment from $(0,0)$ to $(1,2)$.
+
+\textbf{For} $\mathbf{f^{-1}([0,1]\times[0,1])}$: $f(x) = (x,2x) \in [0,1]\times[0,1]$ iff $0 \le x \le 1$ and $0 \le 2x \le 1$, i.e.\ $0 \le x \le \tfrac12$. So
+\[
+f^{-1}([0,1]\times[0,1]) = \left[0, \tfrac12\right].
+\]
+
+\textbf{For} $\mathbf{f^{-1}(D)}$: $f(x) = (x,2x) \in D$ iff $x^2 + (2x)^2 \le 1$, i.e.\ $5x^2 \le 1$, i.e.\ $|x| \le \tfrac{1}{\sqrt5}$. So
+\[
+f^{-1}(D) = \left[-\tfrac{1}{\sqrt5},\ \tfrac{1}{\sqrt5}\right].
+\]
+
+\problem Sutherland 3.8 (Make your proof as short as possible): 
+Let $f : X \to Y$ be a map and let $A, B$ be subsets of $X$. Prove
+that $f(A \setminus B) = f(A) \setminus f(B)$ if and only if $f(A \setminus B) \cap f(B) = \emptyset$.
+Deduce that if $f$ is injective then $f(A \setminus B) = f(A) \setminus f(B)$.
+\solution
+  \begin{proof}
+$ $\newline \textbf{Forward Case ($\implies$):} Suppose $f(A\setminus B) = f(A)\setminus f(B)$. By definition, $f(A)\setminus f(B)$ is disjoint from $f(B)$, so
+    \[
+    f(A \setminus B) \cap f(B) = \left[f(A)\setminus f(B)\right] \cap f(B) = \emptyset.
+    \]
+    \textbf{Backwards Case ($\impliedby$):} Suppose $f(A\setminus B) \cap f(B) = \emptyset$.
+    \begin{itemize}
+      \item[$\subseteq$:] Let $y \in f(A\setminus B)$. Since $A\setminus B \subseteq A$, $y \in f(A)$. Since $f(A\setminus B) \cap f(B) = \emptyset$, $y \notin f(B)$. So $y \in f(A)\setminus f(B)$.
+      \item[$\supseteq$:] Let $y \in f(A)\setminus f(B)$, so $y = f(x)$ for some $x \in A$, and $y \notin f(B)$. If $x \in B$ then $y = f(x) \in f(B)$, contradicting $y \notin f(B)$; so $x \notin B$. Thus $x \in A\setminus B$, so $y \in f(A\setminus B)$. (This inclusion needs no hypothesis.)
+    \end{itemize}
+    Hence $f(A\setminus B) = f(A)\setminus f(B)$.
+
+    \textbf{Deduction:} Suppose $f$ is injective. If $y \in f(A\setminus B) \cap f(B)$, then $y = f(x_1)$ for some $x_1 \in A\setminus B$ and $y = f(x_2)$ for some $x_2 \in B$. Injectivity forces $x_1 = x_2$, so $x_1 \in B$ — contradicting $x_1 \in A \setminus B$. Hence $f(A\setminus B)\cap f(B) = \emptyset$, and by the equivalence above, $f(A\setminus B) = f(A)\setminus f(B)$.
+\end{proof}
 
 \end{problems}
 \end{document}
