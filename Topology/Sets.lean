@@ -73,8 +73,15 @@ theorem S2_5 (h1 : U_1 ⊆ X ∧ U_2 ⊆ X) (h2 : V_1 ⊆ Y ∧ V_2 ⊆ Y) : (U_
   · rintro ⟨⟨hxU1, hxU2⟩, ⟨hyV1, hyV2⟩⟩
     exact ⟨⟨hxU1, hyV1⟩, ⟨hxU2, hyV2⟩⟩
 --Note: Hypothesis was unnecessary
-``
+
+
+--Sutherland 2.7
+variable {X : Type*} (r : X → X → Prop)
+
+def eqClass (x : X) : Set X := {y | r x y}
+
+def eqClasses (r : X → X → Prop) : Set (Set X) := {C | ∃ x, C = eqClass r x}
 
 
     
-
+----
