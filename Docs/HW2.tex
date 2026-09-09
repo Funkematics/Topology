@@ -6,20 +6,39 @@
 \newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
 \newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
 
-\doclabel{Math F404: Homework 1}
+\doclabel{Math F404: Homework 2}
 \docdate{Due: September 8, 2026}
 
 \begin{document}
 \begin{problems}
 \problem Sutherland 4.1
 
+Show that if $\emptyset \neq A \subseteq B \subseteq \Reals $ and $B$ is bounded above then $A$ is bounded above and $\sup A \leq \sup B$.
+\newline
+\begin{proof}
+  Given that $B$ is bounded above and non empty, by axiom of completeness $sup B = s$ exists and is by definition an upper bound for $B$. The hypothesis also gives $A \subseteq B$ and so for an arbitrary $a \in A$ it follows that $a \in B$ and that $a \leq s$. So $s$ is an upper bound for $A$ and is bounded above. By axiom of completeness, since $A$ is bounded above then $sup A$ also exists. Since $sup A$ is the least upper bound for $A$ by definition and $s = \sup B$ is \emph{an} upper bound for A, it follows that $\sup A \leq s = \sup B$.
+\end{proof}
+
 \problem Sutherland 4.2
+
+Show that if $A$ and $B$ are non-empty subsets of $\Reals$ which are bounded above then $A \cup B$ is bounded above and $$\sup A \cup B = \max\{\sup A, \sup B\} $$ 
+\newline
+\begin{proof}
+  Given A and B are both nonempty and bounded above, by completeness $\sup A$ and $\sup B$ both exist. We denote the larger of the two by letting $M = \max\{\sup A, \sup B\}$. Note that if we take any element of $A \cup B$ it is by definition in $A$ or in $B$. If we take an element of $A$, it is at most $\sup A$ which is at most $M$. Similarly if we take any element in $B$, it is at most $\sup B$ which is at most $M$. So $M = \max\{\sup A, \sup B\}$ is an upper bound for $A \cup B$. Since $M$ is an upper bound for $A \cup B$ and $\sup(A \cup B)$ is by definition the least upper bound of $A \cup B$, it follows that $$\sup(A \cup B) \leq M = \max\{\sup A, \sup B\}$$
+  On the other hand since $A$ is a nonempty subset of $A \cup B$ which is bounded above, it follows that $A \leq \sup(A \cup B)$ and similarly $B \leq \sup(A \cup B)$. Since $M$ was defined as the smallest element sitting above both of them it follows that $$M = \max\{\sup A, \sup B\} \leq \sup(A \cup B)$$
+  Thus 
+  $$\sup A \cup B = \max\{\sup A, \sup B\}$$
+\end{proof}
 
 \problem \textbf{(AI Free)}
 
 Let $A\subset \Reals$ be a nonempty set that is bounded above.
 Let $m=\sup A$.  Show that for every $\epsilon>0$ there exists $a\in A$
 with $m-\epsilon < a \le m$.
+\newline
+\begin{proof}
+  Let $\epsilon > 0$
+\end{proof}
 
 \problem Suppose $(x_n)$ is a sequence converging to a limit $x$.
 \begin{subproblems}
