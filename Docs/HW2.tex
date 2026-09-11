@@ -27,7 +27,7 @@ Show that if $A$ and $B$ are non-empty subsets of $\Reals$ which are bounded abo
   Given A and B are both nonempty and bounded above, by completeness $\sup A$ and $\sup B$ both exist. We denote the larger of the two by letting $M = \max\{\sup A, \sup B\}$. Note that if we take any element of $A \cup B$ it is by definition in $A$ or in $B$. If we take an element of $A$, it is at most $\sup A$ which is at most $M$. Similarly if we take any element in $B$, it is at most $\sup B$ which is at most $M$. So $M = \max\{\sup A, \sup B\}$ is an upper bound for $A \cup B$. Since $M$ is an upper bound for $A \cup B$ and $\sup(A \cup B)$ is by definition the least upper bound of $A \cup B$, it follows that $$\sup(A \cup B) \leq M = \max\{\sup A, \sup B\}$$
   On the other hand since $A$ is a nonempty subset of $A \cup B$ which is bounded above, it follows that $A \leq \sup(A \cup B)$ and similarly $B \leq \sup(A \cup B)$. Since $M$ was defined as the smallest element sitting above both of them it follows that $$M = \max\{\sup A, \sup B\} \leq \sup(A \cup B)$$
   Thus 
-  $$\sup A \cup B = \max\{\sup A, \sup B\}$$
+  $$\sup A \cup B = \max\{\sup A, \sup B\}$$.
 \end{proof}
 
 \problem \textbf{(AI Free)}
@@ -37,7 +37,10 @@ Let $m=\sup A$.  Show that for every $\epsilon>0$ there exists $a\in A$
 with $m-\epsilon < a \le m$.
 \newline
 \begin{proof}
-  Let $\epsilon > 0$
+  Given $m = \sup A$ is an upper bound for $A$, by definition for every $a \in A, a \leq m$.
+  Let $\epsilon > 0$. Observe that $m - \epsilon < m$. Since $m$ is a least upper bound of $A$ and $m - \epsilon$ is strictly smaller than $m$, $m - \epsilon$ cannot be an upper bound for $A$. Since $m-\epsilon$ is not an upper bound for $A$ then there exists an $a \in A$ such that $a > m - \epsilon$. 
+  Combining both $a > m - \epsilon$ and $m - \epsilon < m$ we conclude
+  $$m-\epsilon < a \leq m$$.
 \end{proof}
 
 \problem Suppose $(x_n)$ is a sequence converging to a limit $x$.
@@ -45,30 +48,77 @@ with $m-\epsilon < a \le m$.
 \item Show that $(x_{n+1})$ converges to the same limit.
 \item Show that if $c\in\Reals$ then $(cx_{n})$ converges to $c x$.
 \end{subproblems}
+$ $
+\begin{proof}
+  Let $\epsilon > 0$. Since $x_n \to x$, by definition there exists $N \in \Nats$ such that for all $n \geq N$, $|x_n - x| < \epsilon$. For part (a), note that if $n \geq N$ then also $n+1 \geq N$, so $|x_{n+1} - x| < \epsilon$ as well. Since $\epsilon$ was arbitrary, this shows $x_{n+1} \to x$.
 
-\problem Suppose $a\in\Reals$ and suppose $a^n\to L$. 
-Use the previous problem to show that either $L=0$ or 
+  For part (b), first suppose $c = 0$. Then $cx_n = 0$ for every $n$ and $cx = 0$, so $(cx_n)$ is just the constant sequence $0$, which converges to $cx$. Now suppose $c \neq 0$ and let $\epsilon > 0$. Since $x_n \to x$, there exists $N \in \Nats$ such that for all $n \geq N$, $|x_n - x| < \epsilon/|c|$. Then for all $n \geq N$,
+  $$|cx_n - cx| = |c||x_n - x| < |c| \cdot \frac{\epsilon}{|c|} = \epsilon$$
+  and so $cx_n \to cx$.
+\end{proof}
+
+\problem Suppose $a\in\Reals$ and suppose $a^n\to L$.
+Use the previous problem to show that either $L=0$ or
 $a=1$ (in which case $L=1$).
+\newline
+\begin{proof}
+  Since $a^n \to L$, part (a) of the previous problem gives $a^{n+1} \to L$, applying it to the sequence $x_n = a^n$. But $a^{n+1} = a \cdot a^n$ for every $n$, so part (b) of the previous problem, applied with $c = a$, gives $a \cdot a^n \to aL$. Since $(a^{n+1})$ is one sequence and limits of sequences are unique, its two limits $L$ and $aL$ must be equal, so $aL = L$. Then
+  $$aL - L = 0 \implies L(a-1) = 0$$
+  and so $L = 0$ or $a = 1$. If $a=1$ then $a^n = 1$ for every $n$, so the sequence is constant at $1$ and $L=1$.
+\end{proof}
 
-\problem Suppose $0<a<1$.  Use the monotone convergence theorem 
+\problem Suppose $0<a<1$.  Use the monotone convergence theorem
 to show $a^n\to 0$. Hint: the previous
 problem could be helpful.
+\newline
+\begin{proof}
+  Since $0 < a < 1$, an easy induction gives $a^n > 0$ for every $n \in \Nats$, so $(a^n)$ is bounded below by $0$. Since $a^n > 0$, multiplying both sides of $a < 1$ by $a^n$ gives
+  $$a^{n+1} = a \cdot a^n < 1 \cdot a^n = a^n$$
+  so $(a^n)$ is decreasing. Since $(a^n)$ is decreasing and bounded below, by the Monotone Convergence Theorem it converges to some $L$. By the previous problem, either $L = 0$ or $a = 1$. Since $0 < a < 1$ we have $a \neq 1$, so $L = 0$. Thus $a^n \to 0$.
+\end{proof}
 
-\problem 
+\problem
 \begin{subproblems}
-\item Knowing that $\sqrt{2}$ is irrational, show that $q\sqrt{2}$ 
+\item Knowing that $\sqrt{2}$ is irrational, show that $q\sqrt{2}$
 is irrational for all $q\in \Rats$.
 \item  Sutherland 4.8. \textbf{Hint:} consider $a/\sqrt{2}$ and $b/\sqrt{2}$ as endpoints first.
 \end{subproblems}
- 
-\problem Show directly from the definition that $x_n = (-1)^n$ is not 
+\subsol
+\begin{proof}
+  Note that if $q=0$ then $q\sqrt2 = 0$ is rational, so we take $q \neq 0$. Suppose, for contradiction, that $q\sqrt2$ is rational. Since $\Rats$ is closed under division by nonzero elements,
+  $$\sqrt2 = \frac{q\sqrt2}{q}$$
+  would then be a ratio of two rational numbers, hence rational, contradicting that $\sqrt2$ is irrational. So $q\sqrt2$ is irrational for every nonzero $q \in \Rats$.
+\end{proof}
+
+\subsol
+\begin{proof}
+  Let $a,b \in \Reals$ with $a<b$. Since $\sqrt2 > 0$, dividing through by $\sqrt2$ gives $a/\sqrt2 < b/\sqrt2$, so $(a/\sqrt2, b/\sqrt2)$ is a nonempty open interval. By density of $\Rats$ in $\Reals$ this interval contains infinitely many rational numbers, so we may choose $q \in \Rats$ with $a/\sqrt2 < q < b/\sqrt2$ and $q \neq 0$. By part (a), $q\sqrt2$ is irrational. Multiplying $a/\sqrt2 < q < b/\sqrt2$ through by $\sqrt2 > 0$ gives
+  $$a < q\sqrt2 < b$$
+  so $x = q\sqrt2$ is an irrational number with $a < x < b$.
+\end{proof}
+
+\problem Show directly from the definition that $x_n = (-1)^n$ is not
 Cauchy and conclude that it does not converge.
+\newline
+\begin{proof}
+  Suppose, for contradiction, that $(x_n)$ is Cauchy. Taking $\epsilon = 1$ in the definition, there exists $N \in \Nats$ such that for all $m,n \geq N$, $|x_n - x_m| < 1$. But taking $n = N$ and $m = N+1$, both at least $N$,
+  $$|x_N - x_{N+1}| = |(-1)^N - (-1)^{N+1}| = |(-1)^N||1-(-1)| = 2$$
+  so $|x_N - x_{N+1}| = 2 \geq 1$, a contradiction. So $(x_n)$ is not Cauchy, and since every convergent sequence is Cauchy, $x_n = (-1)^n$ does not converge.
+\end{proof}
 
-\problem Sutherland 4.12 \textbf{Hint:} For simplicity, 
-assume $f$ and $g$ are defined on all of $\Reals$, and take $f$ 
+\problem Sutherland 4.12: Give an example where $f(x) \to b$ as $x \to a$ and $g(y) \to c$ as $y \to b$, but $g(f(x)) \not\to c$ as $x \to a$. \textbf{Hint:} For simplicity,
+assume $f$ and $g$ are defined on all of $\Reals$, and take $f$
 to be really boring.
+\newline
+\textbf{Example:} Let $a=b=0$ and $c=1$. Let $f(x) = 0$ for every $x \in \Reals$ (about as boring as a function gets), and let
+$$g(y) = \begin{cases} 0 & y = 0 \\ 1 & y \neq 0. \end{cases}$$
+\begin{proof}
+  Since $f$ is the constant function $0$, trivially $f(x) \to 0 = b$ as $x \to a$.
 
-\problem AI Use. Please describe how you used AI to help complete this assignment.
+  Next, $g(y) \to 1 = c$ as $y \to 0$: given $\epsilon > 0$, take any $\delta > 0$. Whenever $0 < |y-0| < \delta$ we have $y \neq 0$, so $g(y) = 1$ and $|g(y) - 1| = 0 < \epsilon$. So the limit condition holds, and $g(y) \to c$.
+
+  But $g(f(x)) = g(0) = 0$ for every $x$, since $f(x) = 0$ always. So $g(f(x))$ is just the constant function $0$, which converges to $0$, not to $c = 1$. Hence $g(f(x)) \not\to c$ as $x \to a$, even though $f(x) \to b$ and $g(y) \to c$.
+\end{proof}
 
 \end{problems}
 
