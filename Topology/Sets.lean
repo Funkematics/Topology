@@ -83,5 +83,9 @@ def eqClass (x : X) : Set X := {y | r x y}
 def eqClasses (r : X → X → Prop) : Set (Set X) := {C | ∃ x, C = eqClass r x}
 
 
-    
+theorem sUnion_eqClasses (hr : Equivalence r) :
+    ⋃₀ eqClasses r = Set.univ := by
+      apply Set.eq_univ_of_forall
+      intro x
+      exact Set.mem_sUnion.mpr ⟨eqClass r x, ⟨x, rfl⟩, hr.refl x⟩
 ----
