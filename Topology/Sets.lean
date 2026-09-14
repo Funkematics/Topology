@@ -88,4 +88,20 @@ theorem sUnion_eqClasses (hr : Equivalence r) :
       apply Set.eq_univ_of_forall
       intro x
       exact Set.mem_sUnion.mpr ⟨eqClass r x, ⟨x, rfl⟩, hr.refl x⟩
-----
+
+theorem eqClasses_eq_or_disjoint (hr : Equivalence r) {C C' : Set X}
+  (hC : C ∈ eqClasses r) (hC' : C' ∈ eqClasses r) : C = C' ∨ C ∩ C' = ∅ := by
+    obtain ⟨a, rfl⟩ := hC
+    obtain ⟨b, rfl⟩ := hC'
+    by_cases h : (eqClass r a ∩ eqClass r b).Nonempty
+    · left
+      obtain ⟨z, hza, hzb⟩ := h
+      have hab : r a b := hr.trans hza (hr.symm hzb)
+      ext w
+      constructor
+      · intro hwa
+        exact hr.trans (hr.symm hab) hwa
+      · intro hwb
+        exact hr.trans hab hwb
+    · right
+      rwa [Set.not_nonempty_iff_eq_empty] at h
