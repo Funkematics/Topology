@@ -1,0 +1,76 @@
+\documentclass[minion]{homework}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\doclabel{Math F404: Homework 3}
+\docdate{Due: September 15, 2026}
+
+\begin{document}
+\begin{problems}
+
+\problem  Suppose $(x_n)$ is a real sequence and $x_n\to \ell > 0$.
+Show that there exists $N$ so that if $n\ge N$ then $x_n>\ell/2$.
+Then show $1/x_n \to 1/\ell$. Note that the sequence $1/x_n$ is 
+perhaps only defined for $n\ge N$ to avoid division by zero.
+\newline
+\begin{proof} : \textbf{Part 1} : $(x_n \to \ell > 0 \implies x_n > \ell/2) \because$ \newline
+  Given $x_n \to \ell$, by definition there exists an $n \geq N$ such that $|x_n - \ell| < \varepsilon$ for any $\varepsilon > 0$. Note that $\ell/2 > 0$ and choose $\varepsilon = \ell/2$. Then 
+  $$|x_n - \ell| < \frac{\ell}{2}$$
+  holds, in particular we get $x_n > \ell - \ell/2$. Henceforth $x_n > \ell/2$.
+\end{proof}$ $
+\begin{proof} : \textbf{Part 2} : $(x_n > \ell/2 \implies 1 / x_n \to 1/\ell)\because$
+  Let $\varepsilon > 0$. Since $x_n \to l$, by definition there exists $N' \geq N$ such that for all $n \geq N'$:
+  $$|x_n - \ell| < \frac{\varepsilon\ell^2}{2}$$
+  For $n \geq N'$(since $n \geq N, x_n > \ell / 2$ is given by Part 1):
+      \begin{align*}
+      \left|\frac{1}{x_n} - \frac{1}{\ell}\right| &= \frac{|\ell - x_n|}{x_n \ell} 
+      < \frac{|\ell-x_n|}{(\ell/2)\cdot \ell} 
+      = \frac{2|x_n-\ell|}{\ell^2} 
+      < \frac{2}{\ell^2}\cdot\frac{\varepsilon\ell^2}{2}
+      = \varepsilon.
+    \end{align*}
+    Thus $1/x_n \to 1/\ell$.
+\end{proof}
+
+\problem Suppose $\Omega\subset\Reals$, that $a$ is a limit point of $\Omega$, 
+and that $f:\Omega\to\Reals$.  Show that $\lim_{x\to a}f(x) =\ell$ if
+and only if whenever $(x_n)$ is a sequence in $\Omega\setminus\{a\}$ converging to $a$,
+$f(x_n) \to \ell$.  You are encouraged to modify the similar proof seen in 
+class on the sequential characterization of continuity.
+\newline
+\begin{proof} \textbf{Forward Direction} \newline
+  Suppose $\lim_{x \to a} f(x) = \ell$. Let $(x_n)$ be a sequence in $\Omega \setminus \{a\}$ with $x_n \to a$. Let $\varepsilon > 0$. By the $\varepsilon-\delta$ definition, there exists $\delta > 0$ such that for all $x \in \Omega$,
+  $$0 < |x - a| < \delta \implies |f(x) - \ell| < \epsilon.$$
+  Since $x_n \to a$, there exists $N$ such that $|x_n - a| < \delta$ for all $n \geq N$. Since $x_n \neq a$ for every $n$ (giving $0 < |x_n - a|)$, for $n \geq N$, we have $0 < |x_n - a| < \delta$, so
+  $$|f(x_n)-\ell| < \varepsilon$$
+  Thus $f(x_n) \to \ell$.
+
+\end{proof}
+\problem Sutherland 4.13
+
+\problem Sutherland 4.14 \textbf{(AI Free)}
+
+\problem Sutherland 4.15
+
+\problem Use Definition 4.21 and no more advanced tools to directly show 
+\[
+\lim_{x\to 2} \frac{1}{x^2+1} = \frac{1}5.
+\]
+That is, start your proof with "Let $\epsilon>0$", exhibit a candidate
+$\delta$, and show that your candidate works.
+
+\problem For $x,y\in \Reals$ define $d(x,y) = |y-x|$.  
+Show that a sequence of real numbers $(x_n)$ converges to 
+a limit $\ell$ if and only if $d(x_n, \ell)\to 0$.
+
+\problem Sutherland 5.1
+
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+\end{problems}
+
+\end{document}
