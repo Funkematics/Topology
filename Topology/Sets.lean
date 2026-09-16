@@ -105,3 +105,28 @@ theorem eqClasses_eq_or_disjoint (hr : Equivalence r) {C C' : Set X}
         exact hr.trans hab hwb
     · right
       rwa [Set.not_nonempty_iff_eq_empty] at h
+
+-- Sutherland 3.3
+theorem S3_3 {X Y Z : Type*} (f : X → Y) (g : Y → Z) (U : Set Z) :
+    (g ∘ f)⁻¹'U = f⁻¹'(g⁻¹'U) := by
+    exact Set.preimage_comp     --via "exact?", we can unfold this for more verbosity
+ --   unfold Set.preimage
+ --   unfold Function.comp
+
+--Sutherland 3.8
+
+theorem S3_8 {X Y : Type*} (f : X → Y) (A B : Set X) :
+    f '' (A \ B) = f '' A \ f '' B ↔ f '' (A \ B) ∩ f '' B = ∅ := by
+      constructor
+      · intro h
+        rw [h]
+        ext y
+        simp only [Set.mem_inter_iff, Set.mem_sdiff, Set.mem_empty_iff_false, iff_false]
+        tauto
+      · intro h
+        apply Set.eq_of_subset_of_subset
+        · intro y hy
+          sorry
+       sorry
+
+    
