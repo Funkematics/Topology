@@ -5,8 +5,7 @@
 \newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
 \newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
 \newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
-
-\doclabel{Math F404: Homework 3}
+\doclabel{Christopher Munoz \qquad Math F404: Homework 3}
 \docdate{Due: September 15, 2026}
 
 \begin{document}
@@ -17,12 +16,12 @@ Show that there exists $N$ so that if $n\ge N$ then $x_n>\ell/2$.
 Then show $1/x_n \to 1/\ell$. Note that the sequence $1/x_n$ is 
 perhaps only defined for $n\ge N$ to avoid division by zero.
 \newline
-\begin{proof} : \textbf{Part 1} : $(x_n \to \ell > 0 \implies x_n > \ell/2) \because$ \newline
+\begin{proof}[Part 1] $(x_n \to \ell > 0 \implies x_n > \ell/2) \because$ \newline
   Given $x_n \to \ell$, by definition there exists an $n \geq N$ such that $|x_n - \ell| < \varepsilon$ for any $\varepsilon > 0$. Note that $\ell/2 > 0$ and choose $\varepsilon = \ell/2$. Then 
   $$|x_n - \ell| < \frac{\ell}{2}$$
   holds, in particular we get $x_n > \ell - \ell/2$. Henceforth $x_n > \ell/2$.
 \end{proof}$ $
-\begin{proof} : \textbf{Part 2} : $(x_n > \ell/2 \implies 1 / x_n \to 1/\ell)\because$
+\begin{proof}[Part 2] $(x_n > \ell/2 \implies 1 / x_n \to 1/\ell)\because$
   Let $\varepsilon > 0$. Since $x_n \to l$, by definition there exists $N' \geq N$ such that for all $n \geq N'$:
   $$|x_n - \ell| < \frac{\varepsilon\ell^2}{2}$$
   For $n \geq N'$(since $n \geq N, x_n > \ell / 2$ is given by Part 1):
@@ -48,13 +47,91 @@ class on the sequential characterization of continuity.
   Since $x_n \to a$, there exists $N$ such that $|x_n - a| < \delta$ for all $n \geq N$. Since $x_n \neq a$ for every $n$ (giving $0 < |x_n - a|)$, for $n \geq N$, we have $0 < |x_n - a| < \delta$, so
   $$|f(x_n)-\ell| < \varepsilon$$
   Thus $f(x_n) \to \ell$.
-
+\end{proof}$ $
+\begin{proof} \textbf{Backwards Direction, by contraposition}
+  Suppose $\lim_{x \to a} f(x) = \ell$ is false. Negating the $\varepsilon-\delta$ definition means there exists a $\varepsilon > 0$ such that
+  for all $\delta > 0$, there exists an $x \in \Omega$ with
+  $$0 < |x - a| < \delta \text{ and } |f(x) - \ell| \geq \varepsilon$$
+  Fix this $\varepsilon$. For each $n \in \Nats$, let $\delta = 1/n$ to obtain $x_n \in \Omega$ with
+  $$ 0 < |x_n - a| < \frac{1}{n} \text{  and  } |f(x_n) - \ell| \geq \varepsilon.$$
+  Since $0 < |x_n - a|$, $x_n \in \Omega \setminus \{a\}$. Also since $|x_n - a| < 1/n \to 0$, $x_n \to a$. But $|f(x_n) - \ell| \geq \varepsilon$ for every $n$, so $f(x_n)$ does not converge to $\ell$.
+  Thus $(x_n)$ is a sequence in $\Omega \setminus \{a\}$ with $x_n \to a$ but $f(x_n) \not\to \ell$, so the sequential condition fails. This proves the contrapositive, so the backward direction holds.
 \end{proof}
-\problem Sutherland 4.13
+\problem Sutherland 4.13 \newline
+(a) Prove that for any $y,z\in\Reals$,
+\[
+\max\{y,z\} = \frac12(y+z+|y-z|), \qquad \min\{y,z\} = \frac12(y+z-|y-z|).
+\]
+(b) Given that $f,g:\Reals\to\Reals$ are continuous at $a$, prove that $h$ and $k$ are
+continuous at $a\in\Reals$, where for any $x\in\Reals$
+\[
+h(x)=\max\{f(x),g(x)\}, \qquad k(x)=\min\{f(x),g(x)\}.
+\]
+\newline
+\begin{proof}[(a)]
+  Let $y,z\in\Reals$. We consider two cases.
 
-\problem Sutherland 4.14 \textbf{(AI Free)}
+  \textbf{Case 1: $y\ge z$.} Then $y-z\ge0$, so $|y-z|=y-z$. Thus
+  $$\frac12(y+z+|y-z|) = \frac12(y+z+y-z) = y = \max\{y,z\},$$
+  $$\frac12(y+z-|y-z|) = \frac12(y+z-y+z) = z = \min\{y,z\}.$$
+
+  \textbf{Case 2: $y<z$.} Then $y-z<0$, so $|y-z|=z-y$. Thus
+  $$\frac12(y+z+|y-z|) = \frac12(y+z+z-y) = z = \max\{y,z\},$$
+  $$\frac12(y+z-|y-z|) = \frac12(y+z-z+y) = y = \min\{y,z\}.$$
+
+  In either case the two identities hold.
+\end{proof}$ $
+\begin{proof}[(b)]
+  By part (a), for every $x\in\Reals$,
+  $$h(x) = \frac12\big(f(x)+g(x)+|f(x)-g(x)|\big), \qquad k(x) = \frac12\big(f(x)+g(x)-|f(x)-g(x)|\big).$$
+  Let $(x_n)$ be any sequence with $x_n\to a$. Since $f,g$ are continuous at $a$, by the sequential characterization of continuity, $f(x_n)\to f(a)$ and $g(x_n)\to g(a)$. By the limit laws for sequences,
+  $$f(x_n)+g(x_n) \to f(a)+g(a), \qquad f(x_n)-g(x_n)\to f(a)-g(a).$$
+  Since $\big||u|-|v|\big|\le|u-v|$ for all $u,v\in\Reals$ (the absolute value function is continuous), applying this with $u=f(x_n)-g(x_n)$ and $v=f(a)-g(a)$ gives
+  $$\big||f(x_n)-g(x_n)| - |f(a)-g(a)|\big| \le |(f(x_n)-g(x_n))-(f(a)-g(a))| \to 0,$$
+  so $|f(x_n)-g(x_n)|\to|f(a)-g(a)|$. Combining these limits,
+  $$h(x_n) = \frac12\big(f(x_n)+g(x_n)+|f(x_n)-g(x_n)|\big) \to \frac12\big(f(a)+g(a)+|f(a)-g(a)|\big) = h(a),$$
+  $$k(x_n) = \frac12\big(f(x_n)+g(x_n)-|f(x_n)-g(x_n)|\big) \to \frac12\big(f(a)+g(a)-|f(a)-g(a)|\big) = k(a).$$
+  Since $(x_n)$ was an arbitrary sequence converging to $a$, $h$ and $k$ are continuous at $a$.
+\end{proof}
+
+\problem Sutherland 4.1 \textbf{(AI Free)} \newline
+Let $f,g:\Reals\setminus\{0\}\to\Reals$ be given by
+\[
+f(x) = x\sin\frac1x, \qquad g(x) = \sin\frac1x.
+\]
+Prove that $\lim_{x\to0} f(x) = 0$, while $\lim_{x\to0} g(x)$ does not exist.
+\newline
+\begin{proof}[$f$]
+  Let $\varepsilon>0$ and choose $\delta=\varepsilon$. Then for $0<|x|<\delta$, since $|\sin(1/x)|\le1$,
+  $$|f(x) - 0| = |x||\sin(1/x)| \le |x| < \delta = \varepsilon.$$
+  Hence $\lim_{x\to0} f(x) = 0$.
+\end{proof}$ $
+\begin{proof}[$g$]
+  Suppose for contradiction that $\lim_{x\to0} g(x) = \ell$ for some $\ell\in\Reals$. By the sequential characterization of limits (Problem 2, with $\Omega=\Reals\setminus\{0\}$ and $a=0$), every sequence $(x_n)$ in $\Omega\setminus\{0\}$ with $x_n\to0$ must satisfy $g(x_n)\to\ell$.
+
+  Let $x_n = \dfrac1{2n\pi+\pi/2}$ and $y_n = \dfrac1{2n\pi-\pi/2}$ for $n\in\Nats$. Both sequences lie in $\Reals\setminus\{0\}$ and $x_n,y_n\to0$. But
+  $$g(x_n) = \sin\!\left(2n\pi+\frac\pi2\right) = 1 \quad\text{for all }n, \qquad g(y_n) = \sin\!\left(2n\pi-\frac\pi2\right) = -1 \quad\text{for all }n.$$
+  So $g(x_n)\to1$ and $g(y_n)\to-1$. By the sequential characterization, both limits must equal $\ell$, forcing $1=\ell=-1$, a contradiction. Hence $\lim_{x\to0} g(x)$ does not exist.
+\end{proof}
 
 \problem Sutherland 4.15
+Let $f:\Reals\to\Reals$ be given by
+\[
+f(x) = \begin{cases} 0, & x\in\Rats \\ 1, & x\notin\Rats \end{cases}
+\]
+Show that $f$ is not continuous at any point in $\Reals$.
+\newline
+\begin{proof}
+  Let $a\in\Reals$ be arbitrary. By density of $\Rats$ in $\Reals$, there exists a sequence $(p_n)$ of rationals with $p_n\to a$; by density of $\Reals\setminus\Rats$ in $\Reals$, there exists a sequence $(q_n)$ of irrationals with $q_n\to a$. By definition of $f$,
+  $$f(p_n) = 0 \text{ for all } n, \qquad f(q_n) = 1 \text{ for all } n,$$
+  so $f(p_n)\to0$ and $f(q_n)\to1$.
+
+  If $a\in\Rats$, then $f(a)=0$, but $q_n\to a$ while $f(q_n)\to1\neq0=f(a)$, so by the sequential characterization of continuity, $f$ is not continuous at $a$.
+
+  If $a\notin\Rats$, then $f(a)=1$, but $p_n\to a$ while $f(p_n)\to0\neq1=f(a)$, so again $f$ is not continuous at $a$.
+
+  Since $a$ was arbitrary, $f$ is not continuous at any point of $\Reals$.
+\end{proof}
 
 \problem Use Definition 4.21 and no more advanced tools to directly show 
 \[
@@ -62,15 +139,46 @@ class on the sequential characterization of continuity.
 \]
 That is, start your proof with "Let $\epsilon>0$", exhibit a candidate
 $\delta$, and show that your candidate works.
+\newline
+\begin{proof}
+  Let $\varepsilon>0$. For $x\in\Reals$,
+  $$\left|\frac1{x^2+1} - \frac15\right| = \left|\frac{5-(x^2+1)}{5(x^2+1)}\right| = \frac{|4-x^2|}{5(x^2+1)} = \frac{|x-2||x+2|}{5(x^2+1)}.$$
+  Suppose $|x-2|<1$, so $1<x<3$. Then $x^2+1>2$ and $0<x+2<5$, so $|x+2|<5$. Hence
+  $$\left|\frac1{x^2+1}-\frac15\right| = \frac{|x-2||x+2|}{5(x^2+1)} < \frac{|x-2|\cdot5}{5\cdot2} = \frac{|x-2|}2.$$
+  Let $\delta = \min\{1, 2\varepsilon\}$. Then for $0<|x-2|<\delta$, we have $|x-2|<1$, so the bound above applies, and $|x-2|<2\varepsilon$, so
+  $$\left|\frac1{x^2+1}-\frac15\right| < \frac{|x-2|}2 < \frac{2\varepsilon}2 = \varepsilon.$$
+  Hence $\lim_{x\to2}\dfrac1{x^2+1} = \dfrac15$.
+\end{proof}
 
-\problem For $x,y\in \Reals$ define $d(x,y) = |y-x|$.  
-Show that a sequence of real numbers $(x_n)$ converges to 
+\problem For $x,y\in \Reals$ define $d(x,y) = |y-x|$.
+Show that a sequence of real numbers $(x_n)$ converges to
 a limit $\ell$ if and only if $d(x_n, \ell)\to 0$.
+\newline
+\begin{proof}
+  Note that for every $n$, $d(x_n,\ell) = |\ell - x_n| = |x_n - \ell|$.
+
+  ($\implies$) Suppose $x_n\to\ell$: for every $\varepsilon>0$ there exists $N$ such that $n\ge N$ implies $|x_n-\ell|<\varepsilon$. Since $d(x_n,\ell) = |x_n-\ell|$, this says $n\ge N$ implies $|d(x_n,\ell) - 0| < \varepsilon$, i.e., $d(x_n,\ell)\to0$.
+
+  ($\impliedby$) Suppose $d(x_n,\ell)\to0$: for every $\varepsilon>0$ there exists $N$ such that $n\ge N$ implies $|d(x_n,\ell)-0|<\varepsilon$. Since $d(x_n,\ell) = |x_n-\ell|$, this says $n\ge N$ implies $|x_n-\ell|<\varepsilon$, i.e., $x_n\to\ell$.
+
+  Hence $x_n\to\ell$ if and only if $d(x_n,\ell)\to0$.
+\end{proof}
 
 \problem Sutherland 5.1
+Given points $x,y,z$ in a metric space $(X,d)$, prove that
+\[
+|d(x,z) - d(y,z)| \le d(x,y).
+\]
+\begin{proof}
+  By the triangle inequality, $d(x,z) \le d(x,y) + d(y,z)$, so
+  $$d(x,z) - d(y,z) \le d(x,y).$$
+  Also by the triangle inequality and symmetry of $d$, $d(y,z) \le d(y,x)+d(x,z) = d(x,y)+d(x,z)$, so
+  $$d(y,z) - d(x,z) \le d(x,y), \quad\text{i.e.,}\quad -(d(x,z)-d(y,z)) \le d(x,y).$$
+  Combining the two inequalities, $-d(x,y) \le d(x,z)-d(y,z) \le d(x,y)$, which is equivalent to
+  $$|d(x,z)-d(y,z)| \le d(x,y).$$
+\end{proof}
 
-\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
 
-\end{problems}
+
 
 \end{document}
