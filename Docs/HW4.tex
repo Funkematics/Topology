@@ -15,17 +15,46 @@
 \problem On the previous homework you prove Sutherland 5.1.  Use that result to prove the following.
 
 Let $X$ be a metric space and fix $x_0\in X$.  Show that function $f:X\to\Reals$
-defined by $f(x) = d(x,x_0)$ is continuous.
+defined by $f(x) = d(x,x_0)$ is continuous. \newline
+\begin{proof}
+  Let $a \in X$ be arbitrary. we want to show $f$ is continuous at $a$. That is we want to show that 
+  $$ \forall\varepsilon > 0, \exists\delta > 0 : d_X(x,a) < \delta \implies |f(x) - f(a)| < \varepsilon$$
+  Given (Sutherland 5.1) : For any $p, q, r \in X$, $$|d(p,r) - d(q,r)| \leq d(p,q).$$
 
+  Let $\varepsilon > 0$ and choose $\delta = \varepsilon$.
+
+  Let $x \in X$ with $d(x, a) < \delta$.
+  
+  Then: 
+  \begin{align*}
+    |f(x) - f(a)| = |d(x,x_0) - d(a,x_0)| \leq d(x,a) < \delta = \varepsilon
+  \end{align*}
+  Therefore $|f(x) - f(a)| < \varepsilon$. Since $a \in X$ was arbitrary, $f$ is continuous on $X$.
+\end{proof}
 \problem Sutherland 5.5
+
+Suppose that $x, y$ are distinct points in a metric space $(X,d)$ and let
+$\epsilon = d(x,y)/2$. Prove that $B_\epsilon(x)$ and $B_\epsilon(y)$ are disjoint.
 
 \problem Sutherland 5.6
 
+Suppose that $x, y$ are points in a metric space and that $\epsilon > 0$.
+Show that if $y \in B_{\epsilon/2}(x)$ then $B_{\epsilon/2}(y) \subseteq B_\epsilon(x)$.
+
 \problem Sutherland 5.8
+
+Suppose that $(X,d)$ is a metric space, $A \subseteq X$. Show that $A$ is
+bounded iff there is some constant $\Delta$ such that $d(a,a') \le \Delta$
+for all $a, a' \in A$.
 
 \problem Sutherland 5.10
 
+Prove that if $A, B$ are bounded subsets of a metric space and
+$A \cap B \ne \emptyset$ then $\operatorname{diam}(A \cup B) \le \operatorname{diam} A + \operatorname{diam} B$.
+
 \problem Sutherland 5.13
+
+Prove that a subset of a metric space is open iff it is a union of open balls.
 
 \problem Let $X$ be a set endowed with the discrete metric $d_{\mathrm{disc}}$.
 Show that a sequence $(x_n)$ in $X$ converges to a limit $x$ if and only
