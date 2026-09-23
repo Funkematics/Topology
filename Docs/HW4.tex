@@ -34,7 +34,16 @@ defined by $f(x) = d(x,x_0)$ is continuous. \newline
 \problem Sutherland 5.5
 
 Suppose that $x, y$ are distinct points in a metric space $(X,d)$ and let
-$\epsilon = d(x,y)/2$. Prove that $B_\epsilon(x)$ and $B_\epsilon(y)$ are disjoint.
+$\epsilon = d(x,y)/2$. Prove that $B_\epsilon(x)$ and $B_\epsilon(y)$ are disjoint. \newline
+
+\begin{proof}
+  \textbf{By Contradiction} For $B_\epsilon(x)$ and $B_\epsilon(y)$ to be disjoint, it must be the case that $B_\epsilon(x) \cap B_\epsilon(y) = \emptyset$.
+  Suppose $B_\epsilon(x) \cap B_\epsilon(y)$ is not empty, then there exists $z \in B_\epsilon(x) \cap B_\epsilon(y)$. Unfolding the definition of intersection we get $z \in B_\epsilon(x) = \{p \in X : d(x,p) < \epsilon\}$ and $z \in B_\epsilon(y) = \{ p \in X : d(y, p) < \epsilon\}$. So 
+  \begin{align*}
+    z \in B_\epsilon(x) \implies d(x, z) < \epsilon \\
+    z \in B_\epsilon(y) \implies d(y, z) < \epsilon
+  \end{align*}
+\end{proof}
 
 \problem Sutherland 5.6
 
