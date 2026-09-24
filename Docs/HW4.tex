@@ -37,59 +37,158 @@ Suppose that $x, y$ are distinct points in a metric space $(X,d)$ and let
 $\epsilon = d(x,y)/2$. Prove that $B_\epsilon(x)$ and $B_\epsilon(y)$ are disjoint. \newline
 
 \begin{proof}
-  \textbf{By Contradiction} For $B_\epsilon(x)$ and $B_\epsilon(y)$ to be disjoint, it must be the case that $B_\epsilon(x) \cap B_\epsilon(y) = \emptyset$.
-  Suppose $B_\epsilon(x) \cap B_\epsilon(y)$ is not empty, then there exists $z \in B_\epsilon(x) \cap B_\epsilon(y)$. Unfolding the definition of intersection we get $z \in B_\epsilon(x) = \{p \in X : d(x,p) < \epsilon\}$ and $z \in B_\epsilon(y) = \{ p \in X : d(y, p) < \epsilon\}$. So 
+  \textbf{By Contradiction.} Suppose $B_\epsilon(x) \cap B_\epsilon(y)$ is not empty, then there exists $z \in B_\epsilon(x) \cap B_\epsilon(y)$. Unfolding the definition of intersection we get $z \in B_\epsilon(x) = \{p \in X : d(x,p) < \epsilon\}$ and $z \in B_\epsilon(y) = \{ p \in X : d(y, p) < \epsilon\}$. So
   \begin{align*}
     z \in B_\epsilon(x) \implies d(x, z) < \epsilon \\
     z \in B_\epsilon(y) \implies d(y, z) < \epsilon
   \end{align*}
+  By the triangle inequality, $d(x,y) \leq d(x,z) + d(z,y)$. Since $d(x,z) < \epsilon$ and $d(z,y) < \epsilon$ (by symmetry, $d(z,y) = d(y,z)$), and $\epsilon = d(x,y)/2$, adding these gives
+  $$d(x,y) \leq d(x,z) + d(z,y) < \frac{d(x,y)}{2} + \frac{d(x,y)}{2} = d(x,y)$$
+  Giving us $d(x,y) < d(x,y)$, an impossibility. Thus $B_\epsilon(x)$ and $B_\epsilon(y)$ are disjoint.
 \end{proof}
-
 \problem Sutherland 5.6
 
 Suppose that $x, y$ are points in a metric space and that $\epsilon > 0$.
-Show that if $y \in B_{\epsilon/2}(x)$ then $B_{\epsilon/2}(y) \subseteq B_\epsilon(x)$.
+Show that if $y \in B_{\epsilon/2}(x)$ then $B_{\epsilon/2}(y) \subseteq B_\epsilon(x)$. \newline
+
+\begin{proof}
+We want to show that $z \in B_\epsilon(x)$, that is $d(x,z) < \epsilon$.
+
+  Let $z \in B_{\epsilon/2}(y)$ be arbitrary. Given that $y \in B_{\epsilon/2}(x)$, it follows that
+    \begin{align*}
+      z \in B_{\epsilon/2}(y) \implies d(y,z) < \frac{\epsilon}{2} \\
+      y \in B_{\epsilon/2}(x) \implies d(x,y) < \frac{\epsilon}{2}.
+    \end{align*}
+    By triangle inequality we get
+    $$d(x,z) \leq d(x,y) + d(y,z) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.$$
+    So
+    $$d(x,z) < \epsilon \implies z \in B_\epsilon(x).$$
+    Since $z \in B_{\epsilon/2}(y)$ was arbitrary, every element of $B_{\epsilon/2}(y)$ lies in $B_\epsilon(x)$. Therefore $B_{\epsilon/2}(y) \subseteq B_\epsilon(x)$.
+\end{proof}
 
 \problem Sutherland 5.8
 
 Suppose that $(X,d)$ is a metric space, $A \subseteq X$. Show that $A$ is
 bounded iff there is some constant $\Delta$ such that $d(a,a') \le \Delta$
-for all $a, a' \in A$.
+for all $a, a' \in A$. \newline
+\begin{proof}
+  ($\implies$) Suppose $A$ is bounded. Then by definition, $A \subseteq B_r(x_0)$ for some $x_0 \in X$ and $r > 0$.
+
+  Let $a, a' \in A$ be arbitrary. Since $A \subseteq B_r(x_0)$, we have $a \in B_r(x_0)$ and $a' \in B_r(x_0)$.
+  so:
+  $$d(a,x_0) < r \text{ and } d(a',x_0) < r$$
+  By the triangle inequality:
+  $$ d(a,a') \leq d(a,x_0) + d(a', x_0) < r $$
+  So setting $\Delta = r$, we get $d(a, a') \leq \Delta$ for all $a, a' \in A$.
+
+  ($\impliedby$) Suppose there exists $\Delta$ such that $d(a, a') \leq \Delta$ for all $a, a' \in A$. If $A = \emptyset$ then $A$ is bounded trivially, so suppose $A \ne \emptyset$ and fix $x_0 \in A$. Then for every $a \in A$,
+  $$d(a, x_0) \leq \Delta < \Delta + 1,$$
+  so $a \in B_{\Delta+1}(x_0)$. Since $a \in A$ was arbitrary, $A \subseteq B_{\Delta+1}(x_0)$. So $A$ is bounded.
+\end{proof}
 
 \problem Sutherland 5.10
 
 Prove that if $A, B$ are bounded subsets of a metric space and
-$A \cap B \ne \emptyset$ then $\operatorname{diam}(A \cup B) \le \operatorname{diam} A + \operatorname{diam} B$.
+$A \cap B \ne \emptyset$ then $\operatorname{diam}(A \cup B) \le \operatorname{diam} A + \operatorname{diam} B$. \newline
+\begin{proof}
+  Fix $z \in A \cap B$. Let $p, q \in A \cup B$ be arbitrary; we show $d(p,q) \leq \operatorname{diam} A + \operatorname{diam} B$.
+
+  \textbf{Case 1: $p, q \in A$.} Then $d(p,q) \leq \operatorname{diam} A \leq \operatorname{diam} A + \operatorname{diam} B$.
+
+  \textbf{Case 2: $p, q \in B$.} Then $d(p,q) \leq \operatorname{diam} B \leq \operatorname{diam} A + \operatorname{diam} B$.
+
+  \textbf{Case 3: $p \in A, q \in B$ (or vice versa).} Since $z \in A$ as well, $d(p,z) \leq \operatorname{diam} A$; since $z \in B$ as well, $d(z,q) \leq \operatorname{diam} B$. By the triangle inequality,
+  $$d(p,q) \leq d(p,z) + d(z,q) \leq \operatorname{diam} A + \operatorname{diam} B.$$
+
+  In every case $d(p,q) \leq \operatorname{diam} A + \operatorname{diam} B$. Since $p, q \in A \cup B$ were arbitrary, $\operatorname{diam}(A \cup B) \leq \operatorname{diam} A + \operatorname{diam} B$.
+\end{proof}
 
 \problem Sutherland 5.13
 
-Prove that a subset of a metric space is open iff it is a union of open balls.
+Prove that a subset of a metric space is open iff it is a union of open balls. \newline
+\begin{proof}
+  ($\implies$) Suppose $U \subseteq X$ is open. For each $x \in U$, by definition of open there exists $\varepsilon_x > 0$ such that $B_{\varepsilon_x}(x) \subseteq U$. We claim $U = \bigcup_{x \in U} B_{\varepsilon_x}(x)$.
+
+  Since $x \in B_{\varepsilon_x}(x)$ for each $x \in U$, we get $U \subseteq \bigcup_{x \in U} B_{\varepsilon_x}(x)$. Conversely, since $B_{\varepsilon_x}(x) \subseteq U$ for each $x \in U$, we get $\bigcup_{x \in U} B_{\varepsilon_x}(x) \subseteq U$. So $U$ is a union of open balls.
+
+  ($\impliedby$) Suppose $U = \bigcup_{i \in I} B_{r_i}(x_i)$ is a union of open balls. Let $p \in U$ be arbitrary; we show some ball around $p$ lies in $U$. Since $p \in U$, $p \in B_{r_i}(x_i)$ for some $i \in I$, i.e. $d(p,x_i) < r_i$. Let $\varepsilon = r_i - d(p,x_i) > 0$.
+
+  Let $q \in B_\varepsilon(p)$, so $d(p,q) < \varepsilon$. By the triangle inequality,
+  $$d(x_i, q) \leq d(x_i,p) + d(p,q) < d(p,x_i) + \big(r_i - d(p,x_i)\big) = r_i,$$
+  so $q \in B_{r_i}(x_i) \subseteq U$. Since $q \in B_\varepsilon(p)$ was arbitrary, $B_\varepsilon(p) \subseteq U$. Since $p \in U$ was arbitrary, $U$ is open.
+\end{proof}
 
 \problem Let $X$ be a set endowed with the discrete metric $d_{\mathrm{disc}}$.
 Show that a sequence $(x_n)$ in $X$ converges to a limit $x$ if and only
-if there is $N\in \Nats$ such that if $n\ge N$ then $x_n = x$.  
-That is: the convergent sequences are exactly the eventually constant sequences.
+if there is $N\in \Nats$ such that if $n\ge N$ then $x_n = x$.
+That is: the convergent sequences are exactly the eventually constant sequences. \newline
+\begin{proof}
+  Recall $d_{\mathrm{disc}}(p,q) = 0$ if $p = q$ and $d_{\mathrm{disc}}(p,q) = 1$ if $p \ne q$.
+
+  ($\impliedby$) Suppose there is $N \in \Nats$ such that $n \geq N$ implies $x_n = x$. Let $\varepsilon > 0$. For $n \geq N$, $d_{\mathrm{disc}}(x_n,x) = 0 < \varepsilon$. So $x_n \to x$.
+
+  ($\implies$) Suppose $x_n \to x$. Choose $\varepsilon = 1$. Then there exists $N$ such that $n \geq N$ implies $d_{\mathrm{disc}}(x_n,x) < 1$. Since $d_{\mathrm{disc}}$ only takes the values $0$ and $1$, $d_{\mathrm{disc}}(x_n,x) < 1$ forces $d_{\mathrm{disc}}(x_n,x) = 0$, i.e. $x_n = x$. So $n \geq N$ implies $x_n = x$.
+\end{proof}
 
 \problem Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces.  Show that
 a sequence $(x_n,y_n)$ in $X\times Y$ converges to a limit $(x,y)$
-if and only if $x_n\to x$ and $y_n\to Y$. Using the notation 
-at the bottom of page 43, prove the result 
-is true when $d_{X\times Y}$ is either of $d_1$ or $d_2$. It's easy to 
-see that it's also true for $d_\infty$ as well, but you need not show this.
+if and only if $x_n\to x$ and $y_n\to Y$. Using the notation
+at the bottom of page 43, prove the result
+is true when $d_{X\times Y}$ is either of $d_1$ or $d_2$. It's easy to
+see that it's also true for $d_\infty$ as well, but you need not show this. \newline
+\begin{proof}[$d_1$]
+  Recall $d_1\big((p,q),(p',q')\big) = d_X(p,p') + d_Y(q,q')$.
+
+  ($\implies$) Suppose $(x_n,y_n) \to (x,y)$ in $d_1$. Let $\varepsilon > 0$. There exists $N$ such that $n \geq N$ implies
+  $$d_X(x_n,x) + d_Y(y_n,y) = d_1\big((x_n,y_n),(x,y)\big) < \varepsilon.$$
+  Since $d_X(x_n,x) \geq 0$ and $d_Y(y_n,y) \geq 0$, each term alone satisfies $d_X(x_n,x) < \varepsilon$ and $d_Y(y_n,y) < \varepsilon$. So $x_n \to x$ and $y_n \to y$.
+
+  ($\impliedby$) Suppose $x_n \to x$ and $y_n \to y$. Let $\varepsilon > 0$. Choose $N_1$ such that $n \geq N_1$ implies $d_X(x_n,x) < \varepsilon/2$, and $N_2$ such that $n \geq N_2$ implies $d_Y(y_n,y) < \varepsilon/2$. Let $N = \max\{N_1,N_2\}$. Then for $n \geq N$,
+  $$d_1\big((x_n,y_n),(x,y)\big) = d_X(x_n,x) + d_Y(y_n,y) < \frac\varepsilon2 + \frac\varepsilon2 = \varepsilon.$$
+  So $(x_n,y_n) \to (x,y)$ in $d_1$.
+\end{proof}
+\begin{proof}[$d_2$]
+  Recall $d_2\big((p,q),(p',q')\big) = \sqrt{d_X(p,p')^2 + d_Y(q,q')^2}$.
+
+  ($\implies$) Suppose $(x_n,y_n) \to (x,y)$ in $d_2$. Let $\varepsilon > 0$. There exists $N$ such that $n \geq N$ implies $d_2\big((x_n,y_n),(x,y)\big) < \varepsilon$. Since $d_Y(y_n,y)^2 \geq 0$,
+  $$d_X(x_n,x) \leq \sqrt{d_X(x_n,x)^2 + d_Y(y_n,y)^2} = d_2\big((x_n,y_n),(x,y)\big) < \varepsilon,$$
+  and symmetrically $d_Y(y_n,y) \leq d_2\big((x_n,y_n),(x,y)\big) < \varepsilon$. So $x_n \to x$ and $y_n \to y$.
+
+  ($\impliedby$) Suppose $x_n \to x$ and $y_n \to y$. Let $\varepsilon > 0$. Choose $N_1, N_2$ as above with $\varepsilon/2$, and let $N = \max\{N_1,N_2\}$. For $n \geq N$, using $\sqrt{a^2+b^2} \leq a + b$ for $a,b \geq 0$ (which holds since $a^2+b^2 \leq a^2+2ab+b^2$),
+  $$d_2\big((x_n,y_n),(x,y)\big) = \sqrt{d_X(x_n,x)^2 + d_Y(y_n,y)^2} \leq d_X(x_n,x) + d_Y(y_n,y) < \frac\varepsilon2+\frac\varepsilon2 = \varepsilon.$$
+  So $(x_n,y_n) \to (x,y)$ in $d_2$.
+\end{proof}
 
 \problem Suppose $(x_n)$ is a sequence in a metric space $(X,d)$.
 Show that if $x\in X$ and if there is an $\epsilon>0$ such
-that $d(x,x_n)\ge \epsilon$ for all $n$ then $x_n\not\to x$.
+that $d(x,x_n)\ge \epsilon$ for all $n$ then $x_n\not\to x$. \newline
+\begin{proof}
+  \textbf{By Contradiction.} Suppose $x_n \to x$. Since $\epsilon > 0$, there exists $N$ such that $n \geq N$ implies $d(x_n,x) < \epsilon$. In particular, $d(x_N,x) < \epsilon$. But by hypothesis $d(x,x_N) \geq \epsilon$, and $d(x,x_N) = d(x_N,x)$ by symmetry, so $d(x_N,x) \geq \epsilon$. This contradicts $d(x_N,x) < \epsilon$. Hence $x_n \not\to x$.
+\end{proof}
 
-\problem Modify the proof from class for real valued functions to show 
-the following. 
+\problem Modify the proof from class for real valued functions to show
+the following.
 
-Suppose $(X,d_X)$ and $(Y, d_Y)$ are metric spaces, that 
-$f:X\to Y$ and that $a\in X$. Then $f$ is continuous at $a$ if and 
+Suppose $(X,d_X)$ and $(Y, d_Y)$ are metric spaces, that
+$f:X\to Y$ and that $a\in X$. Then $f$ is continuous at $a$ if and
 only if for every sequence $(x_n)$ in $X$ converging to $x$, $f(x_n)\to f(a)$
-in $Y$.
+in $Y$. \newline
+\begin{proof} \textbf{Forward Direction} \newline
+  Suppose $f$ is continuous at $a$. Let $(x_n)$ be a sequence in $X$ with $x_n \to a$. Let $\varepsilon > 0$. By continuity, there exists $\delta > 0$ such that for all $x \in X$,
+  $$d_X(x,a) < \delta \implies d_Y(f(x),f(a)) < \varepsilon.$$
+  Since $x_n \to a$, there exists $N$ such that $n \geq N$ implies $d_X(x_n,a) < \delta$. Then for $n \geq N$,
+  $$d_Y(f(x_n),f(a)) < \varepsilon.$$
+  Thus $f(x_n) \to f(a)$.
+\end{proof}$ $
+\begin{proof} \textbf{Backwards Direction, by contraposition}
+  Suppose $f$ is not continuous at $a$. Negating the $\varepsilon$-$\delta$ definition means there exists $\varepsilon > 0$ such that for all $\delta > 0$, there exists $x \in X$ with
+  $$d_X(x,a) < \delta \text{ and } d_Y(f(x),f(a)) \geq \varepsilon.$$
+  Fix this $\varepsilon$. For each $n \in \Nats$, let $\delta = 1/n$ to obtain $x_n \in X$ with
+  $$d_X(x_n,a) < \frac1n \text{ and } d_Y(f(x_n),f(a)) \geq \varepsilon.$$
+  Since $d_X(x_n,a) < 1/n \to 0$, $x_n \to a$. But $d_Y(f(x_n),f(a)) \geq \varepsilon$ for every $n$, so $f(x_n)$ does not converge to $f(a)$.
+  Thus $(x_n)$ is a sequence with $x_n \to a$ but $f(x_n) \not\to f(a)$, so the sequential condition fails. This proves the contrapositive, so the backward direction holds.
+\end{proof}
 
-\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
 
 \end{problems}
 
