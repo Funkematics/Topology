@@ -1,0 +1,49 @@
+\documentclass[minion]{homework}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\doclabel{Math F404: Homework 5}
+\docdate{Due: September 29, 2026}
+
+\begin{document}
+\begin{problems}
+
+\problem Sutherland 5.14
+
+Show that for any $x,y\in\Reals^n$,
+$$d_{\infty}(x,y) \leq d_2(x,y) \leq d_1(x,y) \leq nd_{\infty}(x,y).$$
+
+\problem Sutherland 5.15
+
+Suppose that $X$ is a non-empty st and $d, d'$ are metrics on $X$ such that $d(x_1, x_2) \leq kd'(x_1,x_2)$ for all $x_1,x_2 \in X$ and some positive constant $k$.
+\begin{enumerate}
+  \item[(a)] Show that $B^{d'}_{\epsilon/k}(x)\subseteq B^d_\epsilon(x)$ for any $x \in X$ and any $ \epsilon > 0.$
+  \item[(b)] Deduce that any subset of $X$ which is $d$-open set is also $d'$-open.
+  \item[(c)] Show that the open sets in $\Reals^n$ are the same for the metrics $d_1, d_2, d_\infty$.
+\end{enumerate}
+
+\problem Sutherland 6.3 
+
+Show that if $X$ is a metric space and $p\in X$, then the singleton $\{p\}$ is closed.
+Then show in one line that any finite subset of $X$ is also closed.i
+
+\problem Sutherland 6.6
+
+Let $C[0, 1]$ be the space of continuous real-valued functions on
+$[0, 1]$ with the sup metric, and $A \subseteq [0, 1]$. Show that the following subset is
+closed in $C[0, 1]: \{f \in C[0, 1] : f(a) = 0$ for all $a \in A\}$.
+
+
+\problem \textbf{(AI Free)} Suppose $F$ is closed in $X$ and $G$ is closed in $Y$.  Show 
+that $F\times G$ is closed in $X \times Y$.  You may find it nice to
+do this quickly using sequence arguments.
+
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+\end{problems}
+
+\end{document}
