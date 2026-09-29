@@ -17,6 +17,31 @@
 Show that for any $x,y\in\Reals^n$,
 $$d_{\infty}(x,y) \leq d_2(x,y) \leq d_1(x,y) \leq nd_{\infty}(x,y).$$
 
+\begin{proof}
+  Given the metrics
+  \begin{align*}
+    d_1(x,y) = \sum^n_{i=1} |x_i - y_i| && d_2(x,y) = (\sum^n_{i=1}(x_i-y_i)^2)^{1/2} && d_\infty(x,y) = \max_{1 \leq i \leq n} |x_i-y_i|
+  \end{align*}
+  We will show that $d_{\infty}(x,y) \leq d_2(x,y) \leq d_1(x,y) \leq nd_{\infty}(x,y).$ holds by proving each each inequality holds.
+
+  \begin{itemize} \item$d_{\infty}(x,y) \leq d_2(x,y)$ case: Consider the sum $d_2(x,y)^2 = \sum^n_{j=1}(x_j - y_j)^2$. Fix any index $i$ and pull the term $(x_i - y_i)^2$ from the sum. Since every term in the sum is non-negative, it follows that
+  $$(x_i - y_i)^2 \leq \sum^n_{j=1}(x_j - y_j)^2 = d_2(x,y)^2.$$
+  This is true for every $i$, in particular if we choose $i$ so that $(x_i-y_i)^2$ is as large as possible, we get
+  $$d_\infty(x,y)^2 = \max(x_i-y_i)^2 \leq d_2(x,y)^2.$$
+  Thus
+  $$d_\infty(x,y) \leq d_2(x,y)$$
+\end{itemize}
+
+\begin{itemize} \item $d_2(x,y) \leq d_1(x,y)$ case:
+
+\end{itemize}
+
+
+
+  
+
+\end{proof}
+
 \problem Sutherland 5.15
 
 Suppose that $X$ is a non-empty st and $d, d'$ are metrics on $X$ such that $d(x_1, x_2) \leq kd'(x_1,x_2)$ for all $x_1,x_2 \in X$ and some positive constant $k$.
