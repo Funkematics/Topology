@@ -58,7 +58,15 @@ Suppose that $X$ is a non-empty st and $d, d'$ are metrics on $X$ such that $d(x
   \item[(c)] Show that the open sets in $\Reals^n$ are the same for the metrics $d_1, d_2, d_\infty$.
 \end{enumerate}$ $
 \begin{proof}
-  \textbf(a) Let $y \in B^{d'}_{\epsilon/k}(x)$ be arbitrary, Then $y \in \{x \in X : d(x_1, x_2) < \frac{\epsilon}{2}\}$. So $y$ is contained in $d(x_1, x_2) < \frac{\epsilon}{2}$
+  \textbf{(a)} Let $y \in B^{d'}_{\epsilon/k}(x)$ be arbitrary, Then $y \in B^{d'}_{\epsilon/k} \iff d'(x,y) < \frac{\epsilon}{k}$. So $y$ is contained in $d'(x, y) < \frac{\epsilon}{k}$. Observe that when we multiply this inequality by $k$ we get:
+  $$kd'(x,y) < \epsilon$$
+  Consider the open ball $B^d_\epsilon(x) \iff d(x_1, x_2) < \epsilon$, by hypothesis (with $x_1 = x, x_2 = y$) we know that $d(x,y) \leq kd'(x,y)$. Chaining this with our above inequality gives:
+  $$d(x,y) \leq kd'(x,y) < \epsilon $$
+  So $d(x,y) < \epsilon$ which means $y \in B^d_{\epsilon}(x)$, for any $y \in B^{d'}_{\epsilon/k}.$ Since $y$ was an arbitrary element of $B^{d'}_{\epsilon/k}(x)$, by the definition of subset containment:
+  $$B^{d'}_{\epsilon/k}(x) \subseteq B^d_\epsilon(x)$$
+  for any $x \in X$ and $\epsilon > 0.$
+\end{proof}
+\begin{proof} \textbf{(b)} Let $U \subseteq X$ be $d$-open, and let $x \in U$ be arbitrary.
 \end{proof}
 \problem Sutherland 6.3 
 
