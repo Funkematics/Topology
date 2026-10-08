@@ -1,0 +1,85 @@
+\documentclass[minion]{homework}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\doclabel{Math F404: Homework 6}
+\docauthor{Christopher Munoz}
+\docdate{Due: October 6, 2026}
+
+\begin{document}
+\begin{problems}
+
+\problem Sutherland 6.10
+
+Prove that if $A$ is a bounded subset of a metric space then $\overline{A}$ is bounded and $\operatorname{diam} \overline{A} = \operatorname{diam} A$.\newline 
+\begin{proof}
+  Suppose $A$ is a bounded subset of a metric space $(X,d)$. so diam $A < \infty$, If $A = \emptyset$ then $\overline{A} = \emptyset$ and there is nothing to prove so assume $A \neq \emptyset$. 
+
+  (diam $\overline{A} \leq$ diam $A$ case): Let $x,y \in \overline{A}$ and let $\epsilon > 0$. Every open ball around a point of $\overline{A}$ meets $A$
+  meets A, so
+  \begin{align*}
+    x \in \overline{A} &\implies \exists a \in A, d(x,a) < \epsilon \\
+    y \in \overline{A} &\implies \exists b \in A, d(y,b) < \epsilon 
+  \end{align*}
+  Then by triangle inequality
+  \begin{align*}
+    d(x,y) &\leq d(x,a) + d(a,b) + d(b,y) \\
+           &< \epsilon + d(a,b) + \epsilon \\
+           &\leq \text{diam} A + 2\epsilon
+  \end{align*}
+  Since $\epsilon$ was arbitrary, $d(x,y) \leq$ diam $A$. So diam $A$ is an upper bound for $\{d(x,y) : x,y \in \overline{A}\}$ so $\overline{A}$ is bounded. Thus
+  $$\text{diam} \overline{A} \leq \text{diam} A $$
+  (diam $\overline{A} \geq$ diam $A$ case): Since $A \subset \overline{A}$, every pair of points of $A$ is also a pair of points of $overline{A}$:
+  $$\{d(a,b) : a, b \in A\} \subseteq \{d(x,y) : x,y \in \overline{A}\}$$.
+  Since $s \le \sup S$ for every $s \in S$, every element of the left-hand set is at most diam $\overline{A}$.
+
+
+\end{proof}
+\problem Sutherland 6.11 (No rigor, please. Just brief justification)
+
+Describe the closure of each of the sets in Exercise 6.2.
+
+\problem Sutherland 6.16 \textbf{(AI free)}
+
+For a point $x$ and a non-empty subset $A$ of a metric space $(X, d)$, define $d(x, A) = \inf\{d(x, a) : a \in A\}$.
+\begin{itemize}
+  \item[(a)] Prove that $d(x, A) = 0$ iff $x \in \overline{A}$.
+  \item[(b)] Show that if $y$ is another point in $X$ then $d(x, A) \le d(x, y) + d(y, A)$.
+  \item[(c)] Prove that $x \mapsto d(x, A)$ gives a continuous map from $X$ to $\Reals$.
+\end{itemize}
+
+\problem Sutherland 6.21(b)
+
+Prove that the boundary of $\Rats$ in $\Reals$ is $\Reals$.
+
+\problem Sutherland 6.23
+
+For a subset $A$ of a metric space $X$, prove:
+\begin{itemize}
+  \item[(a)] $\mathring{A} = A \setminus \partial A = \overline{A} \setminus \partial A$,
+  \item[(b)] $\overline{X \setminus A} = X \setminus \mathring{A}$,
+  \item[(c)] $\partial A = \overline{A} \cap \overline{X \setminus A} = \partial(X \setminus A)$,
+  \item[(d)] $\partial A$ is closed in $X$.
+\end{itemize}
+
+\problem Sutherland 7.2
+
+Give an example of two topologies $\mathcal{T}_1$, $\mathcal{T}_2$ on the same set such that neither contains the other.
+
+\problem Sutherland 7.3
+
+Show that the intersection of two topologies on the same set $X$ is also a topology on $X$, but that their union may or may not be a topology. Does the first result extend to the intersection of an arbitrary family of topologies on $X$?
+
+\problem Sutherland 7.5
+
+Prove that for any set $X$ the co-finite topology defined in Example 7.9 does give a topology for $X$. Show also that if $X$ is finite then the co-finite topology is the discrete topology.
+
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+\end{problems}
+
+\end{document}

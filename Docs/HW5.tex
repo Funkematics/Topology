@@ -7,6 +7,7 @@
 \newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
 
 \doclabel{Math F404: Homework 5}
+\docauthor{Christopher Munoz}
 \docdate{Due: September 29, 2026}
 
 \begin{document}
@@ -34,7 +35,7 @@ $$d_{\infty}(x,y) \leq d_2(x,y) \leq d_1(x,y) \leq nd_{\infty}(x,y).$$
 \begin{itemize} \item $d_2(x,y) \leq d_1(x,y)$ case: When we square the metric $d_1(x,y)^2$, we get
   $$d_1(x,y)^2 = (\sum^n_{i=1}|x_i-y_i|)^2 = \sum^n_{i=1}|x_i-y_i|^2 + \sum_{i \neq j}|x_i - y_i||x_j-y_j|.$$
   Note that the cross term $|x_i-y_i||x_j-y_j| \geq 0$ when $i \neq j$. Observe that
-  $$d_1(x,y)^2 = d_2(x,y)^2 + \sum|x_i-y_i||x_j-y_j| \leq d_2(x.y)^2$$
+  $$d_1(x,y)^2 = d_2(x,y)^2 + \sum|x_i-y_i||x_j-y_j| \geq d_2(x,y)^2$$
   and since $d_1(x,y)$ and $d_2(x,y)$ are non-negative
   $$d_2(x,y) \leq d_1(x,y).$$
 \end{itemize}
@@ -51,41 +52,69 @@ $$d_{\infty}(x,y) \leq d_2(x,y) \leq d_1(x,y) \leq nd_{\infty}(x,y).$$
 
 \problem Sutherland 5.15
 
-Suppose that $X$ is a non-empty st and $d, d'$ are metrics on $X$ such that $d(x_1, x_2) \leq kd'(x_1,x_2)$ for all $x_1,x_2 \in X$ and some positive constant $k$.
+Suppose that $X$ is a non-empty set and $d, d'$ are metrics on $X$ such that $d(x_1, x_2) \leq kd'(x_1,x_2)$ for all $x_1,x_2 \in X$ and some positive constant $k$.
 \begin{enumerate}
   \item[(a)] Show that $B^{d'}_{\epsilon/k}(x)\subseteq B^d_\epsilon(x)$ for any $x \in X$ and any $ \epsilon > 0.$
   \item[(b)] Deduce that any subset of $X$ which is $d$-open set is also $d'$-open.
   \item[(c)] Show that the open sets in $\Reals^n$ are the same for the metrics $d_1, d_2, d_\infty$.
 \end{enumerate}$ $
 \begin{proof}
-  \textbf{(a)} Let $y \in B^{d'}_{\epsilon/k}(x)$ be arbitrary, Then $y \in B^{d'}_{\epsilon/k} \iff d'(x,y) < \frac{\epsilon}{k}$. So $y$ is contained in $d'(x, y) < \frac{\epsilon}{k}$. Observe that when we multiply this inequality by $k$ we get:
+  \textbf{(a)} Let $y \in B^{d'}_{\epsilon/k}(x)$ be arbitrary, Then $y \in B^{d'}_{\epsilon/k}(x) \iff d'(x,y) < \frac{\epsilon}{k}$. So $y$ is contained in $d'(x, y) < \frac{\epsilon}{k}$. Observe that when we multiply this inequality by $k$ we get:
   $$kd'(x,y) < \epsilon$$
   Consider the open ball $B^d_\epsilon(x) \iff d(x_1, x_2) < \epsilon$, by hypothesis (with $x_1 = x, x_2 = y$) we know that $d(x,y) \leq kd'(x,y)$. Chaining this with our above inequality gives:
   $$d(x,y) \leq kd'(x,y) < \epsilon $$
-  So $d(x,y) < \epsilon$ which means $y \in B^d_{\epsilon}(x)$, for any $y \in B^{d'}_{\epsilon/k}.$ Since $y$ was an arbitrary element of $B^{d'}_{\epsilon/k}(x)$, by the definition of subset containment:
+  So $d(x,y) < \epsilon$ which means $y \in B^d_{\epsilon}(x)$, for any $y \in B^{d'}_{\epsilon/k}(x).$ Since $y$ was an arbitrary element of $B^{d'}_{\epsilon/k}(x)$, by the definition of subset containment:
   $$B^{d'}_{\epsilon/k}(x) \subseteq B^d_\epsilon(x)$$
   for any $x \in X$ and $\epsilon > 0.$
-\end{proof}
-\begin{proof} \textbf{(b)} Let $U \subseteq X$ be $d$-open, and let $x \in U$ be arbitrary.
+\end{proof}$ $\newline
+\begin{proof} \textbf{(b)} Let $U \subseteq X$ be $d$-open, and let $x \in U$ be arbitrary. Since $U$ is $d$-open, there exists some $\epsilon > 0$ such that $B^d_\epsilon(x) \subseteq U$. In part $(a)$ above we showed $B^{d'}_{\epsilon/k}(x) \subseteq B^d_\epsilon(x)$. Chaining these two containments:
+  $$B^{d'}_{\epsilon/k}(x) \subseteq B^d_\epsilon(x) \subseteq U$$
+  So $B^{d'}_{\epsilon/k}(x) \subseteq U$, with $\epsilon/k > 0$. Since $x \in U$ was arbitrary, $U$ is $d'$-open.
+\end{proof}$ $\newline
+\begin{proof} \textbf{(c)} From problem 5.14 we proved $d_\infty \leq d_2 \leq d_1 \leq nd_\infty$ for all $x,y \in \Reals^n.$
+
+  Since $d_\infty \leq 1 * d_2$ and $d_2 \leq n*d_\infty$, part (b) gives $d_\infty$-open $\iff$ $d_2$-open.
+
+  Since $d_2 \leq 1 * d_1$ and $d_1 \leq nd_\infty \leq nd_2$, part (b) gives $d_2$-open $\iff$ $d_1$-open.
+
+  By transitivity, $d_\infty$-open $\iff$ $d_2$-open $\iff$ $d_1$-open, so $d_1,d_2,d_\infty$ have the same open sets on $\Reals^n$.
 \end{proof}
 \problem Sutherland 6.3 
 
 Show that if $X$ is a metric space and $p\in X$, then the singleton $\{p\}$ is closed.
-Then show in one line that any finite subset of $X$ is also closed.i
+Then show in one line that any finite subset of $X$ is also closed. \newline
+\begin{proof}
+  Let $x \in X \setminus \{p\}$ be arbitrary, so $x \neq p$. Since $x \neq p$, it follows that $d(x,p) > 0$. Let $r = d(x,p)$, then $B_r(x) \subseteq X \setminus \{p\}.$ Note that in order for $p \in B_r(x)$ we would need $d(x,p) < r = d(x,p)$ which is false. So $p \notin B_r(x)$, so $B_r(x) \subseteq X \setminus \{p\}.$ Since $x \in X \setminus \{p\}$ was arbitrary and we found $r > 0$ with $B_r(x) \subseteq X \setminus \{p\}$, the set $X \setminus \{p\}$ is open. Hence $\{p\}$ is closed.
+
+Since $\{p\}$ is closed and any finite subset of X is a finite union of singletons : $\{p_1,...,p_n\} = \{p_1\}\cup...\cup\{p_n\}$, and any finite union of closed sets is closed, it follows that any finite subset of $X$ is closed.
+
+\end{proof}
 
 \problem Sutherland 6.6
 
 Let $C[0, 1]$ be the space of continuous real-valued functions on
 $[0, 1]$ with the sup metric, and $A \subseteq [0, 1]$. Show that the following subset is
-closed in $C[0, 1]: \{f \in C[0, 1] : f(a) = 0$ for all $a \in A\}$.
+closed in $C[0, 1]: \{f \in C[0, 1] : f(a) = 0$ for all $a \in A\}$. \newline
 
+
+\begin{proof}
+  Let $S = \{f \in C[0,1] : f(a) = 0$ for all $a \in A\}$. Let $(f_n)$ be a sequence in $S$ with $f_n \to f$ in the sup metric for some $f \in C[0,1].$
+  Fix $a \in A$. Note that $d(f_n,f) \to 0$. Since $f_n \to f$ uniformly it follows that:
+  $$|f_n(a) - f(a)| \leq d(f_n,f) \to 0.$$
+  So $f_n(a) \to f(a).$ But $f_n(a) = 0$ for every $n$, so $f(a) = 0$. As $a \in A$ was arbitrary, $f \in S$. Hence $S$ is closed.
+\end{proof}
 
 \problem \textbf{(AI Free)} Suppose $F$ is closed in $X$ and $G$ is closed in $Y$.  Show 
 that $F\times G$ is closed in $X \times Y$.  You may find it nice to
-do this quickly using sequence arguments.
+do this quickly using sequence arguments. \newline
 
-\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+\begin{proof}
+  Let $(x_n,y_n)$ be a sequence in $F \times G$ with $(x_n, y_n) \to (x,y)$ in $X \times Y$. Then $x_n \to x$ in $X$ and $y_n \to y$ in $Y$. Since each $x_n \in F$ and $F$ is closed, $x \in F$. Similary $y \in G$. So $(x,y) \in F \times G$. Hence $F \times G$ is closed.
+\end{proof}
 
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment. \newline
+
+Asked it to fix spelling issues and asked
 \end{problems}
 
 \end{document}
