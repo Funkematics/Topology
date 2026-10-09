@@ -19,8 +19,7 @@ Prove that if $A$ is a bounded subset of a metric space then $\overline{A}$ is b
 \begin{proof}
   Suppose $A$ is a bounded subset of a metric space $(X,d)$. so diam $A < \infty$, If $A = \emptyset$ then $\overline{A} = \emptyset$ and there is nothing to prove so assume $A \neq \emptyset$. 
 
-  (diam $\overline{A} \leq$ diam $A$ case): Let $x,y \in \overline{A}$ and let $\epsilon > 0$. Every open ball around a point of $\overline{A}$ meets $A$
-  meets A, so
+  (diam $\overline{A} \leq$ diam $A$ case): Let $x,y \in \overline{A}$ and let $\epsilon > 0$. Every open ball around a point of $\overline{A}$ meets $A$, so
   \begin{align*}
     x \in \overline{A} &\implies \exists a \in A, d(x,a) < \epsilon \\
     y \in \overline{A} &\implies \exists b \in A, d(y,b) < \epsilon 
@@ -33,9 +32,9 @@ Prove that if $A$ is a bounded subset of a metric space then $\overline{A}$ is b
   \end{align*}
   Since $\epsilon$ was arbitrary, $d(x,y) \leq$ diam $A$. So diam $A$ is an upper bound for $\{d(x,y) : x,y \in \overline{A}\}$ so $\overline{A}$ is bounded. Thus
   $$\text{diam} \overline{A} \leq \text{diam} A $$
-  (diam $\overline{A} \geq$ diam $A$ case): Since $A \subseteq \overline{A}$, every pair of points of $A$ is also a pair of points of $overline{A}$:
-  $$\{d(a,b) : a, b \in A\} \subseteq \{d(x,y) : x,y \in \overline{A}\}$$.
-  Since $s \le \sup S$ for every $s \in S$, every element of the left-hand set is at most diam $\overline{A}$. Then by (S2), diam $A \leq$ diam $\overline{A}$.
+  (diam $\overline{A} \geq$ diam $A$ case): Since $A \subseteq \overline{A}$, every pair of points of $A$ is also a pair of points of $\overline{A}$:
+  $$\{d(a,b) : a, b \in A\} \subseteq \{d(x,y) : x,y \in \overline{A}\}.$$
+  Since $s \le \sup S$ for every $s \in S$, every element of the left-hand set is at most diam $\overline{A}$. Then by the supremum rule, diam $A \leq$ diam $\overline{A}.$
   Combining these two inequalities, diam $\overline{A} =$ diam $A$.
 
 
@@ -45,50 +44,184 @@ Prove that if $A$ is a bounded subset of a metric space then $\overline{A}$ is b
 Describe the closure of each of the sets in Exercise 6.2.
 
   (a)$[1,\infty)$
-
+  \begin{proof}[Solution]
+    The closure of this set is just $[1, \infty)$, $1$ is the only boundary point and is already in the set.
+  \end{proof}
   (b)$\Reals \setminus \Rats$
-
+  \begin{proof}[Solution] 
+    The closure of this set is $\Reals$ since every ball around every real number contains an irrational by density.\end{proof}
   (c) $\{n/(n+1):n\in\Nats\}$
-
+  \begin{proof}[Solution] The set converges to 1 but does not contain 1, considering the intersection of every open ball in the set we get
+    $\{\frac{n}{n+1} : n \in \Nats\} \cup \{1\}.$
+  \end{proof}
   (d) $\{1/n : n \in \Nats, n \geq 2\} \cup \{0,1,2\}$
+  \begin{proof}[Solution]
+    This set is already closed, $\frac{1}{n}$ converges to $0$ and is already in the set.
+  \end{proof}
 
-\problem Sutherland 6.16 \textbf{(AI free)}
+  \problem Sutherland 6.16 \textbf{(AI free)} 
 
 For a point $x$ and a non-empty subset $A$ of a metric space $(X, d)$, define $d(x, A) = \inf\{d(x, a) : a \in A\}$.
 \begin{itemize}
-  \item[(a)] Prove that $d(x, A) = 0$ iff $x \in \overline{A}$.
-  \item[(b)] Show that if $y$ is another point in $X$ then $d(x, A) \le d(x, y) + d(y, A)$.
-  \item[(c)] Prove that $x \mapsto d(x, A)$ gives a continuous map from $X$ to $\Reals$.
+  \item[(a)] Prove that $d(x, A) = 0$ iff $x \in \overline{A}$. \newline
+    \begin{proof}\textbf{(Forward)}
+      Suppose $d(x,A) = 0$, We want to show $x \in \overline{A}$, that every neighborhood of $x$ contains at least one point of $A$.
+      Let $\epsilon > 0$. Consider the open ball $B_\epsilon(x) = \{y \in X : d(x,y) < \epsilon\}.$ Since $d(x,A) = \inf\{d(x,a): a \in A\} = 0$, the number $\epsilon$ is not a lower bound. Therefore there exists an $a \in A$ such that $d(x,a) < \epsilon$. Thus $ a \in B_\epsilon(x)$. Since $\epsilon$ was arbitrary, every open ball centered at $x$ intersects $A$. Thus $x \in \overline{A}$.
+      \newline \textbf{(Backwards)} Suppose $x \in \overline{A}$, we want to show that $d(x,A) = 0.$ Since $x \in \overline{A}$, every open ball around $x$ must intersect $A$. Let $\epsilon > 0$, then  $B_\epsilon(x)$ must contain some point $a \in A$. Since $a \in B_\epsilon(x)$, we have $d(x,a) < \epsilon.$ By definition $d(x,A) \leq d(x,a)$ for $a \in A$. Therefore
+      $$0 \leq d(x,A) \leq d(x,a) < \epsilon$$
+      Since $0 \leq d(x,A) < \epsilon$ holds true for every positive number $\epsilon$, the only possibility that exists is $d(x,A) = 0.$
+    \end{proof}
+  \item[(b)] Show that if $y$ is another point in $X$ then $d(x, A) \le d(x, y) + d(y, A)$. \newline
+    \begin{proof}
+      Fix any $a \in A$. Since $d(x,A)$ is a lower bound for $\{d(x,a) : a \in A\}$, it follows that
+      $$d(x,A) \leq d(x,a).$$
+      By triangle inequality we get
+      $$d(x,a) \leq d(x,y) + d(y,a).$$
+      Combining these two inequalities we get
+      $$d(x,A) - d(x,y) \leq d(y,a).$$
+      This holds for every $a \in A$. So $d(x,A) - d(x,y)$ is a lower bound for $\{d(y,a) : a \in A\}$.
+      But $d(y,A)$ is the infimum of that set, so
+      $$d(x,A) - d(x,y) \leq d(y,A)$$
+      which rearranges to $d(x,A) \leq d(x,y) + d(y,A)$.
+    \end{proof}
+  \item[(c)] Prove that $x \mapsto d(x, A)$ gives a continuous map from $X$ to $\Reals$. \newline
+    \begin{proof}
+      Let $f : X \to \Reals$ be defined by $f(x) = d(x,A)$, where $\Reals$ has the usual metric $|s - t|$. Let $x,y \in X$. By part (b) we get
+      $$d(x,A) - d(y,A) \leq d(x,y).$$
+      Since (b) holds for any two points, swapping $x$ and $y$ and using $d(y,x) = d(x,y)$ we get
+      $$d(y,A) - d(x,A) \leq d(x,y).$$
+      Combining these two inequalities we get
+      $$|d(x,A) - d(y,A)| \leq d(x,y).$$
+      Now fix $x \in X$ and let $\epsilon > 0$. Take $\delta = \epsilon$. If $d(x,y) < \delta$, then
+      $$|f(x) - f(y)| = |d(x,A) - d(y,A)| \leq d(x,y) < \delta = \epsilon.$$
+      Since $x$ and $\epsilon$ were arbitrary, $f$ is continuous at every point of $X$. Thus $x \mapsto d(x,A)$ is a continuous map from $X$ to $\Reals$.
+    \end{proof}
 \end{itemize}
 
 \problem Sutherland 6.21(b)
 
-Prove that the boundary of $\Rats$ in $\Reals$ is $\Reals$.
+Prove that the boundary of $\Rats$ in $\Reals$ is $\Reals$. \newline
 
+
+\begin{proof} Since $\partial\Rats = \overline{\Rats} \setminus \mathring{\Rats}$, it suffices to show $\overline{\Rats} = \Reals$ and $\mathring{\Rats} = \emptyset$. \newline
+
+($\overline{\Rats} = \Reals$) case: 
+  Let $x \in \Reals$ and let $\epsilon > 0$. Consider the open ball $B_\epsilon(x) = (x-\epsilon, x + \epsilon)$, a subset of $\Reals$. We want to show that $B_\epsilon(x) \cap \Rats \neq \emptyset$. Since $\epsilon > 0$, we have $x - \epsilon < x + \epsilon$, so by density of $\Rats$, there exists a $q \in \Rats$ such that
+  $$x- \epsilon < q < x + \epsilon.$$
+  This means $q \in B_\epsilon(x) \cap \Rats.$
+  So $B_\epsilon(x) \cap \Rats \neq \emptyset$. Since $\epsilon > 0$ was arbitrary, $x \in \overline{\Rats}$. Since $x \in \Reals$ was arbitrary, $\Reals \subseteq \overline{\Rats}$, conversely $\overline{\Rats} \subseteq \Reals$ since by definition the closure consists of points of $\Reals$. Thus $\overline{\Rats} = \Reals$.
+  
+  ($\mathring{\Rats} = \emptyset$) case: Suppose for contradiction that $x \in \mathring{\Rats}$. Then there exists $\epsilon > 0$ such that $B_\epsilon(x) = (x-\epsilon, x + \epsilon) \subseteq \Rats.$
+
+  Since $x - \epsilon < x$, by density of $\Rats$, there exists $q \in \Rats$ such that
+  $$x-\epsilon < q < x.$$
+  By the Archimedean property, there exists an $n \in \Nats$ with $n > \frac{\sqrt{2}}{\epsilon}.$ This means $0 < \frac{\sqrt{2}}{n} < \epsilon.$
+  Let $r = q + \frac{\sqrt{2}}{n}$. Then
+  $$x - \epsilon < q < r < x + \frac{\sqrt{2}}{n} < x + \epsilon$$
+  so $r \in B_\epsilon(x)$. But $r$ is irrational, since if $r \in \Rats$ then $\sqrt{2} = n(r - q) \in \Rats$. So $r \in B_\epsilon(x)$ but $r \notin \Rats$, contradicting $B_\epsilon(x) \subseteq \Rats$. Thus $\mathring{\Rats} = \emptyset$.
+
+  Combining these two cases,
+  $$\partial\Rats = \overline{\Rats} \setminus \mathring{\Rats} = \Reals \setminus \emptyset = \Reals.$$
+\end{proof}
 \problem Sutherland 6.23
 
 For a subset $A$ of a metric space $X$, prove:
+
+Throughout, recall that $x \in \overline{A}$ iff every open ball $B_\epsilon(x)$ meets $A$, $x \in \mathring{A}$ iff some $B_\epsilon(x) \subseteq A$, and $x \in \partial A$ iff every $B_\epsilon(x)$ meets both $A$ and $X \setminus A$.
 \begin{itemize}
-  \item[(a)] $\mathring{A} = A \setminus \partial A = \overline{A} \setminus \partial A$,
-  \item[(b)] $\overline{X \setminus A} = X \setminus \mathring{A}$,
-  \item[(c)] $\partial A = \overline{A} \cap \overline{X \setminus A} = \partial(X \setminus A)$,
-  \item[(d)] $\partial A$ is closed in $X$.
+  \item[(a)] $\mathring{A} = A \setminus \partial A = \overline{A} \setminus \partial A$, \newline
+    \begin{proof}
+      Since $A \subseteq \overline{A}$ we have $A \setminus \partial A \subseteq \overline{A} \setminus \partial A$, so it suffices to show
+      $$\mathring{A} \subseteq A \setminus \partial A \quad \text{and} \quad \overline{A} \setminus \partial A \subseteq \mathring{A}.$$
+      Let $x \in \mathring{A}$. Then there exists $\epsilon > 0$ with $B_\epsilon(x) \subseteq A$. In particular $x \in A$, and $B_\epsilon(x)$ does not meet $X \setminus A$, so $x \notin \partial A$. Thus $x \in A \setminus \partial A$.
+
+      Now let $x \in \overline{A} \setminus \partial A$. Since $x \in \overline{A}$, every open ball around $x$ meets $A$. Since $x \notin \partial A$, some open ball around $x$ fails to meet both $A$ and $X \setminus A$, so it must be some $B_\epsilon(x)$ that does not meet $X \setminus A$. That is, $B_\epsilon(x) \subseteq A$, so $x \in \mathring{A}$.
+      Thus
+      $$\mathring{A} \subseteq A \setminus \partial A \subseteq \overline{A} \setminus \partial A \subseteq \mathring{A}$$
+      and all three sets are equal.
+    \end{proof}
+  \item[(b)] $\overline{X \setminus A} = X \setminus \mathring{A}$, \newline
+    \begin{proof}
+      For $x \in X$, a ball $B_\epsilon(x)$ fails to meet $X \setminus A$ exactly when $B_\epsilon(x) \subseteq A$. So
+      \begin{align*}
+        x \in \overline{X \setminus A} &\iff \text{every } B_\epsilon(x) \text{ meets } X \setminus A \\
+                                       &\iff \text{no } B_\epsilon(x) \text{ is contained in } A \\
+                                       &\iff x \notin \mathring{A} \\
+                                       &\iff x \in X \setminus \mathring{A}.
+      \end{align*}
+      Thus $\overline{X \setminus A} = X \setminus \mathring{A}$.
+    \end{proof}
+  \item[(c)] $\partial A = \overline{A} \cap \overline{X \setminus A} = \partial(X \setminus A)$, \newline
+    \begin{proof}
+      Let $x \in X$. Then
+      \begin{align*}
+        x \in \partial A &\iff \text{every } B_\epsilon(x) \text{ meets } A \text{ and every } B_\epsilon(x) \text{ meets } X \setminus A \\
+                         &\iff x \in \overline{A} \text{ and } x \in \overline{X \setminus A} \\
+                         &\iff x \in \overline{A} \cap \overline{X \setminus A}.
+      \end{align*}
+      So $\partial A = \overline{A} \cap \overline{X \setminus A}$. Applying this to the set $X \setminus A$, and using $X \setminus (X \setminus A) = A$, we get
+      $$\partial(X \setminus A) = \overline{X \setminus A} \cap \overline{A} = \partial A.$$
+    \end{proof}
+  \item[(d)] $\partial A$ is closed in $X$. \newline
+    \begin{proof}
+      Let $B = X \setminus A$, so $X \setminus B = A$. By (b), $\overline{B} = X \setminus \mathring{A}$, and applying (b) to $B$ instead, $\overline{A} = X \setminus \mathring{B}$. Then by (c) and De Morgan's law,
+      $$\partial A = \overline{A} \cap \overline{B} = (X \setminus \mathring{B}) \cap (X \setminus \mathring{A}) = X \setminus (\mathring{A} \cup \mathring{B}).$$
+      The interior of any set is open, and a union of open sets is open, so $\mathring{A} \cup \mathring{B}$ is open. Thus $\partial A$ is the complement of an open set, so $\partial A$ is closed in $X$.
+    \end{proof}
 \end{itemize}
 
 \problem Sutherland 7.2
 
 Give an example of two topologies $\mathcal{T}_1$, $\mathcal{T}_2$ on the same set such that neither contains the other.
 
+\begin{proof}[Solution]
+  Let $X = \{a,b,c\}$ and take
+  $$\mathcal{T}_1 = \{\emptyset, \{a\}, X\}, \qquad \mathcal{T}_2 = \{\emptyset, \{b\}, X\}.$$
+  Each is a topology on $X$: both contain $\emptyset$ and $X$, and any union or intersection of members of $\mathcal{T}_i$ is again one of its three members, since $\emptyset \subseteq \{a\} \subseteq X$ (resp. $\emptyset \subseteq \{b\} \subseteq X$) form a chain. But $\{a\} \in \mathcal{T}_1 \setminus \mathcal{T}_2$ and $\{b\} \in \mathcal{T}_2 \setminus \mathcal{T}_1$, so neither topology contains the other.
+\end{proof}
+
 \problem Sutherland 7.3
 
 Show that the intersection of two topologies on the same set $X$ is also a topology on $X$, but that their union may or may not be a topology. Does the first result extend to the intersection of an arbitrary family of topologies on $X$?
+
+\begin{proof}
+  We prove the general case directly. Let $\{\mathcal{T}_i\}_{i \in I}$ be a non-empty family of topologies on $X$ and let $\mathcal{T} = \bigcap_{i \in I} \mathcal{T}_i$.
+  \begin{itemize}
+    \item[(T1)] Each $\mathcal{T}_i$ contains $\emptyset$ and $X$, so $\emptyset, X \in \mathcal{T}$.
+    \item[(T2)] Let $\{U_\alpha\}$ be any collection of sets in $\mathcal{T}$. For each $i$, every $U_\alpha \in \mathcal{T}_i$, and $\mathcal{T}_i$ is a topology, so $\bigcup_\alpha U_\alpha \in \mathcal{T}_i$. Since $i$ was arbitrary, $\bigcup_\alpha U_\alpha \in \mathcal{T}$.
+    \item[(T3)] Let $U_1, \dots, U_n \in \mathcal{T}$. For each $i$, every $U_k \in \mathcal{T}_i$, so $U_1 \cap \dots \cap U_n \in \mathcal{T}_i$. Since $i$ was arbitrary, $U_1 \cap \dots \cap U_n \in \mathcal{T}$.
+  \end{itemize}
+  Thus $\mathcal{T}$ is a topology on $X$. Taking $I = \{1,2\}$ gives the result for two topologies, and so yes, the result extends to an arbitrary family.
+
+  For the union: if $\mathcal{T}_1 \subseteq \mathcal{T}_2$ then $\mathcal{T}_1 \cup \mathcal{T}_2 = \mathcal{T}_2$ is a topology. On the other hand, take the topologies from 7.2 on $X = \{a,b,c\}$. Then
+  $$\mathcal{T}_1 \cup \mathcal{T}_2 = \{\emptyset, \{a\}, \{b\}, X\}$$
+  contains $\{a\}$ and $\{b\}$ but not $\{a\} \cup \{b\} = \{a,b\}$, so it is not closed under unions and is not a topology. So the union may or may not be a topology.
+\end{proof}
 
 \problem Sutherland 7.5
 
 Prove that for any set $X$ the co-finite topology defined in Example 7.9 does give a topology for $X$. Show also that if $X$ is finite then the co-finite topology is the discrete topology.
 
+\begin{proof}
+  The co-finite topology is
+  $$\mathcal{T} = \{U \subseteq X : U = \emptyset \text{ or } X \setminus U \text{ is finite}\}.$$
+  \begin{itemize}
+    \item[(T1)] $\emptyset \in \mathcal{T}$ by definition, and $X \setminus X = \emptyset$ is finite, so $X \in \mathcal{T}$.
+    \item[(T2)] Let $\{U_\alpha\}$ be any collection of sets in $\mathcal{T}$. If every $U_\alpha = \emptyset$ then $\bigcup_\alpha U_\alpha = \emptyset \in \mathcal{T}$. Otherwise some $U_\beta \neq \emptyset$, so $X \setminus U_\beta$ is finite, and by De Morgan's law
+      $$X \setminus \bigcup_\alpha U_\alpha = \bigcap_\alpha (X \setminus U_\alpha) \subseteq X \setminus U_\beta.$$
+      A subset of a finite set is finite, so $\bigcup_\alpha U_\alpha \in \mathcal{T}$.
+    \item[(T3)] Let $U_1, \dots, U_n \in \mathcal{T}$. If some $U_k = \emptyset$ then $U_1 \cap \dots \cap U_n = \emptyset \in \mathcal{T}$. Otherwise each $X \setminus U_k$ is finite, and
+      $$X \setminus (U_1 \cap \dots \cap U_n) = (X \setminus U_1) \cup \dots \cup (X \setminus U_n)$$
+      is a finite union of finite sets, hence finite. So $U_1 \cap \dots \cap U_n \in \mathcal{T}$.
+  \end{itemize}
+  Thus $\mathcal{T}$ is a topology on $X$.
+
+  Now suppose $X$ is finite and let $U \subseteq X$. Then $X \setminus U \subseteq X$ is finite, so $U \in \mathcal{T}$. Since $U$ was arbitrary, every subset of $X$ is open, so $\mathcal{T}$ is the discrete topology.
+\end{proof}
+
 \problem AI Use. Please describe specifically how you used AI to help complete this assignment.
 
+Asked to gently explain some concepts to me and to spell check. I struggled quite a lot with this one
 \end{problems}
 
 \end{document}
