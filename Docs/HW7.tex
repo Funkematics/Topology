@@ -1,0 +1,245 @@
+\documentclass[minion]{homework}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\doclabel{Math F404: Homework 7}
+\docdate{Due: October 13, 2026}
+\docauthor{Christopher Munoz}
+
+\begin{document}
+\begin{problems}
+
+%----------------------------------------------------------------------
+\problem Sutherland 7.4
+
+Prove that we get a topology for $\Nats = \{1, 2, 3, \dots\}$ by taking the open sets to be $\emptyset$, $\Nats$ and $\{1, 2, \dots, n\}$ for each $n \in \Nats$.
+
+\begin{proof}
+We will show that the collection
+\[
+\mathcal{T} = \{\emptyset, \Nats\} \cup \big\{\{1, 2, \dots, n\} : n \in \Nats\big\}
+\]
+forms a topology.
+
+\textbf{Axiom 1:} $\emptyset$ and $\Nats$ are in $\mathcal{T}$, so Axiom 1 is satisfied.
+
+\textbf{Axiom 2:} Let $\mathcal{F} \subseteq \mathcal{T}$ be any collection. If $\Nats \in \mathcal{F}$, then $\bigcup \mathcal{F} = \Nats$. Otherwise, ignoring $\emptyset$, the union is $\bigcup_{n \in S} \{1, \dots, n\}$ for some $S \subseteq \Nats$. It follows that the union is:
+\begin{itemize}
+  \item $\emptyset$ if $S$ is empty,
+  \item $\{1, \dots, m\}$ with $m = \max S$ if $S$ is bounded,
+  \item $\Nats$ if $S$ is unbounded.
+\end{itemize}
+Each of these is in $\mathcal{T}$, so Axiom 2 is satisfied.
+
+\textbf{Axiom 3:} Let $U, V \in \mathcal{T}$. If either one is $\emptyset$, it follows that $U \cap V = \emptyset$. If one is $\Nats$, it follows that $U \cap V$ is the other set. Otherwise $U = \{1, \dots, n\}$ and $V = \{1, \dots, m\}$, and it follows that
+\[
+U \cap V = \{1, \dots, \min(n,m)\}.
+\]
+Each of these is in $\mathcal{T}$, so Axiom 3 is satisfied.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Sutherland 8.2
+
+Prove that a map $f : X \to Y$ of topological spaces is continuous iff it is continuous at every point of $X$.
+
+\begin{proof}
+\textbf{(Forwards)} Suppose $f$ is continuous. Let $a \in X$, and let $V$ be open with $f(a) \in V$. Set $U = f^{-1}(V)$. Since $f$ is continuous and $V$ is open, it follows that:
+\begin{itemize}
+  \item $U$ is open, because $f$ is continuous,
+  \item $a \in U$, because $f(a) \in V$,
+  \item $f(U) \subseteq V$, because every point of $U$ maps to $V$.
+\end{itemize}
+So $f$ is continuous at $a$.
+
+\textbf{(Backwards)} Suppose $f$ is continuous at every point. Let $V \subseteq Y$ be open. We want to show that $f^{-1}(V)$ is open.
+
+For each $a \in f^{-1}(V)$, we have $f(a) \in V$. Since $f$ is continuous at $a$, there is an open set $U_a$ with $a \in U_a$ and $f(U_a) \subseteq V$. So $U_a \subseteq f^{-1}(V)$. Therefore
+\[
+f^{-1}(V) = \bigcup_{a \in f^{-1}(V)} U_a .
+\]
+Each point $a$ lies in its own $U_a$ and each $U_a$ lies inside $f^{-1}(V)$. A union of open sets is open, so $f^{-1}(V)$ is open.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Sutherland 8.3
+
+Let $\mathbb{S}$ be the Sierpinski space of Example 7.7. For any subset $A$ of a topological space $X$ let $\chi_A : X \to \{0, 1\}$ be its \emph{characteristic} or \emph{indicator} function defined by
+\[
+\chi_A(x) =
+\begin{cases}
+1, & x \in A, \\
+0, & x \notin A.
+\end{cases}
+\]
+Prove that $A$ is open in $X$ iff $\chi_A : X \to \mathbb{S}$ is continuous.
+
+\begin{proof}
+The open sets of $\mathbb{S}$ are $\emptyset$, $\{1\}$ and $\{0,1\}$. $\chi_A$ is continuous iff the preimage of each of these three open sets is open. Observe:
+\begin{align*}
+\chi_A^{-1}(\emptyset) &= \emptyset, && \text{so open,} \\
+\chi_A^{-1}(\{0,1\}) &= X, && \text{also open,} \\
+\chi_A^{-1}(\{1\}) &= \{x : \chi_A(x) = 1\} = A.
+\end{align*}
+$\emptyset$ and $X$ are always open. So $\chi_A$ is continuous exactly when the remaining preimage, $A$, is open.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Sutherland 8.4
+
+Prove that equivalence of topological spaces is an equivalence relation.
+
+\begin{proof}
+Suppose $f : X \to Y$ and $g : Y \to Z$ are continuous. Then $g \circ f$ is continuous. Observe that for an open $W \subseteq Z$:
+\[
+(g \circ f)^{-1}(W) = f^{-1}\big(g^{-1}(W)\big).
+\]
+$g^{-1}(W)$ is open because $g$ is continuous, and its preimage under $f$ is also open because $f$ is continuous.
+
+Now we show that equivalence of topological spaces satisfies all properties of an equivalence relation.
+
+\textbf{(Reflexivity):} Consider the identity map $\mathrm{id}_X$. It is a bijection and its own inverse. It is continuous since
+\[
+\mathrm{id}_X^{-1}(U) = U.
+\]
+So $X \sim X$.
+
+\textbf{(Symmetry):} If $f : X \to Y$ is a homeomorphism, then $f^{-1} : Y \to X$ is a bijection whose inverse is $f$. Both are continuous by assumption, so $Y \sim X$.
+
+\textbf{(Transitivity):} Let $f : X \to Y$ and $g : Y \to Z$ be homeomorphisms. Then $g \circ f$ is a bijection with inverse $f^{-1} \circ g^{-1}$. Since both are compositions of continuous maps, $g \circ f$ and $f^{-1} \circ g^{-1}$ are continuous. So $X \sim Z$ and transitivity holds.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Suppose $f:X\to Y$ is a bijection between topological spaces.
+Show that the following are equivalent:
+\begin{itemize}
+\item for all sets $A\subset  X$, $A$ is open if and only if $f(A)$ is open,
+\item the functions $f$ and $f^{-1}$ are continuous.
+\end{itemize}
+
+\begin{proof}
+Call the first statement (i) and the second (ii). Since $f$ is a bijection, observe that:
+\begin{itemize}
+  \item $f(A) = (f^{-1})^{-1}(A)$, since $y \in f(A)$ exactly when $f^{-1}(y) \in A$. So the image under $f$ is the preimage under $f^{-1}$.
+  \item $f\big(f^{-1}(B)\big) = B$ and $f^{-1}\big(f(A)\big) = A$.
+\end{itemize}
+
+\textbf{(Forwards)} Suppose (i) holds.
+\begin{itemize}
+  \item $f$ is continuous: Let $B \subseteq Y$ be open and set $A = f^{-1}(B)$. Then $f(A) = B$ is open, so by (i), $A = f^{-1}(B)$ is open.
+  \item $f^{-1}$ is continuous: Let $A \subseteq X$ be open. Its preimage under $f^{-1}$ is $(f^{-1})^{-1}(A) = f(A)$, which is open by (i).
+\end{itemize}
+So (ii) holds.
+
+\textbf{(Backwards)} Suppose (ii) holds, and let $A \subseteq X$.
+\begin{itemize}
+  \item If $A$ is open, it follows that $f(A) = (f^{-1})^{-1}(A)$ is open, because $f^{-1}$ is continuous.
+  \item If $f(A)$ is open, it follows that $A = f^{-1}\big(f(A)\big)$ is open, because $f$ is continuous.
+\end{itemize}
+So (i) holds.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Let $X=\Reals$ and let $Y$ be the subset of $\Reals^2$ 
+of points of the form $(x,x^2)$ with $x\in \Reals$. Both $X$ and $Y$
+are topological spaces by virtue of being metric spaces; the $d_1$ 
+distance on $\Reals^2$ also determines a distance on $Y$.
+Show that $X$ and $Y$ are homeomorphic as follows.
+\begin{itemize}
+\item[(a)] Show that if $x_n\to x$ in $\Reals$ then $(x_n, x_n^2)\to (x,x^2)$ in $Y$.
+\item[(b)] What can you conclude about the map $g:X\to Y$ defined by $g(x)=(x,x^2)$?
+\item[(c)] Show that if $(a_n,b_n)$ is a sequence in $Y$ converging to $(a,b)$
+then the sequence also converges in $\Reals^2$.
+\item[(d)] Using the fact that the projection $\pi_1: \Reals^2 \to \Reals$ 
+is continuous, use part (c) to show that $\pi_1|_Y$ is also continuous.
+\item[(e)] Now find an argument to show that $X$ and $Y$ are homeomorphic.
+\end{itemize}
+
+\begin{proof}
+\textbf{(a)} Suppose $x_n \to x$. A convergent sequence is bounded, so there is $M$ with $|x_n + x| \le M$ for all $n$. Observe:
+\begin{align*}
+d_1\big((x_n, x_n^2), (x, x^2)\big) &= |x_n - x| + |x_n^2 - x^2| \\
+&= |x_n - x| + |x_n - x|\,|x_n + x| && \text{difference of squares} \\
+&\le (1 + M)\,|x_n - x|.
+\end{align*}
+Let $\epsilon > 0$. Choose $N$ so that $|x_n - x| < \epsilon/(1+M)$ for all $n \ge N$. It follows that the distance is less than $\epsilon$ for all $n \ge N$, so $(x_n, x_n^2) \to (x, x^2)$.
+
+\textbf{(b)} By (a), $g$ sends convergent sequences to convergent sequences with the right limit. So $g$ is continuous, by the sequential characterization of continuity in metric spaces.
+
+\textbf{(c)} The distance on $Y$ is $d_1$ restricted to points of $Y$, so
+\[
+d_Y\big((a_n,b_n),(a,b)\big) = d_1\big((a_n,b_n),(a,b)\big).
+\]
+It follows that the $\epsilon$--$N$ condition for convergence in $Y$ is exactly the condition for convergence in $\Reals^2$, so the sequence converges in $\Reals^2$.
+
+\textbf{(d)} Let $(a_n,b_n) \to (a,b)$ in $Y$. By (c), the sequence converges in $\Reals^2$. Since $\pi_1$ is continuous,
+\[
+\pi_1(a_n,b_n) = a_n \to a = \pi_1(a,b).
+\]
+So $\pi_1|_Y$ sends convergent sequences to convergent sequences, and it follows that $\pi_1|_Y$ is continuous.
+
+\textbf{(e)} We show $g$ is a homeomorphism.
+\begin{itemize}
+  \item $g$ is onto $Y$, since every point of $Y$ has the form $(x,x^2) = g(x)$.
+  \item $g$ is one-to-one, since if $g(x) = g(x')$ then the first coordinates give $x = x'$.
+  \item $\pi_1|_Y$ is the inverse of $g$, since $\pi_1|_Y(g(x)) = \pi_1(x,x^2) = x$ and $g(\pi_1|_Y(a,a^2)) = g(a) = (a,a^2)$.
+\end{itemize}
+$g$ is continuous by (b) and its inverse $\pi_1|_Y$ is continuous by (d). So $g$ is a homeomorphism, and $X$ and $Y$ are homeomorphic.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Sutherland 8.5 \textbf{(AI Free)} (Wait until Friday to start this one)
+
+Prove that the set of all open intervals $\{(a, b) : a, b \in \Reals,\ a < b\}$ is a basis for the usual topology on $\Reals$.
+
+\begin{proof}
+Let $\mathcal{B} = \{(a,b) : a, b \in \Reals,\ a < b\}$. We show that every interval is open, and that every open set is a union of intervals.
+
+\textbf{(Intervals are open)} Let $x \in (a,b)$. Take $\epsilon$ to be the distance from $x$ to the nearer endpoint,
+\[
+\epsilon = \min(x - a,\ b - x) > 0.
+\]
+Since $\epsilon \le x - a$, it follows that $x - \epsilon \ge a$. Since $\epsilon \le b - x$, it follows that $x + \epsilon \le b$. So any $y$ with $x - \epsilon < y < x + \epsilon$ satisfies $a < y < b$. Therefore $(x - \epsilon, x + \epsilon) \subseteq (a,b)$, and $(a,b)$ is open.
+
+\textbf{(Open sets are unions of intervals)} Let $U$ be open. If $U = \emptyset$, it is the empty union. Otherwise, for each $x \in U$ there is $\epsilon_x > 0$ with
+\[
+J_x = (x - \epsilon_x,\ x + \epsilon_x) \subseteq U.
+\]
+Observe that
+\[
+U = \bigcup_{x \in U} J_x .
+\]
+Each point $x$ lies in its own $J_x$ and each $J_x$ lies inside $U$. Every $J_x$ is in $\mathcal{B}$, so $U$ is a union of members of $\mathcal{B}$.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem Sutherland 8.6 (Wait until Friday to start this one)
+
+Prove that a real-valued function $f : X \to \Reals$ on a space $X$ is continuous iff for any $x \in \Reals$ the sets $f^{-1}(x, \infty)$ and $f^{-1}(-\infty, x)$ are both open in $X$.
+
+[Hint: note that $(a, b) = (-\infty, b) \cap (a, \infty)$.]
+
+\begin{proof}
+\textbf{(Forwards)} Suppose $f$ is continuous. The rays $(x, \infty)$ and $(-\infty, x)$ are open in $\Reals$, since for a point $y$ in a ray, the interval of radius $|y - x|$ around $y$ stays inside the ray. Since $f$ is continuous, it follows that $f^{-1}(x, \infty)$ and $f^{-1}(-\infty, x)$ are open.
+
+\textbf{(Backwards)} Suppose these preimages are open for every $x \in \Reals$. Let $V \subseteq \Reals$ be open. We want to show that $f^{-1}(V)$ is open.
+
+By 8.5, $V = \bigcup_\alpha (a_\alpha, b_\alpha)$ for some family of intervals. By the hint, each interval is $(a_\alpha, b_\alpha) = (-\infty, b_\alpha) \cap (a_\alpha, \infty)$. Preimages preserve unions and intersections, so
+\[
+f^{-1}(V) = \bigcup_\alpha f^{-1}(a_\alpha, b_\alpha)
+= \bigcup_\alpha \Big( f^{-1}(-\infty, b_\alpha) \cap f^{-1}(a_\alpha, \infty) \Big).
+\]
+Both preimages in each bracket are open by assumption. An intersection of two open sets is open, and a union of open sets is open, so $f^{-1}(V)$ is open. So $f$ is continuous.
+\end{proof}
+
+%----------------------------------------------------------------------
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+AI has been relegated to handwritten transcription since I find that handwriting things much more fruitful for remembering and retaining things. As a consequence the LaTeX is cleaner and more organized since usually I am writing LaTeX in a way that minimizes the amount of typing I need to do. It turned my indents in the handwritten proofs into bullet points and in problem 6 it enumerated with letters problem 6 but did not change any of its contents from what I wrote. 
+\end{problems}
+
+\end{document}
