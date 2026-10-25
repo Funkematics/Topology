@@ -12,14 +12,44 @@
 \begin{document}
 \begin{problems}
 
+%----------------------------------------------------------------------
 \problem Sutherland 9.3
 
 Find open sets $U, V \subseteq \Reals$ such that $U \cap \overline{V}$, $\overline{U} \cap V$, $\overline{U} \cap \overline{V}$, $\overline{U \cap V}$ are all distinct.
 
+\begin{proof}[Solution]
+Let
+\[
+U = (0,2) \cup (4,6), \qquad V = (1,3) \cup (6,7).
+\]
+Both are open, being unions of open intervals. Their closures are
+\[
+\overline{U} = [0,2] \cup [4,6], \qquad \overline{V} = [1,3] \cup [6,7].
+\]
+It follows that:
+\begin{align*}
+U \cap \overline{V} &= [1,2), \\
+\overline{U} \cap V &= (1,2], \\
+\overline{U} \cap \overline{V} &= [1,2] \cup \{6\}, \\
+\overline{U \cap V} &= \overline{(1,2)} = [1,2].
+\end{align*}
+These are all distinct: $1$ lies in $[1,2)$ but not in $(1,2]$; $2$ lies in $[1,2]$ but not in $[1,2)$; $1$ lies in $[1,2]$ but not in $(1,2]$; and $6$ lies in $[1,2] \cup \{6\}$ but in none of the others.
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 9.4
 
 Suppose that $X$ is an infinite set with the co-finite topology, and $A \subseteq X$. Find $\overline{A}$ in the cases (a) $A$ finite and (b) $A$ infinite.
 
+\begin{proof}[Solution]
+The closed sets in the co-finite topology are the finite sets and $X$.
+\begin{itemize}
+  \item[(a)] If $A$ is finite, $A$ is closed, so $\overline{A} = A$.
+  \item[(b)] If $A$ is infinite, no finite set contains it, so the only closed set containing it is $X$. So $\overline{A} = X$.
+\end{itemize}
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 9.6
 
 \begin{itemize}
@@ -33,14 +63,59 @@ Suppose that $X$ is an infinite set with the co-finite topology, and $A \subsete
   \]
 \end{itemize}
 
+\begin{proof}
+\textbf{(a)} Set $A = \bigcup_{i=1}^m A_i$. We must show $\overline{A} \subseteq \bigcup_{i=1}^m \overline{A_i}$ and $\overline{A} \supseteq \bigcup_{i=1}^m \overline{A_i}$.
+
+\textbf{$\overline{A} \subseteq \bigcup_{i=1}^m \overline{A_i}$:} Observe that each $\overline{A_i}$ is closed, and a finite union of closed sets is closed. Thus $\bigcup_{i=1}^m \overline{A_i}$ is closed. For each $i$,
+\[
+A_i \subseteq \overline{A_i} \subseteq \bigcup_{i=1}^m \overline{A_i},
+\]
+so $A = \bigcup A_i \subseteq \bigcup_{i=1}^m \overline{A_i}$. Since $\overline{A}$ is the smallest closed set containing $A$, it follows that $\overline{A} \subseteq \bigcup_{i=1}^m \overline{A_i}$.
+
+\textbf{$\overline{A} \supseteq \bigcup_{i=1}^m \overline{A_i}$:} For each $i$, $A_i \subseteq A$. By monotonicity, $A_i \subseteq A$ implies $\overline{A_i} \subseteq \overline{A}$. Since every $\overline{A_i}$ lies in $\overline{A}$, $\bigcup_{i=1}^m \overline{A_i} \subseteq \overline{A}$.
+
+From both of these facts, it follows that $\overline{A} = \bigcup_{i=1}^m \overline{A_i}$.
+
+\textbf{(b)} Set $A = \bigcup_{i \in I} A_i$. For each $i \in I$, $A_i \subseteq A$. By monotonicity, $A_i \subseteq A$ implies $\overline{A_i} \subseteq \overline{A}$. Since every $\overline{A_i}$ lies in $\overline{A}$, it follows that
+\[
+\bigcup_{i \in I} \overline{A_i} \subseteq \overline{A} = \overline{\bigcup_{i \in I} A_i}.
+\]
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 9.12
 
 Let $X$ be a topological space and suppose that for each $i$ in some indexing set $I$ we are given a subset $A_i$ of $X$. Prove that $\bigcup_{i \in I} \mathring{A_i}$ is contained in the interior of $\bigcup_{i \in I} A_i$. Give an example to show that this containment may be strict even when there are only two sets involved in the union.
 
+\begin{proof}
+Set $A = \bigcup_{i \in I} A_i$ and $W = \bigcup_{i \in I} \mathring{A_i}$. Observe that:
+\begin{itemize}
+  \item $W$ is open, since each $\mathring{A_i}$ is open and a union of open sets is open.
+  \item $W \subseteq A$, since for each $i$, $\mathring{A_i} \subseteq A_i \subseteq A$.
+\end{itemize}
+Since $\mathring{A}$ is the largest open set contained in $A$, it follows that $W \subseteq \mathring{A}$.
+
+\textbf{Example:} In $\Reals$, let $A_1 = [0,1]$ and $A_2 = [1,2]$. Then
+\[
+\mathring{A_1} \cup \mathring{A_2} = (0,1) \cup (1,2), \qquad \big(A_1 \cup A_2\big)^{\circ} = [0,2]^{\circ} = (0,2).
+\]
+The point $1$ lies in $(0,2)$ but not in $(0,1) \cup (1,2)$, so the containment is strict.
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 9.13
 
 Suppose that $A$ is a subset of a topological space $X$. Prove that the boundary $\partial A$ is closed in $X$.
 
+\begin{proof}
+Observe that
+\[
+\partial A = \overline{A} \setminus \mathring{A} = \overline{A} \cap (X \setminus \mathring{A}).
+\]
+$\overline{A}$ is closed. $\mathring{A}$ is open, so its complement $X \setminus \mathring{A}$ is closed. An intersection of closed sets is closed, so it follows that $\partial A$ is closed.
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 9.14
 
 Suppose that $A$ is a subset of a topological space $X$. Prove that
@@ -49,16 +124,88 @@ Suppose that $A$ is a subset of a topological space $X$. Prove that
   \item[(b)] $\partial A = \emptyset$ iff $A$ is open and closed in $X$.
 \end{itemize}
 
+\begin{proof}
+Throughout we use $\mathring{A} \subseteq A \subseteq \overline{A}$. Since $\partial A = \overline{A} \setminus \mathring{A}$ and $\mathring{A} \subseteq \overline{A}$, observe that
+\[
+\overline{A} = \mathring{A} \cup \partial A.
+\]
+
+\textbf{(a) (Forwards)} Suppose $A$ is closed. Then $\overline{A} = A$, so $\partial A = A \setminus \mathring{A} \subseteq A$.
+
+\textbf{(a) (Backwards)} Suppose $\partial A \subseteq A$. Since $\mathring{A} \subseteq A$ and $\partial A \subseteq A$, it follows that
+\[
+\overline{A} = \mathring{A} \cup \partial A \subseteq A.
+\]
+Together with $A \subseteq \overline{A}$, this gives $\overline{A} = A$, so $A$ is closed.
+
+\textbf{(b) (Forwards)} Suppose $\partial A = \emptyset$. Then $\overline{A} = \mathring{A} \cup \emptyset = \mathring{A}$. So
+\[
+\mathring{A} \subseteq A \subseteq \overline{A} = \mathring{A},
+\]
+and it follows that $\mathring{A} = A = \overline{A}$. Since $A = \mathring{A}$, $A$ is open, and since $A = \overline{A}$, $A$ is closed.
+
+\textbf{(b) (Backwards)} Suppose $A$ is open and closed. Then $\mathring{A} = A$ and $\overline{A} = A$, so $\partial A = A \setminus A = \emptyset$.
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem Sutherland 10.2 \textbf{(AI Free)}
 
 Let $(X, \mathcal{T})$ be a topological space and let $A$ be a non-empty subset of $X$. Prove that the family $\mathcal{T}_A = \{A \cap U : U \in \mathcal{T}\}$ is a topology for $A$.
 
+\begin{proof}
+We verify the three axioms of a topology for $\mathcal{T}_A$.
+
+($\emptyset$ and whole set): Since $\mathcal{T}$ is a topology on $X$, we have $\emptyset \in \mathcal{T}$ and $X \in \mathcal{T}$. Then
+$$A \cap \emptyset = \emptyset \quad \text{and} \quad A \cap X = A,$$
+so $\emptyset \in \mathcal{T}_A$ and $A \in \mathcal{T}_A$.
+
+(Arbitrary Unions): Let $\{V_i\}_{i \in I}$ be a family of sets in $\mathcal{T}_A$. For each $i \in I$, there exists $U_i \in \mathcal{T}$ such that $V_i = A \cap U_i$. Then
+$$\bigcup_{i \in I} V_i = \bigcup_{i \in I} (A \cap U_i) = A \cap \left( \bigcup_{i \in I} U_i \right)$$
+by the distributive law. Since $\mathcal{T}$ is closed under arbitrary unions, $\bigcup_{i \in I} U_i \in \mathcal{T}$. Hence $\bigcup_{i \in I} V_i \in \mathcal{T}_A$.
+
+(Finite intersections): Let $V_1, V_2 \in \mathcal{T}_A$. Then there exist $U_1, U_2 \in \mathcal{T}$ such that $V_1 = A \cap U_1$ and $V_2 = A \cap U_2$. Thus
+$$V_1 \cap V_2 = (A \cap U_1) \cap (A \cap U_2) = A \cap (U_1 \cap U_2)$$
+using associativity, commutativity, and $A \cap A = A$. Since $\mathcal{T}$ is closed under finite intersections, $U_1 \cap U_2 \in \mathcal{T}$. Hence $V_1 \cap V_2 \in \mathcal{T}_A$. By induction, $\mathcal{T}_A$ is closed under all finite intersections.
+
+Since $\mathcal{T}_A$ satisfies all three axioms, $\mathcal{T}_A$ is a topology for $A$.
+\end{proof}
+%----------------------------------------------------------------------
 \problem Sutherland 10.4
 
 Given a metric subspace $(A, d_A)$ of a metric space $(X, d)$, let $\mathcal{T} = \mathcal{T}_d$ be the topology on $X$ induced by $d$. Prove that the relative topology $\mathcal{T}_A$ induced on $A$ by $\mathcal{T}$ coincides with the topology on $A$ induced by the metric $d_A$.
 
+\begin{proof}
+For $a \in A$ and $\epsilon > 0$, write $B^A_\epsilon(a) = \{b \in A : d_A(a,b) < \epsilon\}$ for the open ball in $A$. Since $d_A(a,b) = d(a,b)$ for $a, b \in A$, observe that
+\[
+B^A_\epsilon(a) = B_\epsilon(a) \cap A.
+\]
+We show the two topologies have the same open sets.
+
+\textbf{$\mathcal{T}_A \subseteq \mathcal{T}_{d_A}$:} Let $W = U \cap A$ with $U$ open in $X$, and let $a \in W$. Since $U$ is open and $a \in U$, there is $\epsilon > 0$ with $B_\epsilon(a) \subseteq U$. It follows that
+\[
+B^A_\epsilon(a) = B_\epsilon(a) \cap A \subseteq U \cap A = W.
+\]
+So every point of $W$ has a $d_A$-ball inside $W$, and $W$ is open in $(A, d_A)$.
+
+\textbf{$\mathcal{T}_{d_A} \subseteq \mathcal{T}_A$:} Let $W$ be open in $(A, d_A)$. For each $a \in W$ there is $\epsilon_a > 0$ with $B^A_{\epsilon_a}(a) \subseteq W$. Set
+\[
+U = \bigcup_{a \in W} B_{\epsilon_a}(a).
+\]
+$U$ is open in $X$, since open balls are open and a union of open sets is open. Observe that
+\[
+U \cap A = \bigcup_{a \in W} \big(B_{\epsilon_a}(a) \cap A\big) = \bigcup_{a \in W} B^A_{\epsilon_a}(a).
+\]
+Each $a \in W$ lies in its own ball $B^A_{\epsilon_a}(a)$, and each such ball lies inside $W$, so $U \cap A = W$. Thus $W \in \mathcal{T}_A$.
+
+From both of these facts, it follows that $\mathcal{T}_A = \mathcal{T}_{d_A}$.
+\end{proof}
+
+%----------------------------------------------------------------------
 \problem AI Use. Please describe specifically how you used AI to help complete this assignment.
 
+Transcription from handwritten to LaTeX.
+
 \end{problems}
+
 
 \end{document}
