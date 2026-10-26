@@ -44,7 +44,19 @@ example (f : X → Y) (B : Set Y) (x : X) : x ∈ f ⁻¹' B ↔ f x ∈ B := by
 
 /-- 1.2 Image membership needs a witness. Hint: also `Iff.rfl`. -/
 example (f : X → Y) (A : Set X) (y : Y) : y ∈ f '' A ↔ ∃ x, x ∈ A ∧ f x = y := by
-  sorry
+  constructor
+  · intro hy
+    unfold Set.image at hy
+    rw [Set.mem_ofPred_eq] at hy
+    obtain ⟨a, ha, hfa⟩ := hy
+    exact ⟨a, ha , hfa⟩ 
+  · intro h
+    obtain ⟨a, ha, hfa⟩ := h
+    unfold Set.image
+    rw [Set.mem_ofPred_eq]
+    use a
+
+
 
 /-- 1.3 Preimage respects intersections. Hint: `ext x`, then the two sides
 are definitionally equal. -/
