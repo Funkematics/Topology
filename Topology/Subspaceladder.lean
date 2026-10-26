@@ -32,7 +32,15 @@ variable {X Y Z : Type*}
 
 /-- 1.1 Preimage membership is a direct check on `f x`. Hint: `Iff.rfl`. -/
 example (f : X → Y) (B : Set Y) (x : X) : x ∈ f ⁻¹' B ↔ f x ∈ B := by
-  sorry
+  constructor
+  · intro hx
+    unfold Set.preimage at hx
+    rw [Set.mem_ofPred_eq] at hx
+    exact hx
+  · intro hfx
+    unfold Set.preimage
+    rw [Set.mem_ofPred_eq]
+    exact hfx
 
 /-- 1.2 Image membership needs a witness. Hint: also `Iff.rfl`. -/
 example (f : X → Y) (A : Set X) (y : Y) : y ∈ f '' A ↔ ∃ x, x ∈ A ∧ f x = y := by
