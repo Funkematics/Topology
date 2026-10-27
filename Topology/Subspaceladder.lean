@@ -57,12 +57,29 @@ example (f : X → Y) (A : Set X) (y : Y) : y ∈ f '' A ↔ ∃ x, x ∈ A ∧ 
     use a
 
 
-
 /-- 1.3 Preimage respects intersections. Hint: `ext x`, then the two sides
 are definitionally equal. -/
 theorem preimage_inter' (f : X → Y) (B₁ B₂ : Set Y) :
     f ⁻¹' (B₁ ∩ B₂) = f ⁻¹' B₁ ∩ f ⁻¹' B₂ := by
-  sorry
+      ext x
+      constructor
+      · intro hx
+        unfold Set.preimage at hx
+        rw [Set.mem_ofPred_eq] at hx
+        rw [mem_inter_iff] at hx
+        obtain ⟨h1,h2⟩ := hx
+        rw [mem_inter_iff]
+        unfold Set.preimage
+        repeat rw [Set.mem_ofPred_eq]
+        exact ⟨h1, h2⟩
+      · intro hx
+        unfold Set.preimage
+        unfold Set.preimage at hx
+        rw [mem_inter_iff] at hx
+        repeat rw [Set.mem_ofPred_eq]
+        rw [mem_inter_iff]
+        repeat rw [Set.mem_ofPred_eq] at hx
+        exact hx
 
 /-- 1.4 Preimage respects arbitrary unions.
 Hint: `ext x; simp only [mem_preimage, mem_iUnion]`. -/
