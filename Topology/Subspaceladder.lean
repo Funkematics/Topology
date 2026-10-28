@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Data.Set.Lattice
+import Mathlib.Topology.Constructions
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 /-!
 # From images and preimages to the characteristic property of the subspace topology
@@ -102,7 +104,20 @@ theorem preimage_iUnion' {ι : Type*} (f : X → Y) (B : ι → Set Y) :
   
 /-- 1.5 Preimage respects complements. -/
 theorem preimage_compl' (f : X → Y) (B : Set Y) : f ⁻¹' Bᶜ = (f ⁻¹' B)ᶜ := by
-  sorry
+  ext x
+  constructor
+  · intro hx
+    rw [mem_compl_iff] 
+    rw [Set.mem_preimage]
+    rw [Set.mem_preimage] at hx
+    rw [mem_compl_iff] at hx
+    exact hx
+  · intro hx
+    rw [mem_compl_iff] at hx
+    rw [mem_preimage] at hx
+    rw [mem_preimage]
+    rw [mem_compl_iff]
+    exact hx
 
 /-- 1.6 Images only give an inclusion for intersections.
 Hint: `rintro y ⟨x, ⟨h₁, h₂⟩, rfl⟩`. -/
