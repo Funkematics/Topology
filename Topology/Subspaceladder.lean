@@ -85,8 +85,21 @@ theorem preimage_inter' (f : X → Y) (B₁ B₂ : Set Y) :
 Hint: `ext x; simp only [mem_preimage, mem_iUnion]`. -/
 theorem preimage_iUnion' {ι : Type*} (f : X → Y) (B : ι → Set Y) :
     f ⁻¹' (⋃ i, B i) = ⋃ i, f ⁻¹' B i := by
-  sorry
-
+  ext x
+  constructor
+  · intro hx
+    rw [Set.mem_iUnion]
+    rw [Set.mem_preimage] at hx
+    rw [Set.mem_iUnion] at hx
+    obtain ⟨h1,h2⟩ := hx
+    exact Exists.intro h1 h2
+  · intro hx
+    rw [Set.mem_preimage] 
+    rw [Set.mem_iUnion] at hx
+    rw [Set.mem_iUnion]
+    exact hx
+    
+  
 /-- 1.5 Preimage respects complements. -/
 theorem preimage_compl' (f : X → Y) (B : Set Y) : f ⁻¹' Bᶜ = (f ⁻¹' B)ᶜ := by
   sorry
@@ -141,7 +154,10 @@ variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalS
 then use 1.11 (definitionally). -/
 theorem comp' {f : X → Y} {g : Y → Z} (hf : Continuous f) (hg : Continuous g) :
     Continuous (g ∘ f) := by
-  sorry
+      rw [continuous_def]
+      rw [preimage_comp_eq]
+      rw [Function.comp_def]
+
 
 /-- 2.2 The identity is continuous. -/
 theorem id' : Continuous (fun x : X => x) := by
