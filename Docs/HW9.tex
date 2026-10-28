@@ -1,0 +1,65 @@
+\documentclass[minion]{homework}
+
+% Some common macros
+\newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
+\newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
+\newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
+
+\doclabel{Math F404: Homework 9}
+\docauthor{Christopher Munoz}
+\docdate{Due: October 27, 2026}
+
+\begin{document}
+
+
+\begin{problems}
+
+\problem Sutherland 10.6
+
+Suppose that $(A, \mathcal{T}_A)$ is a subspace of a topological space $(X, \mathcal{T})$ and let $W \subseteq A$.
+\begin{itemize}
+  \item[(a)] If $W$ is open in $A$ (that is, if $W \in \mathcal{T}_A$) and $A$ is open in $X$ (that is, if $A \in \mathcal{T}$) then $W$ is open in $X$ (that is, $W \in \mathcal{T}$).
+  \item[(b)] If $W$ is closed in $A$ and $A$ is closed in $X$ then $W$ is closed in $X$.
+\end{itemize}
+
+\problem Sutherland 10.7(b) Hint: Prop 9.5
+
+Suppose that $f : X \to Y$ is a map of topological spaces. Prove that $f$ is continuous in each of the following cases.
+\begin{itemize}
+  \item[(b)] $X = \bigcup_{i=1}^{n} V_i$ where each $V_i$ is a closed subset of $X$ and $f|V_i$ is continuous for each $i$.
+\end{itemize}
+[Hint: Recall Exercise 3.13.]
+
+\problem Sutherland 10.10
+
+Suppose that $X$, $Y$ are spaces with subspaces $A \subseteq X$, $B \subseteq Y$, and that $f : X \to Y$ is a homeomorphism with $f(A) = B$. Prove that the maps $g : A \to B$ and $h : X \setminus A \to Y \setminus B$ induced by $f$ are both homeomorphisms.
+
+\problem Sutherland 10.11
+
+Suppose that $X$, $Y$ are topological spaces each with the discrete topology. Prove that the product topology for $X \times Y$ is discrete.
+
+\problem Sutherland 10.15 (The first sentence should start ``Prove that \textbf{if}'')
+
+\begin{itemize}
+  \item[(a)] Prove that $W$ is open in a topological product $X \times Y$ then $p_X(W)$ is open in $X$ and $p_Y(W)$ is open in $Y$.
+  \item[(b)] Give an example of a closed set $W \subseteq \Reals \times \Reals$ whose projection $p_1(W)$ on the $x$-axis is not closed in $\Reals$.
+\end{itemize}
+
+\problem Sutherland 10.16 (i) and (ii) \textbf{(AI Free)}
+
+Suppose that $X$, $Y$ are spaces and that $A \subseteq X$, $B \subseteq Y$. Prove that
+\begin{itemize}
+  \item[(i)] the interior of $A \times B$ is $\mathring{A} \times \mathring{B}$,
+  \item[(ii)] $\overline{A \times B} = \overline{A} \times \overline{B}$.
+\end{itemize}
+
+\problem Sutherland 10.17
+
+Suppose that $X \times X$ is the topological product of a space $X$ with itself. Prove that the map $t : X \times X \to X \times X$ defined by $t(x, x') = (x', x)$ is a homeomorphism.
+
+\problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+\end{problems}
+
+\end{document}
