@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Data.Set.Image
+import Mathlib.Order.SetNotation
 
 variable {X : Type*}
 variable (A B : Set X)
