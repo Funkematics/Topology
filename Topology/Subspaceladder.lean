@@ -123,7 +123,17 @@ theorem preimage_compl' (f : X → Y) (B : Set Y) : f ⁻¹' Bᶜ = (f ⁻¹' B)
 Hint: `rintro y ⟨x, ⟨h₁, h₂⟩, rfl⟩`. -/
 theorem image_inter_subset' (f : X → Y) (A₁ A₂ : Set X) :
     f '' (A₁ ∩ A₂) ⊆ f '' A₁ ∩ f '' A₂ := by
-  sorry
+      rintro y ⟨x, ⟨h1, h2⟩⟩
+      rw [Set.mem_inter_iff] at h1
+      obtain ⟨hA1, hA2⟩ := h1
+      rw [← h2]
+      rw [Set.mem_inter_iff]
+      exact ⟨⟨x, hA1, rfl⟩, ⟨x, hA2, rfl ⟩⟩
+
+
+
+
+      
 
 /-- 1.7 ... and equality really can fail: use a constant map on `{0}` and `{1}`.
 Hint: `0` lies in the right-hand side; `Set.ext_iff` turns the equation into
@@ -172,6 +182,7 @@ theorem comp' {f : X → Y} {g : Y → Z} (hf : Continuous f) (hg : Continuous g
       rw [continuous_def]
       rw [preimage_comp_eq]
       rw [Function.comp_def]
+      unfold preimage
 
 
 /-- 2.2 The identity is continuous. -/
