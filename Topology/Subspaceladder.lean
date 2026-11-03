@@ -201,7 +201,23 @@ theorem id' : Continuous (fun x : X => x) := by
 Hint: `by_cases h : y ∈ U`, and in each case prove the preimage equals
 `univ` or `∅` with `ext x; simp [h]`. -/
 theorem const' (y : Y) : Continuous (fun _ : X => y) := by
-  sorry
+  rw [continuous_def]
+  intro A hA
+  by_cases h : y ∈ A
+  · have heq : (fun _ : X => y)⁻¹' A = Set.univ := by
+      ext x
+      simp [h]
+    rw [heq]
+    exact isOpen_univ
+  · have heq : (fun _ : X => y)⁻¹' A = ∅ := by
+      ext x
+      simp [h]
+    rw [heq]
+    exact isOpen_empty
+
+    #print continuous_def
+    #print Set.univ
+
 
 end Continuity
 
