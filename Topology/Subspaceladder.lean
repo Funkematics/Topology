@@ -162,7 +162,7 @@ theorem subset_preimage_image' (f : X → Y) (A : Set X) : A ⊆ f ⁻¹' (f '' 
 fact about them. -/
 theorem image_subset_iff' (f : X → Y) (A : Set X) (B : Set Y) :
     f '' A ⊆ B ↔ A ⊆ f ⁻¹' B := by
-      sorry
+      constructor
 
 /-- 1.11 Preimage of a composition. This is what makes Part 4 work.
 Hint: `rfl`. -/
@@ -186,15 +186,16 @@ variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalS
 then use 1.11 (definitionally). -/
 theorem comp' {f : X → Y} {g : Y → Z} (hf : Continuous f) (hg : Continuous g) :
     Continuous (g ∘ f) := by
-      rw [continuous_def]
-      rw [preimage_comp_eq]
-      rw [Function.comp_def]
-      unfold preimage
+      rw [continuous_def] at hf hg ⊢ 
+      intro U hU 
+      exact hf (g⁻¹' U) (hg U hU) 
 
 
 /-- 2.2 The identity is continuous. -/
 theorem id' : Continuous (fun x : X => x) := by
-  sorry
+  rw [continuous_def]
+  intro U hU
+  exact hU
 
 /-- 2.3 Constant maps are continuous: every preimage is `univ` or `∅`.
 Hint: `by_cases h : y ∈ U`, and in each case prove the preimage equals
@@ -282,11 +283,11 @@ theorem codRestrict_continuous (B : Set Y) {f : Z → Y} (hf : Continuous f)
     (h : ∀ z, f z ∈ B) : Continuous (fun z => (⟨f z, h z⟩ : B)) := by
   sorry
 
-/-- The unit circle as a subset of `ℝ × ℝ`. -/
+/-- The unit circle as a subset of `ℝ × ℝ`. -/hf : Continuous f) (hg : Continuous g)
 def circle : Set (ℝ × ℝ) := {p | p.1 ^ 2 + p.2 ^ 2 = 1}
 
 /-- 4.6 The standard parametrization is continuous *into the circle*,
-without ever looking at open arcs.
+without ever looking at open arcs.hf : Continuous f) (hg : Continuous g)
 Hints: membership is `by simp [circle, Real.cos_sq_add_sin_sq]`;
 continuity into `ℝ × ℝ` is `by fun_prop`; then apply 4.5. -/
 theorem wrap_continuous :
