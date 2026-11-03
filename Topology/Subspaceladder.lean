@@ -131,31 +131,38 @@ theorem image_inter_subset' (f : X → Y) (A₁ A₂ : Set X) :
       exact ⟨⟨x, hA1, rfl⟩, ⟨x, hA2, rfl ⟩⟩
 
 
-
-
-      
-
 /-- 1.7 ... and equality really can fail: use a constant map on `{0}` and `{1}`.
 Hint: `0` lies in the right-hand side; `Set.ext_iff` turns the equation into
 a membership statement about the left-hand side, which you can then destruct. -/
 example : ∃ A₁ A₂ : Set ℕ,
     (fun _ : ℕ => (0 : ℕ)) '' (A₁ ∩ A₂) ≠
       ((fun _ : ℕ => (0 : ℕ)) '' A₁) ∩ ((fun _ : ℕ => (0 : ℕ)) '' A₂) := by
-  sorry
+        refine ⟨{0}, {1}, fun h => ?_⟩
+        have := congrArg (0 ∈ ·) h
+        simp at this
 
 /-- 1.8 Pushing forward a pullback lands inside the original set. -/
 theorem image_preimage_subset' (f : X → Y) (B : Set Y) : f '' (f ⁻¹' B) ⊆ B := by
-  sorry
+  intro y hy
+  obtain ⟨x, hx, rfl⟩ := hy
+  rw [Set.mem_preimage] at hx
+  exact hx
 
 /-- 1.9 Pulling back a pushforward contains the original set. -/
 theorem subset_preimage_image' (f : X → Y) (A : Set X) : A ⊆ f ⁻¹' (f '' A) := by
-  sorry
+  intro x hx
+  unfold preimage
+  rw [Set.mem_ofPred_eq]
+  unfold image
+  rw [Set.mem_ofPred_eq]
+  exact ⟨x, hx, rfl⟩  
+
 
 /-- 1.10 The adjunction between image and preimage: the single most useful
 fact about them. -/
 theorem image_subset_iff' (f : X → Y) (A : Set X) (B : Set Y) :
     f '' A ⊆ B ↔ A ⊆ f ⁻¹' B := by
-  sorry
+      sorry
 
 /-- 1.11 Preimage of a composition. This is what makes Part 4 work.
 Hint: `rfl`. -/
