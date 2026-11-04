@@ -1,5 +1,7 @@
 \documentclass[minion]{homework}
 
+\usepackage{amsmath,amssymb,amsthm}
+
 % Some common macros
 \newcommand{\Reals}{\ensuremath{\mathbb R}}% Gives you a shortcut for writing the blackboard R for the real numbers - \RR
 \newcommand{\Rats}{\ensuremath{\mathbb Q}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
@@ -12,23 +14,121 @@
 \begin{document}
 \begin{problems}
 
+% ------------------------------------------------------------------
 \problem Sutherland 11.1
 
+\textit{Show that if $X$ is a space with the indiscrete topology and having at least two distinct points then $X$ is not Hausdorff.}
+
+\begin{proof}
+The indiscrete topology on $X$ is $\{\varnothing, X\}$. Let $x, y \in X$ with $x \neq y$. The only open set containing $x$ is $X$, and $y \in X$. Hence there is no open set $U \ni x$ that is disjoint from an open set $V \ni y$, so $X$ is not Hausdorff.
+\end{proof}
+
+% ------------------------------------------------------------------
 \problem Sutherland 11.2
 
+\textit{(a) Show that if $X$ is a Hausdorff space, every singleton set $\{x\}$ is closed in $X$.
+(b) Prove that if a finite space is Hausdorff then it must have the discrete topology.}
+
+\begin{proof}[Proof of (a)]
+Fix $x \in X$. For each $y \neq x$, the Hausdorff condition gives disjoint open sets $U_y \ni y$ and $V_y \ni x$; in particular $x \notin U_y$. Therefore
+\[
+X \setminus \{x\} = \bigcup_{y \neq x} U_y,
+\]
+which is a union of open sets and hence open. Thus $\{x\}$ is closed.
+\end{proof}
+
+\begin{proof}[Proof of (b)]
+Let $X$ be a finite Hausdorff space and let $A \subseteq X$. Then
+\[
+X \setminus A = \bigcup_{y \notin A} \{y\}
+\]
+is a finite union of sets that are closed by (a), so it is closed. Hence $A$ is open. Since $A$ was arbitrary, every subset of $X$ is open, i.e.\ $X$ is discrete.
+\end{proof}
+
+% ------------------------------------------------------------------
 \problem Sutherland 11.3 (Your proof must use induction.)
 
+\textit{Suppose that $x_1, x_2, \dots, x_n$ are distinct points in a Hausdorff space $X$. Show that there exist pairwise disjoint open subsets $U_1, U_2, \dots, U_n$ of $X$ such that $x_i \in U_i$ for every $i \in \{1, 2, \dots, n\}$.}
+
+\begin{proof}
+We induct on $n$.
+
+\emph{Base case} ($n = 1$). Take $U_1 = X$, which is open and contains $x_1$; the disjointness condition is vacuous.
+
+\emph{Inductive step.} Let $n \geq 2$ and assume the statement holds for any $n-1$ distinct points. Let $x_1, \dots, x_n$ be distinct points of $X$. By the inductive hypothesis there are pairwise disjoint open sets $U_1', \dots, U_{n-1}'$ with $x_i \in U_i'$ for $1 \le i \le n-1$. For each $i \le n-1$ we have $x_i \neq x_n$, so the Hausdorff condition gives disjoint open sets $V_i \ni x_i$ and $W_i \ni x_n$. Define
+\[
+U_i = U_i' \cap V_i \quad (1 \le i \le n-1), \qquad U_n = \bigcap_{i=1}^{n-1} W_i .
+\]
+Each $U_i$ is a finite intersection of open sets, hence open, and $x_i \in U_i$ for all $i \le n$. For pairwise disjointness:
+\begin{itemize}
+  \item if $i, j \le n-1$ with $i \neq j$, then $U_i \cap U_j \subseteq U_i' \cap U_j' = \varnothing$;
+  \item if $i \le n-1$, then $U_i \cap U_n \subseteq V_i \cap W_i = \varnothing$.
+\end{itemize}
+Hence $U_1, \dots, U_n$ are pairwise disjoint, completing the induction.
+\end{proof}
+
+% ------------------------------------------------------------------
 \problem Sutherland 11.4 (Parts (a) and (b) only) (\textbf{(AI Free)})
 
+\textit{Prove Proposition 11.7, parts (a) and (b):
+(a) Any subspace of a Hausdorff space is Hausdorff.
+(b) The topological product $X \times Y$ of spaces $X$ and $Y$ is Hausdorff iff both $X$ and $Y$ are Hausdorff.}
+
+\begin{proof}
+  (a) Let $A \subseteq X$ and let $a \neq b$ in $A$. Choose disjoint open sets $U \owns a$ and $V \owns b$ in $X$.
+  Then $U \cap A$ and $V \cap A$ are open in $A$, they contain $a$ and $b$ respectively, and they are disjoint.
+\end{proof}
+\begin{proof}
+  (b) We prove both directions \newline
+
+  ($\Leftarrow$) Let $(x_1, y_1) \ne (x_2, y_2)$, and say $x_1 \ne x_2$ (the case $y_1 \ne y_2$ is symmetric). Choose disjoint open sets $U_1 \ni x_1$ and $U_2 \ni x_2$ in $X$. Then $U_1 \times Y$ and $U_2 \times Y$ are open neighbourhoods of the two points, and they are disjoint because $(U_1 \times Y) \cap (U_2 \times Y) = (U_1 \cap U_2) \times Y = \varnothing$.
+
+($\Rightarrow$) Fix $y_0 \in Y$ and let $x_1 \ne x_2$ in $X$. The points $(x_1, y_0)$ and $(x_2, y_0)$ are distinct, so they have disjoint open neighbourhoods $W_1$ and $W_2$. Since products of open sets form a basis, there are open sets $U_i \ni x_i$ and $V_i \ni y_0$ with $U_i \times V_i \subseteq W_i$. If some $x$ lay in $U_1 \cap U_2$, then $(x, y_0) \in W_1 \cap W_2 = \varnothing$, which is impossible. So $U_1 \cap U_2 = \varnothing$, and $X$ is Hausdorff. By symmetry, so is $Y$.
+\end{proof}
+% ------------------------------------------------------------------
 \problem Sutherland 11.5
 
-\problem Sutherland 11.7 
+\textit{Suppose that $f \colon X \to Y$ is a continuous map of a topological space $X$ to a Hausdorff space $Y$. Prove that the graph $G_f$ of $f$ is a closed subset of the topological product $X \times Y$.}
 
+\begin{proof}
+Recall $G_f = \{(x, f(x)) : x \in X\}$. We show that $(X \times Y) \setminus G_f$ is open. Let $(x, y) \notin G_f$, so $y \neq f(x)$. Since $Y$ is Hausdorff, there are disjoint open sets $W \ni f(x)$ and $V \ni y$ in $Y$. By continuity, $f^{-1}(W)$ is open in $X$ and contains $x$, so
+\[
+N = f^{-1}(W) \times V
+\]
+is an open subset of $X \times Y$ containing $(x, y)$. Suppose $(x', f(x')) \in N$ for some $x' \in X$. Then $f(x') \in W$ and $f(x') \in V$, contradicting $W \cap V = \varnothing$. Hence $N \cap G_f = \varnothing$. Every point of the complement of $G_f$ therefore has an open neighbourhood inside the complement, so the complement is open and $G_f$ is closed.
+\end{proof}
+
+% ------------------------------------------------------------------
+\problem Sutherland 11.7
+
+\textit{Recall the definition $\Delta = \{(x, x) : x \in X\}$ of the diagonal subset $\Delta$ of $X \times X$. Prove that a space $X$ is Hausdorff iff $\Delta$ is closed in the topological product $X \times X$.}
+
+\begin{proof}
+Two observations:
+\begin{enumerate}
+  \item $(x, y) \notin \Delta$ if and only if $x \neq y$;
+  \item for $U, V \subseteq X$, we have $(U \times V) \cap \Delta = \varnothing$ if and only if $U \cap V = \varnothing$, since $(z, z) \in U \times V \iff z \in U \cap V$.
+\end{enumerate}
+
+($\Rightarrow$) Suppose $X$ is Hausdorff and let $(x, y) \notin \Delta$. By (1), $x \neq y$, so there are disjoint open sets $U \ni x$ and $V \ni y$. Then $U \times V$ is open in $X \times X$, contains $(x, y)$, and by (2) is disjoint from $\Delta$. Hence $(X \times X) \setminus \Delta$ is open, so $\Delta$ is closed.
+
+($\Leftarrow$) Suppose $\Delta$ is closed and let $x \neq y$. By (1), $(x, y)$ lies in the open set $(X \times X) \setminus \Delta$. Since sets of the form $U \times V$ with $U, V$ open form a basis for the product topology, there are open sets $U \ni x$ and $V \ni y$ with $U \times V \subseteq (X \times X) \setminus \Delta$. By (2), $U \cap V = \varnothing$. Hence $X$ is Hausdorff.
+\end{proof}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.1
 
+% TODO: to be added
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.2
 
+% TODO: to be added
+
+% ------------------------------------------------------------------
 \problem AI Use. Please describe specifically how you used AI to help complete this assignment.
+
+% TODO: write your own statement
 
 \end{problems}
 
