@@ -7,27 +7,58 @@
 \newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
 
 \doclabel{Math F404: Homework 10}
+\docauthor{Christopher Munoz}
 \docdate{Due: November 10, 2026}
 
 \begin{document}
 \begin{problems}
 
+% ------------------------------------------------------------------
 \problem Sutherland 13.3
 
+\textit{Show that if $A$ and $B$ are compact subsets of a space $X$ then so is $A \cup B$.}
+\newline
+\begin{proof}
+  Let $A$ and $B$ be compact subsets of a space $X$. Since $A$ and $B$ are compact, all open covers of $A$ and $B$ have a finite subcover $A \subseteq \bigcup_{\alpha \in I} U_\alpha$ and $B \subseteq \bigcup_{\beta \in I} V_\beta$.
+\end{proof}
+% ------------------------------------------------------------------
 \problem Sutherland 13.5
 
+\textit{Given topologies $\mathcal{T}$, $\mathcal{T}'$ on a set $X$ with $\mathcal{T} \subseteq \mathcal{T}'$, prove that if $(X, \mathcal{T}')$ is compact then so is $(X, \mathcal{T})$.}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.7
 
+\textit{Obtain another proof that finite subsets of a Hausdorff space are closed using the result that a compact subset of a Hausdorff space is closed.}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.8
 
+\textit{Prove that if $X \subseteq \Reals$ is not compact, then there is a continuous function $f \colon X \to \Reals$ which is not bounded.
+[Hint: Consider separately the cases $X$ is not bounded and $X$ is not closed in $\Reals$.]}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.9
 
+\textit{Prove that if $X \subseteq \Reals$ is not compact, then there is a continuous function $f \colon X \to \Reals$ which is bounded but does not attain its bounds.}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.10
 
+\textit{Prove that if $C$, $C'$ are compact subsets of a Hausdorff space $X$ then $C \cap C'$ is compact.}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.11
 
+\textit{Suppose for every $n \in \Nats$ that $V_n$ is a non-empty closed subset of a compact space $X$ with $V_n \supseteq V_{n+1}$. Prove that $V_\infty = \bigcap\limits_{n=1}^{\infty} V_n \neq \emptyset$.}
+
+% ------------------------------------------------------------------
 \problem Sutherland 13.14
 
+\textit{Suppose that $X$ is a compact metric space with metric $d$ and that $f \colon X \to X$ is a continuous map such that for every $x \in X$, $f(x) \neq x$. Prove that there exists $\varepsilon > 0$ such that $d(f(x), x) \geq \varepsilon$ for all $x \in X$.
+[Hint: Show that the map $g \colon X \to \Reals$ defined by $g(x) = d(f(x), x)$ is continuous so attains its bounds.]}
+
+% ------------------------------------------------------------------
 \problem AI Use. Please describe specifically how you used AI to help complete this assignment.
 
 \end{problems}
