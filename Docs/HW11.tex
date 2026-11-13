@@ -19,13 +19,26 @@
 \textit{Show that if $A$ and $B$ are compact subsets of a space $X$ then so is $A \cup B$.}
 \newline
 \begin{proof}
-  Let $A$ and $B$ be compact subsets of a space $X$. Since $A$ and $B$ are compact, all open covers of $A$ and $B$ have a finite subcover $A \subseteq \bigcup_{\alpha \in I} U_\alpha$ and $B \subseteq \bigcup_{\beta \in I} V_\beta$.
+  Let $\{U_i : i \in I\}$ be a family of open subsets of $X$ with $A \cup B \subseteq \bigcup_{i \in I} U_i$. Observe that 
+  $$A \subseteq A \cup B \subseteq \bigcup_{i \in I} U_i$$
+  and
+  $$B \subseteq A \cup B \subseteq \bigcup_{i \in I} U_i$$
+  Since $A$ and $B$ are compact and $\{U_i : i \in A\}$ is an open cover of both $A$ and $B$. There exists a finite open cover of $A$ and a finite open cover of $B$, that there exists a finite $J_A \subseteq I$ and finite $J_B subseteq I$ such that 
+  \begin{align*}
+    A \subseteq \bigcup_{i \in J_A} U_i && B \subseteq \bigcup_{i \in J_B} U_i
+  \end{align*}.
+  Set $J = J_A \cup J_B.$ then $J$ is finite as a union of two finite sets and $J \subseteq I$. Observe that
+  $$A \cup B \subseteq \bigcup_{i\in J_A} U_i \cup \bigcup_{i \in j_B} U_i = \bigcup_{i \in J} U_i$$
+  So $\{U_i : i \in J\}$ is a finite subcover of the original cover $A \cup B$. Since that cover was arbitrary, $A \cup B$ is compact.
 \end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.5
 
 \textit{Given topologies $\mathcal{T}$, $\mathcal{T}'$ on a set $X$ with $\mathcal{T} \subseteq \mathcal{T}'$, prove that if $(X, \mathcal{T}')$ is compact then so is $(X, \mathcal{T})$.}
-
+\newline
+\begin{proof}
+  Let $\{U_i : i \in I\}$ be a family of open subsets of $(X, \mathcal{T})$ with each $U_i \in \mathcal{T}$ and $X = \bigcup_{i \in I} U_i$.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.7
 
