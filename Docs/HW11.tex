@@ -6,7 +6,7 @@
 \newcommand{\Nats}{\ensuremath{\mathbb N}} % Gives you a shortcut for writing the blackboard N for the natural numbers - \NN
 \newcommand{\Ints}{\ensuremath{\mathbb Z}} % Gives you a shortcut for writing the blackboard Z for the integer numbers - \ZZ
 
-\doclabel{Math F404: Homework 10}
+\doclabel{Math F404: Homework 11}
 \docauthor{Christopher Munoz}
 \docdate{Due: November 10, 2026}
 
@@ -19,61 +19,143 @@
 \textit{Show that if $A$ and $B$ are compact subsets of a space $X$ then so is $A \cup B$.}
 \newline
 \begin{proof}
-  Let $\{U_i : i \in I\}$ be a family of open subsets of $X$ with $A \cup B \subseteq \bigcup_{i \in I} U_i$. Observe that 
+  Let $\{U_i : i \in I\}$ be a family of open subsets of $X$ with $A \cup B \subseteq \bigcup_{i \in I} U_i$. Observe that
   $$A \subseteq A \cup B \subseteq \bigcup_{i \in I} U_i$$
   and
   $$B \subseteq A \cup B \subseteq \bigcup_{i \in I} U_i$$
-  Since $A$ and $B$ are compact and $\{U_i : i \in A\}$ is an open cover of both $A$ and $B$. There exists a finite open cover of $A$ and a finite open cover of $B$, that there exists a finite $J_A \subseteq I$ and finite $J_B subseteq I$ such that 
+  So $\{U_i : i \in I\}$ is an open cover of both $A$ and $B$. Since $A$ and $B$ are compact, there exists a finite $J_A \subseteq I$ and a finite $J_B \subseteq I$ such that
   \begin{align*}
     A \subseteq \bigcup_{i \in J_A} U_i && B \subseteq \bigcup_{i \in J_B} U_i
-  \end{align*}.
-  Set $J = J_A \cup J_B.$ then $J$ is finite as a union of two finite sets and $J \subseteq I$. Observe that
-  $$A \cup B \subseteq \bigcup_{i\in J_A} U_i \cup \bigcup_{i \in j_B} U_i = \bigcup_{i \in J} U_i$$
-  So $\{U_i : i \in J\}$ is a finite subcover of the original cover $A \cup B$. Since that cover was arbitrary, $A \cup B$ is compact.
+  \end{align*}
+  Set $J = J_A \cup J_B$. Then $J$ is finite as a union of two finite sets and $J \subseteq I$. Observe that
+  $$A \cup B \subseteq \bigcup_{i \in J_A} U_i \cup \bigcup_{i \in J_B} U_i = \bigcup_{i \in J} U_i$$
+  So $\{U_i : i \in J\}$ is a finite subcover of the original cover of $A \cup B$. Since that cover was arbitrary, $A \cup B$ is compact.
 \end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.5
 
-\textit{Given topologies $\mathcal{T}$, $\mathcal{T}'$ on a set $X$ with $\mathcal{T} \subseteq \mathcal{T}'$, prove that if $(X, \mathcal{T}')$ is compact then so is $(X, \mathcal{T})$.}. Since $\mathcal{T} \subseteq \mathcal{T}'$, each $U_i \in T'$. So $\{U_i : i \in I\}$ is an open cover of $(X \mathcal{T}')$
+\textit{Given topologies $\mathcal{T}$, $\mathcal{T}'$ on a set $X$ with $\mathcal{T} \subseteq \mathcal{T}'$, prove that if $(X, \mathcal{T}')$ is compact then so is $(X, \mathcal{T})$.}
 \newline
 \begin{proof}
-  Let $\{U_i : i \in I\}$ be a family of open subsets of $(X, \mathcal{T})$ with each $U_i \in \mathcal{T}$ and $X = \bigcup_{i \in I} U_i$.
+  Let $\{U_i : i \in I\}$ be a family of open subsets of $(X, \mathcal{T})$, so each
+  $U_i \in \mathcal{T}$, with $X = \bigcup_{i \in I} U_i$.
+  Since $\mathcal{T} \subseteq \mathcal{T}'$, each $U_i \in \mathcal{T}'$. So $\{U_i : i \in I\}$ is also an open cover of
+  $(X, \mathcal{T}')$. Since $(X, \mathcal{T}')$ is compact, there exists a finite $J \subseteq I$ such that
+  $$X = \bigcup_{i \in J} U_i$$
+  Each $U_i$ with $i \in J$ is still in $\mathcal{T}$, so $\{U_i : i \in J\}$ is a finite subcover of the original cover of $(X, \mathcal{T})$.
+  Since that cover was arbitrary, $(X, \mathcal{T})$ is compact.
 \end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.7
 
 \textit{Obtain another proof that finite subsets of a Hausdorff space are closed using the result that a compact subset of a Hausdorff space is closed.}
-
+\newline
+\begin{proof}
+  Let $X$ be a Hausdorff space and let $F = \{x_1, \dots, x_n\} \subseteq X$ be a finite subset.
+  Suppose $\{U_i : i \in I\}$ is an open cover of $F$, so each $U_i$ is open in $X$ and $F \subseteq \bigcup_{i \in I} U_i$.
+  For each $k \in \{1, \dots, n\}$ we have $x_k \in F$, so there exists $i_k \in I$ with $x_k \in U_{i_k}$.
+  Set $J = \{i_1, \dots, i_n\}$. Then $J$ is finite and $J \subseteq I$. Observe that
+  $$F = \{x_1, \dots, x_n\} \subseteq \bigcup_{i \in J} U_i$$
+  So $\{U_i : i \in J\}$ is a finite subcover. Since the cover was arbitrary, $F$ is compact.
+  Since $X$ is Hausdorff and a compact subset of a Hausdorff space is closed, $F$ is closed in $X$.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.8
 
 \textit{Prove that if $X \subseteq \Reals$ is not compact, then there is a continuous function $f \colon X \to \Reals$ which is not bounded.
 [Hint: Consider separately the cases $X$ is not bounded and $X$ is not closed in $\Reals$.]}
+\newline
+\begin{proof}
+  By the Heine--Borel theorem, a subset of $\Reals$ is compact if and only if it is closed and bounded. Since $X$ is not compact, either $X$ is not bounded or $X$ is not closed in $\Reals$.
 
+  \emph{Case 1: $X$ is not bounded.} Let $f \colon X \to \Reals$ be $f(x) = x$. Then $f$ is continuous, and $f(X) = X$ is not bounded, so $f$ is not bounded.
+
+  \emph{Case 2: $X$ is not closed in $\Reals$.} Then there exists $a \in \overline{X}$ with $a \notin X$. Let $f \colon X \to \Reals$ be
+  $$f(x) = \frac{1}{x - a}$$
+  Since $a \notin X$, we have $x - a \neq 0$ for every $x \in X$, so $f$ is continuous on $X$ as a quotient of continuous functions with nonzero denominator.
+  Let $n \in \Nats$. Since $a \in \overline{X}$, the open interval $(a - \tfrac{1}{n}, a + \tfrac{1}{n})$ meets $X$, so there exists $x \in X$ with $|x - a| < \tfrac{1}{n}$. Then
+  $$|f(x)| = \frac{1}{|x - a|} > n$$
+  Since $n$ was arbitrary, $f$ is not bounded.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.9
 
 \textit{Prove that if $X \subseteq \Reals$ is not compact, then there is a continuous function $f \colon X \to \Reals$ which is bounded but does not attain its bounds.}
+\newline
+\begin{proof}
+  As in 13.8, by the Heine--Borel theorem either $X$ is not bounded or $X$ is not closed in $\Reals$. In each case we find a continuous bounded $f$ that does not attain its supremum.
 
+  \emph{Case 1: $X$ is not bounded.} Suppose first that $X$ is not bounded above. Let $f \colon X \to \Reals$ be
+  $$f(x) = \frac{x}{1 + |x|}$$
+  Then $f$ is continuous since $1 + |x| \geq 1 > 0$, and $|f(x)| < 1$ for all $x \in X$, so $f$ is bounded and $f(x) \neq 1$ for every $x \in X$.
+  Let $n \in \Nats$. Since $X$ is not bounded above, there exists $x \in X$ with $x > n$. Then
+  $$f(x) = \frac{x}{1 + x} = 1 - \frac{1}{1 + x} > 1 - \frac{1}{1 + n}$$
+  So $\sup f(X) = 1$, and this bound is not attained. If instead $X$ is not bounded below, the same argument applied to $f(x) = \frac{-x}{1 + |x|}$ gives $\sup f(X) = 1$, not attained.
+
+  \emph{Case 2: $X$ is not closed in $\Reals$.} Then there exists $a \in \overline{X}$ with $a \notin X$. Let $f \colon X \to \Reals$ be
+  $$f(x) = \frac{1}{1 + |x - a|}$$
+  Then $f$ is continuous since $1 + |x - a| \geq 1 > 0$, and $0 < f(x) \leq 1$, so $f$ is bounded. Also $f(x) = 1$ if and only if $x = a$, and $a \notin X$, so $f(x) < 1$ for every $x \in X$.
+  Let $n \in \Nats$. Since $a \in \overline{X}$, there exists $x \in X$ with $|x - a| < \tfrac{1}{n}$. Then
+  $$f(x) > \frac{1}{1 + \frac{1}{n}} = \frac{n}{n + 1}$$
+  So $\sup f(X) = 1$, and this bound is not attained.
+
+  In either case $f$ is continuous and bounded but does not attain its bounds.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.10
 
 \textit{Prove that if $C$, $C'$ are compact subsets of a Hausdorff space $X$ then $C \cap C'$ is compact.}
-
+\newline
+\begin{proof}
+  Since $X$ is Hausdorff and $C'$ is compact, $C'$ is closed in $X$, so $X \setminus C'$ is open in $X$.
+  Let $\{U_i : i \in I\}$ be a family of open subsets of $X$ with $C \cap C' \subseteq \bigcup_{i \in I} U_i$. Observe that
+  $$C = (C \cap C') \cup (C \setminus C') \subseteq \bigcup_{i \in I} U_i \cup (X \setminus C')$$
+  So $\{U_i : i \in I\} \cup \{X \setminus C'\}$ is an open cover of $C$. Since $C$ is compact, there exists a finite $J \subseteq I$ such that
+  $$C \subseteq \bigcup_{i \in J} U_i \cup (X \setminus C')$$
+  Now let $x \in C \cap C'$. Then $x \in C$, and $x \notin X \setminus C'$ since $x \in C'$, so $x \in U_i$ for some $i \in J$. Hence
+  $$C \cap C' \subseteq \bigcup_{i \in J} U_i$$
+  So $\{U_i : i \in J\}$ is a finite subcover of the original cover of $C \cap C'$. Since that cover was arbitrary, $C \cap C'$ is compact.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.11
 
 \textit{Suppose for every $n \in \Nats$ that $V_n$ is a non-empty closed subset of a compact space $X$ with $V_n \supseteq V_{n+1}$. Prove that $V_\infty = \bigcap\limits_{n=1}^{\infty} V_n \neq \emptyset$.}
-
+\newline
+\begin{proof}
+  Suppose for contradiction that $V_\infty = \emptyset$. For each $n \in \Nats$ let $U_n = X \setminus V_n$, which is open since $V_n$ is closed. Observe that
+  $$\bigcup_{n=1}^{\infty} U_n = \bigcup_{n=1}^{\infty} (X \setminus V_n) = X \setminus \bigcap_{n=1}^{\infty} V_n = X \setminus V_\infty = X$$
+  So $\{U_n : n \in \Nats\}$ is an open cover of $X$. Since $X$ is compact, there exists a finite $J \subseteq \Nats$ such that
+  $$X = \bigcup_{n \in J} U_n$$
+  Since $V_1 \neq \emptyset$, $X \neq \emptyset$, so $J \neq \emptyset$. Let $N = \max J$. For $n \leq N$ we have $V_N \subseteq V_n$, so $U_n \subseteq U_N$. Hence
+  $$X = \bigcup_{n \in J} U_n \subseteq U_N = X \setminus V_N$$
+  So $V_N = \emptyset$, which contradicts $V_N$ being non-empty. Therefore $V_\infty \neq \emptyset$.
+\end{proof}
 % ------------------------------------------------------------------
 \problem Sutherland 13.14
 
 \textit{Suppose that $X$ is a compact metric space with metric $d$ and that $f \colon X \to X$ is a continuous map such that for every $x \in X$, $f(x) \neq x$. Prove that there exists $\varepsilon > 0$ such that $d(f(x), x) \geq \varepsilon$ for all $x \in X$.
 [Hint: Show that the map $g \colon X \to \Reals$ defined by $g(x) = d(f(x), x)$ is continuous so attains its bounds.]}
+\newline
+\begin{proof}
+  If $X = \emptyset$ the statement holds trivially with $\varepsilon = 1$, so assume $X \neq \emptyset$. Let $g \colon X \to \Reals$ be $g(x) = d(f(x), x)$.
 
+  First we show $g$ is continuous. For $x, y \in X$, the triangle inequality gives
+  $$d(f(x), x) \leq d(f(x), f(y)) + d(f(y), y) + d(y, x)$$
+  so $g(x) - g(y) \leq d(f(x), f(y)) + d(x, y)$. Swapping $x$ and $y$ gives the same bound for $g(y) - g(x)$, so
+  $$|g(x) - g(y)| \leq d(f(x), f(y)) + d(x, y)$$
+  Fix $x \in X$ and let $\eta > 0$. Since $f$ is continuous at $x$, there exists $\delta_1 > 0$ such that $d(x, y) < \delta_1$ implies $d(f(x), f(y)) < \tfrac{\eta}{2}$.
+  Set $\delta = \min\{\delta_1, \tfrac{\eta}{2}\}$. Then $d(x, y) < \delta$ implies
+  $$|g(x) - g(y)| < \frac{\eta}{2} + \frac{\eta}{2} = \eta$$
+  So $g$ is continuous at $x$, and since $x$ was arbitrary, $g$ is continuous.
+
+  Since $X$ is compact and non-empty and $g$ is a continuous real-valued function, $g$ attains its bounds. So there exists $x_0 \in X$ with $g(x_0) \leq g(x)$ for all $x \in X$.
+  Set $\varepsilon = g(x_0) = d(f(x_0), x_0)$. Since $f(x_0) \neq x_0$, $\varepsilon > 0$. Then for all $x \in X$,
+  $$d(f(x), x) = g(x) \geq g(x_0) = \varepsilon$$
+\end{proof}
 % ------------------------------------------------------------------
 \problem AI Use. Please describe specifically how you used AI to help complete this assignment.
-
+\newline \newline
+Spellcheck and grammar.
 \end{problems}
 
 \end{document}

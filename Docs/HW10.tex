@@ -122,17 +122,29 @@ Two observations:
 \textit{Prove that any indiscrete space is compact.}
  
 \begin{proof}
-Let $X$ have the indis<Select>crete topology $\{\varnothing, X\}$, and let $\mathcal{U}$ be an open cover of $X$. If $X = \varnothing$, the empty subfamily of $\mathcal{U}$ is a finite subcover. If $X \neq \varnothing$, pick $x \in X$, some $U \in \mathcal{U}$ contains $x$, so $U \neq \varnothing$, and hence $U = X$. Then $\{U\}$ is a finite subcover. Thus every open cover of $X$ has a finite subcover, so $X$ is compact.
+Let $X$ have the indiscrete topology $\{\varnothing, X\}$, and let $\mathcal{U}$ be an open cover of $X$. If $X = \varnothing$, the empty subfamily of $\mathcal{U}$ is a finite subcover. If $X \neq \varnothing$, pick $x \in X$. Some $U \in \mathcal{U}$ contains $x$, so $U \neq \varnothing$, and hence $U = X$. Then $\{U\}$ is a finite subcover. Thus every open cover of $X$ has a finite subcover, so $X$ is compact.
 \end{proof}
 
 
 % ------------------------------------------------------------------
 \problem Sutherland 13.2
 
-\textit{Prove that any indiscrete space is compact.}
- 
+\textit{Prove that a discrete space is compact if and only if it is finite.}
+\newline
 \begin{proof}
-Let $X$ have the indiscrete topology $\{\varnothing, X\}$, and let $\mathcal{U}$ be an open cover of $X$. If $X = \varnothing$, the empty subfamily of $\mathcal{U}$ is a finite subcover. If $X \neq \varnothing$, pick $x \in X$, some $U \in \mathcal{U}$ contains $x$, so $U \neq \varnothing$, and hence $U = X$. Then $\{U\}$ is a finite subcover. Thus every open cover of $X$ has a finite subcover, so $X$ is compact.
+  Let $X$ have the discrete topology. We prove both directions.
+
+  ($\Leftarrow$) Suppose $X$ is finite, say $X = \{x_1, \dots, x_n\}$. Let $\{U_i : i \in I\}$ be a family of open subsets of $X$ with $X = \bigcup_{i \in I} U_i$.
+  For each $k \in \{1, \dots, n\}$ we have $x_k \in X$, so there exists $i_k \in I$ with $x_k \in U_{i_k}$.
+  Set $J = \{i_1, \dots, i_n\}$. Then $J$ is finite and $J \subseteq I$. Observe that
+  $$X = \{x_1, \dots, x_n\} \subseteq \bigcup_{i \in J} U_i \subseteq X$$
+  So $\{U_i : i \in J\}$ is a finite subcover of the original cover of $X$. Since that cover was arbitrary, $X$ is compact.
+
+  ($\Rightarrow$) Suppose $X$ is compact. Since $X$ has the discrete topology, $\{x\}$ is open in $X$ for every $x \in X$. Observe that
+  $$X = \bigcup_{x \in X} \{x\}$$
+  so $\{\{x\} : x \in X\}$ is an open cover of $X$, indexed by $I = X$. Since $X$ is compact, there exists a finite $J \subseteq X$ such that
+  $$X = \bigcup_{x \in J} \{x\} = J$$
+  So $X = J$ is finite.
 \end{proof}
 
 % ------------------------------------------------------------------
