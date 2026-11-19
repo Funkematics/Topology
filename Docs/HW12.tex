@@ -16,15 +16,41 @@
 That is, show that the preimage of $A$ under $f^{-1}$ is $f(A)$.  Note that the 
 two superscripts $-1$ are doing different work, so they do not simply cancel 
 as they would if both meant ``inverse function''.
+\newline
+\begin{proof}
+  We show equality by showing both $(f^{-1})^{-1}(A) \subseteq f(A)$ and $(f^{-1})^{-1}(A) \supseteq f(A)$. \newline
+  $(\subseteq)$ Let $y \in (f^{-1})^{-1}(A)$. By definition of preimage $f^{-1}(y) \in A$. Set $a := f^{-1}(y)$. Then $ a \in A$ and $f(a) = f(f^{-1}(y)) = y$. Hence $ y \in f(A)$. \newline
+  $(\supseteq)$ Let $y \in f(A)$. Then by definition of image there exists $a \in f(a)$ with $f(a) = y$. Apply the inverse to both sides and get
+  \begin{align*}
+    a &= f^{-1}(y) \\  
+      &= f^{-1}(f(a)) = a
+  \end{align*}
+  Since $a \in A$ was arbitrary we have $y \in (f^{-1})^{-1}(A)$. \newline
+  Hence $(f^{-1})^{-1}(A) = f(A)$.
+\end{proof}
 
 \problem Let $X$ be a topological space and let $A\subset B\subset X$.
 Show that the subspace topology on $A$ as a subspace of $B$ is the same
 as the subspace topology on $A$ as a subspace of $X$.  Note that $B$ 
 in this problem has the subspace topology (as a subspace of $X$).
 
+\begin{proof}
+  $(\subseteq)$ Let $W \in \mathcal{T}_A^B$. Then $W = A \cap V$ for some $V \in \mathcal{T}_B$, and $V = B \cap U$ for some $U \in \mathcal{T}$. Substituting $V$ we get :
+  $$W = A \cap (B \cap U) = (A \cap B) \cap U $$
+  Since $A \subset B$, then $(A \cap B) = A$. Substituting above we get $W = A \cap U$. Hence $W \in \mathcal{T}_A^X$. \newline
+  $(\supseteq)$ We want to show that $\mathcal{T}_A^X \subseteq \mathcal{T}_A^X$. Let $W \in \mathcal{T}_A^X$, so $W = A \cap U$ with $U \in \mathcal{T}$. Set $V := B \cap U \in \mathcal{T}_B$. Then
+  $$A \cap V = (A \cap B) \cap U = A \cap U = W$$
+  so $W \in \mathcal{T}_A^B$. \newline
+  Therefore $\mathcal{T}_A^B = \mathcal{T}_A^X$.
+\end{proof}
+
 \problem Suppose $X$ is a topological space and that $A\subset X$.
 Show that $A$ is a compact subset of $X$ if and only if $A$ is a compact 
 subset of $A$ (with the subspace topology on $A$).
+\newline
+\begin{proof}
+  Let $\{W_i\}_{i \in I} \subseteq \mathcal{T}_A$ be an open cover of $A$.
+\end{proof}
 
 \problem Let $X$ and $Y$ be topological spaces and let $A\subset X$ and $B\subset Y$.
 Then $A\times B$ is a subset of $X\times Y$ and has the subspace topology.
